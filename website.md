@@ -4,14 +4,17 @@
 
 - navbar darunter 
     - | Feature 1 | Feature 2 | .. | Pricing | Kontakt
-    - navbar scrollt nur
 
 - Feature 1
+    - bild
+    - erklärung
 - Feature 2
+    - bild
+    - erklärung
 - ...
 - Pricing
 - Kontakt
-- Hyperlinks am Boden
+- Fußnote
     - Link zur Firma
     - Nochmal Kontakt
     - Impressum, Datenschutzerklaerung und co.
