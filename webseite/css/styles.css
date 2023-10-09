@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -35,34 +36,9 @@ header button {
     margin: 1em;
 }
 
-nav div {
-    display: grid;
-    grid-template-columns: auto;
-}
-
-nav ul {
-    background-color: teal;
-    padding: .5em .5em .5em 4em;
-    font-size: 1.3em;
-}
-
-nav li {
-    background-color: teal;
-    color: cornsilk;
-    padding: .5em;
-}
-
 .horizontal-list, nav li {
     display: inline;
 }
-nav li:hover {
-    background-color: #006868;
-}
-nav a {
-    color: inherit;
-    text-decoration: none;
-}
-
 section div {
     padding-left: 1em;
 }
