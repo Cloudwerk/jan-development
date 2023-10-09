@@ -1,17 +1,19 @@
 nav {
-  display: grid;
-  grid-template-columns: auto;
+  display: flex;
 
   & ul {
       background-color: teal;
       padding: .5em .5em .5em 4em;
       font-size: 1.3em;
+      width: 100%;
   }
 
   & li {
       background-color: teal;
       color: cornsilk;
       padding: .5em;
+      display: inline;
+      margin: 1em 0em;
   }
 
   & li:hover {

@@ -1,6 +1,7 @@
 
 * {
     box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
 
@@ -12,8 +13,8 @@ main {
     margin: .5em auto;
 }
 header {
-    display: grid;
-    grid-template-columns: 25em 50em 1fr;
+    display: flex;
+    justify-content: space-between;
     max-width: 100em;
     margin: .5em auto;
 
@@ -37,7 +38,7 @@ header {
     }
 }
 
-.horizontal-list, nav li {
+.horizontal-list {
     display: inline;
 }
 
@@ -52,21 +53,18 @@ section h2 {
 }
 
 .grid-container {
-    display: grid;
+    display: flex;
     justify-content: space-evenly;
-
-    & img  {
-        width: auto;
-        height: 200px;
-    }
 }
 
-.feature-view {
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto 200px;
+.feature-list img{
+    width: auto;
+    height: 200px;
 }
 
 .grid-item {
+    display: flex;
+    flex-direction: column;
     text-align: center;
 }
 
@@ -118,5 +116,13 @@ footer {
 
     & a:active {
         color: blue;
+    }
+}
+
+.social-links {
+    display: flex;
+    
+    & button {
+        margin: 1em;
     }
 }
