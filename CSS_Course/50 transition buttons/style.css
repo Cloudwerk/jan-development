@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+
+.body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    --background-color: #0af;
+    --text-color: #fff;
+    border-radius: .3em;
+    background-color: var(--background-color);
+    border: none;
+    color: var(--text-color);
+    padding: .5rem 1rem;
+    margin: 2rem;
+    width: fit-content;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.btn-hide {
+        --background-color: hsla(200, 100%, 50%, 50%);
+        transition: 1s ease-in-out;
+
+        &:hover {
+            --background-color: hsla(200, 100%, 50%, 100%);
+        }
+        &:focus {
+            --background-color: transparent;
+            --text-color: transparent;
+        }
+    }
+
+    &.btn-color {
+        transition: 1s ease-in-out;
+        &:focus {
+            --background-color: orange;
+            --text-color: #000;
+        }
+    }
+}
