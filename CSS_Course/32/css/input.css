@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+.Input {
+    margin: .25rem;
+    padding: .5em;
+    border: 1px solid #ccc;
+    border-radius: .3em;
+    
+    &:focus {
+        border-color: #0AF;
+        box-shadow: 0 0 .4em 0 #0AF;
+        outline: none;
+    }
+
+    &:disabled {
+        background-color: #f2f2f2;
+        border-color: #ccc;
+        color: #999;
+        cursor: not-allowed;
+    }
+
+    &.InputSuccess {
+        border-color: green;
+
+        &:focus {
+            border-color: #0A0;
+            box-shadow: 0 0 .4em 0 #0A0;
+        }
+    }
+
+    &.InputError {
+        border-color: red;
+
+        &:focus {
+            border-color: #A00;
+            box-shadow: 0 0 .4em 0 #A00;
+        }
+    }
+
+    &.InputLarge  {
+        font-size: 1.25em;
+    }
+
+    &.InputSmall {
+        font-size: .6em;
+    }
+}
+

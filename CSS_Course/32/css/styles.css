@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #1b2522;
+}
+
+.section-title {
+    font-size: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    color: black;
+}
+
+.section {
+    padding: 2rem;
+}
+
+
+.btn {
+    border-radius: 10000000px;
+    background-color: hsl(200, 100%, 50%);
+    padding: .25rem .5rem;
+    outline: none;
+    border: none;
+
+    &:hover, &:focus {
+        background-color: rgb(17, 120, 155);
+    }
+}

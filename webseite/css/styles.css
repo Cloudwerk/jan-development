@@ -106,6 +106,6 @@ footer {
     display: flex;
     
     & button {
-        margin: 1rem;
+        margin: .5rem;
     }
 }

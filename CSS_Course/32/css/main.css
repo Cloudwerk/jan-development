@@ -1,0 +1,96 @@
+.curriculum-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    & .curriculum-grid-item {
+        display: flex;
+        align-items: center;
+        padding: .25em;
+        & p {
+            padding-left: 0.5em;
+        }
+
+        & img {
+            width: 3.2rem;
+            margin-right: 1rem;
+        }
+    }
+}
+
+.free-section {
+    background-color: #0af;
+    color: #fff;
+    & h2 {
+        color: inherit;
+        font-size: 4rem;
+        margin: 1rem;
+        text-transform: uppercase;
+    }
+    & p {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        max-width: 20rem;
+    }
+}
+
+.free-section, .form-section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section {
+    & .section-title {
+        font-size: 3rem;
+    }
+    & .form {
+        display: flex;
+        flex-direction: column;
+        width: 60vw;
+        max-width: 900px;
+        & label {
+            font-weight: bold;
+        }
+        & .btn {
+            align-self: flex-end;
+            color: #fff;
+            margin-top: .5rem;
+        }
+
+        & textarea {
+            resize: vertical;
+            min-height: 3rem;
+            max-height: 9rem;
+        }
+    }
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #1b2522;;
+    & img {
+        width: auto;
+        height: 2.5rem;
+        margin: .5rem;
+    }
+    & ul {
+        display: flex;
+        list-style: none;
+        padding-right: 2rem;
+        & li {
+            padding: .25rem .5rem;
+        }
+    }
+    & a {
+        color: #fff;
+        text-decoration: none;
+        &:hover{
+            color: #ddd;
+        }
+    }
+
+}

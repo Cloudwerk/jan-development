@@ -1,0 +1,40 @@
+.header {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    color: #fff;
+    height: 100vh;
+    background-image: url(../img/header_image.jpg);
+    background-size: cover;
+    background-position-x: 40%;
+    background-position-y: center;
+    & .nav {
+        position: fixed;
+    }
+
+    & a {
+        color: #fff;
+        text-decoration: none;
+        &:hover{
+            color: #ddd;
+        }
+    }
+
+    & h1 {
+        font-size: 3rem;
+        margin-top: 40vh;
+        margin-bottom: .25rem;
+    }
+
+    & span {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .scroll-down-icon {
+        position: absolute;
+        bottom: 1rem;
+    }
+}
