@@ -11,7 +11,9 @@
     background-position-x: 40%;
     background-position-y: center;
     & .nav {
-        position: fixed;
+        position: sticky;
+        top: 0;
+        z-index: 1;
     }
 
     & a {
