@@ -13,6 +13,7 @@
 .btn {
     --background-color: #0af;
     --text-color: #fff;
+    --transition-time: 500ms;
     border-radius: .3em;
     background-color: var(--background-color);
     border: none;
@@ -27,19 +28,18 @@
 
     &.btn-hide {
         --background-color: hsla(200, 100%, 50%, 50%);
-        transition: 1s ease-in-out;
+        transition: var(--transition-time) ease-in-out;
 
         &:hover {
             --background-color: hsla(200, 100%, 50%, 100%);
         }
         &:focus {
-            --background-color: transparent;
-            --text-color: transparent;
+            opacity: 0;
         }
     }
 
     &.btn-color {
-        transition: 1s ease-in-out;
+        transition: var(--transition-time) ease-in-out;
         &:focus {
             --background-color: orange;
             --text-color: #000;
