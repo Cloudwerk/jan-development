@@ -40,3 +40,9 @@
         bottom: 1rem;
     }
 }
+
+@media (max-width: 700px) {
+    .header {
+        background-position-x: 65%;;
+    }
+}

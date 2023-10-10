@@ -17,24 +17,11 @@
     }
 }
 
-.free-section {
+.pricing-section {
     background-color: #0af;
-    color: #fff;
-    & h2 {
-        color: inherit;
-        font-size: 4rem;
-        margin: 1rem;
-        text-transform: uppercase;
-    }
-    & p {
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        max-width: 20rem;
-    }
 }
 
-.free-section, .form-section {
+.form-section {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -93,4 +80,112 @@
         }
     }
 
+}
+
+.pricing-cards-container {
+    display: flex;
+    justify-content: center;
+    padding: .5em;
+    font-weight: light;
+
+    & .pricing-card {
+        --background-color: hsla(0, 100%, 100%, 50%);
+        padding: 1rem;
+        background-color: var(--background-color);
+        border: 1px solid #000;
+        border-radius: .3em;
+        margin: 1rem 0;
+
+        &:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: none;
+        }
+
+        &:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none;
+        }
+
+        &.accent {
+            --background-color: #fff;
+            margin: 0;
+            & .feature {
+                font-size: 1.2rem;
+            }
+        }
+
+        & .price-header {
+            text-align: center;
+            & .plan-name {
+                font-size: 2rem;
+            }
+            & .plan-price {
+                font-size: 3rem;
+                font-weight: bold;
+                &::after {
+                    content: '/mo';
+
+                    margin-left: -.75rem;
+                    font-style: italic;
+                    font-size: 1rem;
+                    color: #777;
+                }
+            }
+        } 
+        & .plan-features {
+            padding: .25em 0.5em, 0, 0;
+
+            & :nth-child(-n + 2)::first-letter {
+                font-weight: bold;
+            }
+
+            & .feature {
+                padding: .25em;
+
+                + .inactive {
+                    text-decoration: line-through;
+                    color: #a7a7a7;
+                }
+            }
+        }      
+    }
+}
+
+@media (max-width: 700px) {
+    .pricing-cards-container {
+        flex-wrap: wrap;
+
+        & .pricing-card {
+            width: 100%;
+            margin: 0 0 1rem 0;
+
+            &.accent {
+                margin: 0 0 1rem 0;
+            }
+
+            &:first-child, &:last-child {
+                border-radius: .3em;
+                border: 1px solid #000;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            & .feature {
+                text-align: center;
+
+                &.inactive {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .curriculum-grid {
+        grid-template-columns: minmax(auto, 450px);
+        row-gap: 30px;
+    }
 }
