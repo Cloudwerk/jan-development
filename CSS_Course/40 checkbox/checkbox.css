@@ -1,0 +1,46 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.custom-checkbox {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+
+  + label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      width: 1.1em;
+      height: 1.1em;
+      border-radius: .15em;
+      border: .05em solid #000;
+      margin-right: .2em;
+      display: block;
+    }
+  }
+
+  &:focus + label::before, & + label:hover::before {
+    border-color: #0af;
+  }
+
+  &:checked + label::before {
+    content: '\2714';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &:disabled + label {
+    color: #aaa;
+    cursor: not-allowed;
+
+    &::before {
+      border-color: #999;
+      background-color: #ccc;
+    }
+  }
+}
