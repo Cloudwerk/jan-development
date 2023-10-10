@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-.Input {
+.input {
     --border-color: #aaa;
 
     border: 1px solid var(--border-color);
@@ -16,7 +16,7 @@
         box-shadow: 0 0 5px 0 var(--border-color);
     }
 
-    &.InputSuccess {
+    &.inputsuccess {
         --border-color: #37ae60;
 
         &:focus {
@@ -31,7 +31,7 @@
         cursor: not-allowed;
     }
 
-    &.InputError {
+    &.inputerror {
         --border-color: #eb5757;
 
         &:focus {
@@ -39,11 +39,11 @@
         }
     }
 
-    &.InputLarge  {
+    &.inputlarge  {
         font-size: 1.25em;
     }
 
-    &.InputSmall {
+    &.inputsmall {
         font-size: .6em;
     }
 }
