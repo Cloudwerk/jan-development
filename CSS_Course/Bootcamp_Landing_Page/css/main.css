@@ -6,6 +6,11 @@
         display: flex;
         align-items: center;
         padding: .25em;
+
+        &:hover img {
+            animation: shake 100ms;
+        }
+
         & p {
             padding-left: 0.5em;
         }
@@ -75,6 +80,8 @@
     & a {
         color: #fff;
         text-decoration: none;
+
+        transition: color 100ms;
         &:hover{
             color: #ddd;
         }
@@ -96,16 +103,26 @@
         border-radius: .3em;
         margin: 1rem 0;
 
+        transition: transform 100ms;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
         &:first-child {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
             border-right: none;
+
+            transform-origin: right;
         }
 
         &:last-child {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             border-left: none;
+
+            transform-origin: left;
         }
 
         &.accent {
@@ -168,6 +185,8 @@
             &:first-child, &:last-child {
                 border-radius: .3em;
                 border: 1px solid #000;
+                
+                transform-origin: center;
             }
 
             &:last-child {
@@ -187,5 +206,15 @@
     .curriculum-grid {
         grid-template-columns: minmax(auto, 450px);
         row-gap: 30px;
+    }
+}
+
+@keyframes shake {
+    25% {
+        transform: rotate(5deg);
+    }
+    
+    75% {
+        transform: rotate(-5deg);
     }
 }

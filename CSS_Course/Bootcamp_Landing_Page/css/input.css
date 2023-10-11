@@ -8,6 +8,7 @@
     border: 1px solid #ccc;
     border-radius: .3em;
     
+    transition: border-color 100ms, box-shadow 100ms;
     &:focus {
         border-color: #0AF;
         box-shadow: 0 0 .4em 0 #0AF;
