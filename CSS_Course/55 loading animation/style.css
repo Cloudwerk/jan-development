@@ -22,53 +22,81 @@
         padding: .5rem .75rem;
         margin: none;
         text-align: center;
+        cursor: pointer;
+        position: relative;
 
-        &::after {
-            position: absolute;
-            content: '';
-            background: none;
-            text-align: center;
-            color: black;
-            transform: translate(-175%, 250%);
-            animation: rotation 2s linear forwards;
-            animation-play-state: paused;
-        }
 
         &:focus {
             &::after {
-                animation-play-state: running;
-            }
-        }
+                --default-transform: translateY(200%);
 
-        &:hover {
-            cursor: pointer;
+                content: 'Loading';
+                position: absolute;
+                color: black;
+                transform: var(--default-transform);
+                transform-origin: center;
+                left: 0;
+                bottom: 0;
+                animation: loading 2s linear forwards;
+            }
         }
     }
 }
 
-@keyframes rotation {
-    1% {
-        content: 'Loading';
-        transform: translate(-175%, 250%) rotate(0deg);
+@keyframes loading {
+    0% {
+      opacity: 1;
     }
-
+  
+    10% {
+      content: 'Loading.';
+    }
+  
+    20% {
+      content: 'Loading..';
+    }
+  
     25% {
-        content: 'Loading.';
-        transform: translate(calc(-175% + .5em), 250%) rotate(45deg);
+      transform: var(--default-transform) rotate(30deg);
     }
-
+  
+    30% {
+      content: 'Loading...';
+    }
+    
+    40% {
+      content: 'Loading..';
+    }
+    
     50% {
-        content: 'Loading..';
-        transform: translate(calc(-175% + 1em), 250%) rotate(0deg);
+      content: 'Loading.';
+      opacity: .6;
+      transform: var(--default-transform) rotate(0);
     }
-
+    
+    60% {
+      content: 'Loading';
+    }
+    
+    70% {
+      content: 'Loading.';
+    }
+  
     75% {
-        content: 'Loading...';
-        transform: translate(calc(-175% + 1.5em), 250%) rotate(-45deg);
+      transform: var(--default-transform) rotate(-30deg);
     }
-
+    
+    80% {
+      content: 'Loading..';
+    }
+  
+    90% {
+      content: 'Loading...';
+    }
+  
     100% {
-        content: 'Loaded';
-        transform: translate(-175%, 250%) rotate(0deg);
+      content: 'Loaded';
+      opacity: 1;
+      transform: var(--default-transform) rotate(0);
     }
 }
