@@ -10,7 +10,7 @@
         transform: translate(0, 50%);
     }
 
-    &::before {
+    &:hover::before {
 
         content: attr(data-tooltip-right);
     
@@ -24,7 +24,7 @@
         text-align: center;
     }
 
-    &::after {
+    &:hover::after {
         content: '';
 
         border: var(--arrow-size) solid transparent;
