@@ -61,10 +61,12 @@
                 padding: 0 .3em 0 0;
             }
             & .feature-disabled {
-                text-decoration-line: line-through;
+                text-decoration: line-through;
                 color: #999;
                 &::before {
-                content: "❌";
+                    content: "❌";
+                    text-decoration: none !important;
+                    color: #fff;
                 }
             }
         }
@@ -117,7 +119,7 @@
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 951px) {
     .pricing-container {
         flex-direction: column;
         & .pricing-container-item {
