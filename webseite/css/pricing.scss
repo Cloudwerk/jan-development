@@ -13,11 +13,12 @@
         border: 1px solid #000;
         border-radius: .3em;
 
-        padding: 2rem;
+        padding: 1.5rem;
 
         margin: 1rem 0;
 
         width: 25vw;
+        height: 50vh;
         min-width: max-content;
 
         transition: transform 100ms;
@@ -42,9 +43,19 @@
             background-color: #A1FCDF;
             margin: 0;
             font-size: 1.25rem;
+            padding-top: 0;
+
+            height: 55vh;
 
             & h3 {
+                padding: none;
+                margin: none;
                 font-size: 2.5rem;
+            }
+
+            & p {
+                padding: none;
+                margin: 0 0 1rem 0;
             }
 
             z-index: 2;
@@ -52,6 +63,7 @@
 
         & ul {
             list-style: none;
+            text-align: left;
             
             padding: 0;
             & li::before {
@@ -77,6 +89,10 @@
                 content: "/mo";
                 color: #777;
                 font-size: .75em;
+            }
+
+            &#free::after {
+                content: " ";
             }
         }
     }

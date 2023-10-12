@@ -293,9 +293,10 @@ footer {
   text-align: center;
   border: 1px solid #000;
   border-radius: 0.3em;
-  padding: 2rem;
+  padding: 1.5rem;
   margin: 1rem 0;
   width: 25vw;
+  height: 50vh;
   min-width: -moz-max-content;
   min-width: max-content;
   transition: transform 100ms;
@@ -318,13 +319,22 @@ footer {
   background-color: #A1FCDF;
   margin: 0;
   font-size: 1.25rem;
+  padding-top: 0;
+  height: 55vh;
   z-index: 2;
 }
 .pricing-container .pricing-container-item.accent h3 {
+  padding: none;
+  margin: none;
   font-size: 2.5rem;
+}
+.pricing-container .pricing-container-item.accent p {
+  padding: none;
+  margin: 0 0 1rem 0;
 }
 .pricing-container .pricing-container-item ul {
   list-style: none;
+  text-align: left;
   padding: 0;
 }
 .pricing-container .pricing-container-item ul li::before {
@@ -347,6 +357,9 @@ footer {
   content: "/mo";
   color: #777;
   font-size: 0.75em;
+}
+.pricing-container .pricing-container-item p#free::after {
+  content: " ";
 }
 
 #btn-trial {
