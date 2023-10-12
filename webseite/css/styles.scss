@@ -89,3 +89,33 @@
         }
     }
 }
+
+@media (max-width: 700px) {
+    .pricing-container {
+        flex-direction: column;
+        & .pricing-container-item {
+            margin: 2em 1em;
+            width: 80vw;
+
+            &:first-child  {
+                border-top-right-radius: .3em;
+                border-bottom-right-radius: .3em;
+                border-right: 1px solid #000;
+
+                transform-origin: center;
+            }
+
+            &:last-child {
+                border-top-left-radius: .3em;
+                border-bottom-left-radius: .3em;
+                border-left: 1px solid #000;
+
+                transform-origin: center;
+            }
+
+            & .feature-disabled {
+                display: none;
+            }
+        }
+    }
+}
