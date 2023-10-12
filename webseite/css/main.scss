@@ -19,7 +19,7 @@ section div {
 section h2 {
     font-size: 5em;
     color: teal;
-    padding-left: 3em;
+    padding-left: 12.5vw;
 }
 
 .grid-container {
@@ -66,4 +66,10 @@ td {
 
 #Contact div {
     padding-left: 10rem;
+}
+
+@media (max-width: 700px) {
+    section h2 {
+        font-size: 3em;
+    }
 }

@@ -1,27 +1,42 @@
 nav {
-  display: flex;
+    display: flex;
+    & ul {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background-color: teal;
+        padding: .5em .5em .5em 4em;
+        font-size: 1.3rem;
+        width: 100%;
+    }
 
-  & ul {
-      background-color: teal;
-      padding: .5em .5em .5em 4em;
-      font-size: 1.3em;
-      width: 100%;
-  }
+    & li {
+        background-color: teal;
+        color: cornsilk;
+        padding: .5em;
+        display: inline;
+        margin: 2rem 0em;
+    }
 
-  & li {
-      background-color: teal;
-      color: cornsilk;
-      padding: .5em;
-      display: inline;
-      margin: 1em 0em;
-  }
+    & li:hover {
+        background-color: #006868;
+    }
 
-  & li:hover {
-      background-color: #006868;
-  }
+    & a {
+        color: inherit;
+        text-decoration: none;
+    }
+}
 
-  & a {
-      color: inherit;
-      text-decoration: none;
-  }
+
+@media (max-width: 700px) {
+    nav {
+        & ul {
+            font-size: 1rem;
+            padding: .5em .5em .5em .5em;
+        }
+
+        & li {
+            padding: .5em;
+        }
+    }
 }
