@@ -39,7 +39,7 @@
         }
 
         &.accent {
-            background-color: hsl(180%, 100%, 40%);
+            background-color: #A1FCDF;
             margin: 0;
             font-size: 1.25rem;
 
@@ -89,6 +89,34 @@
     }
 }
 
+#btn-trial {
+    margin: 2rem 0 1rem 0;
+    position: relative;
+    width: 35%;
+    max-width: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-weight: bold;
+    font-size: 2rem;
+    background-color: teal;
+    color: cornsilk;
+    border: none;
+
+    transition: 200ms ease-in-out;
+
+    animation: jump-breathing 2s ease-in-out infinite alternate;
+
+    &:hover {
+        background-color: cornsilk;
+        color: teal;
+        
+        animation-play-state: paused;
+        transform: translate(-50%) scale(1.1);
+        box-shadow: 0 0 .4em 0 #054d87;
+    }
+}
+
 @media (max-width: 700px) {
     .pricing-container {
         flex-direction: column;
@@ -116,5 +144,14 @@
                 display: none;
             }
         }
+    }
+}
+
+@keyframes jump-breathing {
+    0% {
+        transform: translate(-50%, 0);
+    }
+    100% {
+        transform: translate(-50%, -10px);
     }
 }
