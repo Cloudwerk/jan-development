@@ -333,15 +333,6 @@ footer {
   content: "✅";
   padding: 0 0.3em 0 0;
 }
-.pricing-container .pricing-container-item ul .feature-disabled {
-  text-decoration: line-through;
-  color: #999;
-}
-.pricing-container .pricing-container-item ul .feature-disabled::before {
-  content: "❌";
-  text-decoration: none !important;
-  color: #fff;
-}
 .pricing-container .pricing-container-item:hover {
   transform: scale(1.05);
 }
@@ -400,9 +391,6 @@ footer {
     border-bottom-left-radius: 0.3em;
     border-left: 1px solid #000;
     transform-origin: center;
-  }
-  .pricing-container .pricing-container-item .feature-disabled {
-    display: none;
   }
 }
 @keyframes jump-breathing {

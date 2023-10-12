@@ -60,15 +60,6 @@
                 content: "✅";
                 padding: 0 .3em 0 0;
             }
-            & .feature-disabled {
-                text-decoration: line-through;
-                color: #999;
-                &::before {
-                    content: "❌";
-                    text-decoration: none !important;
-                    color: #fff;
-                }
-            }
         }
 
         &:hover {
@@ -140,10 +131,6 @@
                 border-left: 1px solid #000;
 
                 transform-origin: center;
-            }
-
-            & .feature-disabled {
-                display: none;
             }
         }
     }
