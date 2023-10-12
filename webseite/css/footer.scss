@@ -1,0 +1,11 @@
+footer {
+    background-color: rgba(32, 178, 129, 0.61);
+}
+
+.social-links {
+    display: flex;
+    
+    & button {
+        margin: .5rem;
+    }
+}

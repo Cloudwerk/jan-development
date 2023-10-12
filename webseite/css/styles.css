@@ -1,111 +1,210 @@
+* {
+  box-sizing: border-box;
+}
+
+.btn {
+  background-color: #e6e6e6;
+  border: 1px solid #b3b3b3;
+  outline: none;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  border-radius: 0.3em;
+}
+
+.btn.btn:hover, .btn.btn:focus {
+  background-color: #d9d9d9;
+  box-shadow: 0 0 0.4em 0 #b3b3b3;
+}
+
+.btn.btn-primary {
+  background-color: #8830bb;
+  border-color: #420a55;
+  color: #fff;
+}
+
+.btn.btn-primary:hover, .btn.btn-primary:focus {
+  background-color: #7a20aa;
+  box-shadow: 0 0 0.4em 0 #420a55;
+}
+
+.btn.btn-accent {
+  background-color: #298dc7;
+  border-color: #095d97;
+  color: #fff;
+}
+
+.btn.btn-accent:hover, .btn.btn-accent:focus {
+  background-color: #095d97;
+  box-shadow: 0 0 0.4em 0 #054d87;
+}
+
+.btn.btn-danger {
+  background-color: #c72929;
+  border-color: #a70909;
+  color: #fff;
+}
+
+.btn.btn-danger:hover, .btn.btn-danger:focus {
+  background-color: #a70909;
+  box-shadow: 0 0 0.4em 0 #790606;
+}
+
+.btn.btn-large {
+  font-size: 1.25em;
+}
+
+.btn.btn-small {
+  font-size: 0.75em;
+}
+
+.btn.btn-pill {
+  border-radius: 10000000px;
+}
+
+.btn.btn-custom {
+  background: linear-gradient(to right, #b00b69, #420a55, #042069);
+  color: white;
+  border-color: #222;
+}
+
+.btn.btn-custom:hover, .btn.btn-custom:focus {
+  background: linear-gradient(to right, #80094c, #2d073a, #010a36);
+  color: white;
+  border-color: black;
+  box-shadow: 0 0 0.4em 0 black;
+}
+
+.btn.btn-social {
+  background-color: hsla(115, 50%, 50%, 0.5);
+}
+
+nav {
+  display: flex;
+}
+nav ul {
+  background-color: teal;
+  padding: 0.5em 0.5em 0.5em 4em;
+  font-size: 1.3em;
+  width: 100%;
+}
+nav li {
+  background-color: teal;
+  color: cornsilk;
+  padding: 0.5em;
+  display: inline;
+  margin: 1em 0em;
+}
+nav li:hover {
+  background-color: #006868;
+}
+nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100em;
+  margin: 0.5em auto;
+}
+header img {
+  width: 20em;
+  height: auto;
+}
+header p {
+  font-size: 2em;
+  font-family: Arial, Helvetica, sans-serif;
+  transform: translateY(-0.675em);
+}
+header div {
+  display: flex;
+}
+header button {
+  margin: 1em;
+}
 
 * {
-    box-sizing: border-box;
-    flex-wrap: wrap;
+  box-sizing: border-box;
+  flex-wrap: wrap;
 }
-
 
 body {
-    font-family: 'B612', sans-serif;;
+  font-family: "B612", sans-serif;
 }
+
 main {
-    max-width: 100em;
-    margin: .5em auto;
-}
-header {
-    display: flex;
-    justify-content: space-between;
-    max-width: 100em;
-    margin: .5em auto;
-
-    & img {
-        width: 20em;
-        height: auto;
-    }
-
-    & p {
-        font-size: 2em;
-        font-family: Arial, Helvetica, sans-serif;
-        transform: translateY(-0.675em);
-    }
-
-    & div {
-        display: flex;
-    }
-
-    & button {
-        margin: 1em;
-    }
+  max-width: 100em;
+  margin: 0.5em auto;
 }
 
 .horizontal-list {
-    display: inline;
+  display: inline;
 }
 
 section div {
-    padding-left: 1em;
+  padding-left: 1em;
 }
 
 section h2 {
-    font-size: 5em;
-    color: teal;
-    padding-left: 3em;
+  font-size: 5em;
+  color: teal;
+  padding-left: 3em;
 }
 
 .grid-container {
-    display: flex;
-    justify-content: space-evenly;
-    font-size: 1rem;
-    align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1rem;
+  align-items: center;
 }
 
-.feature-list img{
-    width: auto;
-    height: 200px;
+.feature-list img {
+  width: auto;
+  height: 200px;
 }
 
 .grid-item {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 table, th, td {
-    border: thin solid;
-    border-collapse: collapse;
+  border: thin solid;
+  border-collapse: collapse;
 }
 
 th, td {
-    padding: .3rem;
-    border-color: black;
+  padding: 0.3rem;
+  border-color: black;
 }
 
 th {
-    background-color: teal;
-    color: cornsilk;
+  background-color: teal;
+  color: cornsilk;
 }
 
 td {
-    color: teal;
+  color: teal;
 }
 
 #table {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 #Contact div {
-    padding-left: 10rem;
+  padding-left: 10rem;
 }
 
 footer {
-    background-color: rgba(32, 178, 129, 0.61);
+  background-color: rgba(32, 178, 129, 0.61);
 }
 
 .social-links {
-    display: flex;
-    
-    & button {
-        margin: .5rem;
-    }
+  display: flex;
 }
+.social-links button {
+  margin: 0.5rem;
+}/*# sourceMappingURL=styles.css.map */
