@@ -5,3 +5,45 @@
 @import "main";
 @import "footer";
 @import "pricing";
+@import "input";
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em 0em;
+}
+
+.contact-form {
+    display:flex;
+    flex-direction: column;
+
+    max-width: 700px;
+    width: 50vw;
+    min-width: 300px;
+
+    & label {
+        text-align: left;
+    }
+
+    & .btn-pill {
+        margin: 1em 0em;
+        position: relative;
+        width: 35%;
+        max-width: 150px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        font-weight: bold;
+        background-color: teal;
+        color: cornsilk;
+        border: none;
+
+        transition: 200ms ease-in-out;
+
+        &:hover {
+            transform: translate(-50%) scale(1.1);
+            box-shadow: 0 0 .4em 0 #054d87;
+        }
+    }
+}

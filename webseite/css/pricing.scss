@@ -26,12 +26,16 @@
             border-bottom-right-radius: 0;
             border-top-right-radius: 0;
             transform-origin: right;
+
+            z-index: 1;
         }
         &:last-of-type {
             border-left: none;
             border-bottom-left-radius: 0;
             border-top-left-radius: 0;
             transform-origin: left;
+
+            z-index: 1;
         }
 
         &.accent {
@@ -42,6 +46,8 @@
             & h3 {
                 font-size: 2.5rem;
             }
+
+            z-index: 2;
         }
 
         & ul {
