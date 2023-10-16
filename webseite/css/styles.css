@@ -142,6 +142,8 @@ header {
   flex-direction: column;
   margin: 0;
   height: 100vh;
+  background-image: url(../img/platzhalter.png);
+  background-size: cover;
 }
 header .header-content {
   margin: 2em 10vw 0 10vw;
