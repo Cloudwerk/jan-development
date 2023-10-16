@@ -6,7 +6,6 @@
     flex-wrap: nowrap;
 
     & .pricing-container-item {
-
         border: 1px solid #000;
         border-radius: .3em;
 
@@ -14,6 +13,8 @@
         margin: 1rem 0;
 
         transition: transform 100ms;
+
+        box-shadow: 0 0 .4em 0 #054d87;
         &:first-of-type {
             border-right: none;
             border-bottom-right-radius: 0;
@@ -62,7 +63,7 @@
 
         &:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 .4em 0 #054d87;
+            box-shadow: 0 0 .4em 0 #000;
         }
 
         & .price-header {

@@ -142,6 +142,7 @@ header {
   flex-direction: column;
   margin: 0;
   height: 100vh;
+  height: 100svh;
   background-image: url(../img/platzhalter.png);
   background-size: cover;
 }
@@ -319,6 +320,7 @@ footer {
   padding: 1.5rem;
   margin: 1rem 0;
   transition: transform 100ms;
+  box-shadow: 0 0 0.4em 0 #054d87;
 }
 .pricing-container .pricing-container-item:first-of-type {
   border-right: none;
@@ -354,7 +356,7 @@ footer {
 }
 .pricing-container .pricing-container-item:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 0.4em 0 #054d87;
+  box-shadow: 0 0 0.4em 0 #000;
 }
 .pricing-container .pricing-container-item .price-header {
   text-align: center;
