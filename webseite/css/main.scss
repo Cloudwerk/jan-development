@@ -25,7 +25,7 @@ main {
 
         &:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 .4em 0 #054d87;
+            box-shadow: 0 0 .4em 0 var(--accent-color);
         }
     }
 }
@@ -56,7 +56,7 @@ section .contact-container {
 
 section h2 {
     font-size: 5em;
-    color: teal;
+    color: var(--primary-color);
     padding-left: 12.5vw;
 }
 
@@ -105,9 +105,9 @@ section h2 {
     }
 
     & .btn-pill {
-        --background-color: teal;
-        --border-color: #054d87;
-        --text-color: cornsilk;
+        --background-color: var(--primary-color);
+        --border-color: var(--accent-color);
+        --text-color: var(--accent-color-secondary);
 
         margin: 1em 0em;
         position: relative;

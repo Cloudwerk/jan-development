@@ -6,15 +6,15 @@
     flex-wrap: nowrap;
 
     & .pricing-container-item {
-        border: 1px solid #000;
+        border: 1px solid var(--accent-color);
         border-radius: .3em;
 
         padding: 1.5rem;
         margin: 1rem 0;
 
-        transition: transform 100ms;
+        transition: 100ms;
 
-        box-shadow: 0 0 .4em 0 #054d87;
+        box-shadow: 0 0 .4em 0 var(--accent-color);
         &:first-of-type {
             border-right: none;
             border-bottom-right-radius: 0;
@@ -109,8 +109,8 @@
 
     font-weight: bold;
     font-size: 2rem;
-    background-color: teal;
-    color: cornsilk;
+    background-color: var(--primary-color);
+    color: var(--accent-color-secondary);
     border: none;
 
     transition: 200ms ease-in-out;
@@ -118,12 +118,12 @@
     animation: jump-breathing 2s ease-in-out infinite alternate;
 
     &:hover {
-        background-color: cornsilk;
-        color: teal;
+        background-color: var(--accent-color-secondary);
+        color: var(--primary-color);
         
         animation-play-state: paused;
         transform: translate(-50%) scale(1.1);
-        box-shadow: 0 0 .4em 0 #054d87;
+        box-shadow: 0 0 .4em 0 var(--accent-color);
     }
 }
 
@@ -138,7 +138,7 @@
             &:first-child  {
                 border-top-right-radius: .3em;
                 border-bottom-right-radius: .3em;
-                border-right: 1px solid #000;
+                border-right: 1px solid var(--accent-color);
 
                 transform-origin: center;
 
@@ -150,7 +150,7 @@
             &:last-child {
                 border-top-left-radius: .3em;
                 border-bottom-left-radius: .3em;
-                border-left: 1px solid #000;
+                border-left: 1px solid var(--accent-color);
 
                 transform-origin: center;
             }

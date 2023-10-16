@@ -33,6 +33,15 @@ body {
   font-family: "Roboto", cursive;
 }
 
+* {
+  --primary-color: #007681;
+  --primary-color-darkened: #005E66;
+  --secondary-color: #61965A;
+  --accent-color: #8e5996;
+  --accent-color-secondary: #fefae0;
+  --tertiary-color: #e0ebdf ;
+}
+
 .btn {
   --background-color: #e6e6e6;
   --border-color: #b3b3b3;
@@ -75,9 +84,9 @@ body {
   border-radius: 10000000px;
 }
 .btn.btn-social {
-  --background-color: teal;
-  --border-color: #054d87;
-  --text-color: cornsilk;
+  --background-color: var(--primary-color);
+  --border-color: var(--accent-color);
+  --text-color: var(--accent-color-secondary);
   border-radius: 0.3em;
   padding: none;
   font-family: "BootstrapIcons";
@@ -99,14 +108,14 @@ body {
 nav {
   position: fixed;
   display: flex;
-  background-color: teal;
+  background-color: var(--primary-color);
   width: 100%;
   z-index: 3;
 }
 nav ul {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  background-color: teal;
+  background-color: var(--primary-color);
   padding: 0.5em 0.5em 0.5em 4em;
   font-size: 1.3rem;
   width: 100%;
@@ -114,14 +123,14 @@ nav ul {
   align-items: center;
 }
 nav li {
-  background-color: teal;
-  color: cornsilk;
+  background-color: var(--primary-color);
+  color: var(--accent-color-secondary);
   padding: 0.5em;
   display: inline;
   margin: 0 0 2em 0;
 }
 nav li:hover {
-  background-color: #006868;
+  background-color: var(--primary-color-darkened);
 }
 nav a {
   color: inherit;
@@ -208,7 +217,7 @@ main {
 }
 .section .feature-img:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 0.4em 0 #054d87;
+  box-shadow: 0 0 0.4em 0 var(--accent-color);
 }
 
 .scroll-up-btn {
@@ -234,7 +243,7 @@ section .contact-container {
 
 section h2 {
   font-size: 5em;
-  color: teal;
+  color: var(--primary-color);
   padding-left: 12.5vw;
 }
 
@@ -279,9 +288,9 @@ section h2 {
   text-align: left;
 }
 .contact-form .btn-pill {
-  --background-color: teal;
-  --border-color: #054d87;
-  --text-color: cornsilk;
+  --background-color: var(--primary-color);
+  --border-color: var(--accent-color);
+  --text-color: var(--accent-color-secondary);
   margin: 1em 0em;
   position: relative;
   width: 35%;
@@ -298,7 +307,7 @@ section h2 {
 }
 
 footer {
-  background-color: rgba(32, 178, 129, 0.61);
+  background-color: hsla(113, 25%, 47%, 0.5);
 }
 
 .social-links {
@@ -315,12 +324,12 @@ footer {
   flex-wrap: nowrap;
 }
 .pricing-container .pricing-container-item {
-  border: 1px solid #000;
+  border: 1px solid var(--accent-color);
   border-radius: 0.3em;
   padding: 1.5rem;
   margin: 1rem 0;
-  transition: transform 100ms;
-  box-shadow: 0 0 0.4em 0 #054d87;
+  transition: 100ms;
+  box-shadow: 0 0 0.4em 0 var(--accent-color);
 }
 .pricing-container .pricing-container-item:first-of-type {
   border-right: none;
@@ -396,18 +405,18 @@ footer {
   transform: translateX(-50%);
   font-weight: bold;
   font-size: 2rem;
-  background-color: teal;
-  color: cornsilk;
+  background-color: var(--primary-color);
+  color: var(--accent-color-secondary);
   border: none;
   transition: 200ms ease-in-out;
   animation: jump-breathing 2s ease-in-out infinite alternate;
 }
 #btn-trial:hover {
-  background-color: cornsilk;
-  color: teal;
+  background-color: var(--accent-color-secondary);
+  color: var(--primary-color);
   animation-play-state: paused;
   transform: translate(-50%) scale(1.1);
-  box-shadow: 0 0 0.4em 0 #054d87;
+  box-shadow: 0 0 0.4em 0 var(--accent-color);
 }
 
 @media (max-width: 951px) {
@@ -422,7 +431,7 @@ footer {
   .pricing-container .pricing-container-item:first-child {
     border-top-right-radius: 0.3em;
     border-bottom-right-radius: 0.3em;
-    border-right: 1px solid #000;
+    border-right: 1px solid var(--accent-color);
     transform-origin: center;
   }
   .pricing-container .pricing-container-item:first-child .plan-features {
@@ -431,7 +440,7 @@ footer {
   .pricing-container .pricing-container-item:last-child {
     border-top-left-radius: 0.3em;
     border-bottom-left-radius: 0.3em;
-    border-left: 1px solid #000;
+    border-left: 1px solid var(--accent-color);
     transform-origin: center;
   }
   .pricing-container .pricing-container-item.accent {

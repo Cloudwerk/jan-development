@@ -49,9 +49,9 @@
     }
 
     &.btn-social {
-        --background-color: teal;
-        --border-color: #054d87;
-        --text-color: cornsilk;
+        --background-color: var(--primary-color);
+        --border-color: var(--accent-color);
+        --text-color: var(--accent-color-secondary);
         border-radius: .3em;
         
         padding: none;
