@@ -1,0 +1,44 @@
+@import "main";
+@import "input";
+@import "header";
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;;
+    color: #1b2522;
+}
+
+.section-title {
+    font-size: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+    color: black;
+}
+
+.section {
+    padding: 2rem;
+}
+
+
+.btn {
+    border-radius: 10000000px;
+    background-color: hsl(200, 100%, 50%);
+    padding: .5rem .75rem;
+    outline: none;
+    border: none;
+
+    transition: 100ms;
+    &:hover, &:focus {
+        background-color: rgb(17, 120, 155);
+    }
+}
+
+.btn-grow {
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 2px 5px 1px #000;
+    }
+}

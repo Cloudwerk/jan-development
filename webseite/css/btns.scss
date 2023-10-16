@@ -1,0 +1,73 @@
+.btn {
+    --background-color: #e6e6e6;
+    --border-color: #b3b3b3;
+    --text-color: #000;
+
+    background-color: var(--background-color);
+    border:1px solid var(--border-color);
+    color: var(--text-color);
+
+    outline: none;
+    cursor: pointer;
+    padding: .5em 1em;
+    border-radius: .3em;
+
+    &:hover, &:focus {
+        background-color: var(--text-color);
+        color: var(--background-color);
+        box-shadow: 0 0 .4em 0 --border-color;
+    }
+
+    &.btn-primary {
+        --background-color: #8830bb;
+        --border-color: #420a55;
+        --text-color: #fff;
+    }
+
+    &.btn-accent {
+        --background-color: #298dc7;
+        --border-color: #095d97;
+        --text-color: #fff;
+    }
+
+    &.btn-danger {
+        --background-color: #c72929;
+        --border-color: #a70909;
+        --text-color: #fff;
+    }
+
+    &.btn-lage {
+        font-size: 1.25em;
+    }
+
+    &.btn-small {
+        font-size: .75em;
+    }
+
+    &.btn-pill {
+        border-radius: 10000000px;
+    }
+
+    &.btn-social {
+        --background-color: var(--primary-color);
+        --border-color: var(--accent-color);
+        --text-color: var(--accent-color-secondary);
+        border-radius: .3em;
+        
+        padding: none;
+        font-family: 'BootstrapIcons';
+    }
+}
+
+.btn.btn-custom {
+    background: linear-gradient(to right, #b00b69, #420a55, #042069);
+    color:white;
+    border-color: #222;
+}
+
+.btn.btn-custom:hover, .btn.btn-custom:focus {
+    background: linear-gradient(to right, #80094c, #2d073a, #010a36);
+    color:white;
+    border-color: black;
+    box-shadow: 0 0 .4em 0 black;
+}

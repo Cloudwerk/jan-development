@@ -1,0 +1,176 @@
+.pricing-container {
+    display: flex;
+    justify-content: center;
+    padding: .5em;
+
+    flex-wrap: nowrap;
+
+    & .pricing-container-item {
+        border: 1px solid var(--accent-color);
+        border-radius: .3em;
+
+        padding: 1.5rem;
+        margin: 1rem 0;
+
+        transition: 100ms;
+
+        box-shadow: 0 0 .4em 0 var(--accent-color);
+        &:first-of-type {
+            border-right: none;
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+            transform-origin: right;
+
+            z-index: 1;
+
+            & .plan-features {
+                padding-bottom: 2rem;
+            }
+        }
+        &:last-of-type {
+            border-left: none;
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+            transform-origin: left;
+
+            z-index: 1;
+        }
+
+        &.accent {
+            background-color: #A1FCDF;
+            margin: 0;
+            font-size: 1.25rem;
+
+            z-index: 2;
+        }
+
+        & .plan-features {
+            & .feature {
+                &::before {
+                    font-family: 'NotoColorEmoji';
+                    font-size: .75em;
+                    content: "✅";
+                    padding: 0 .3em 0 0;
+                }
+            }
+
+            & .inactive {
+                &::before {
+                    content: "";
+                }
+            }
+        }
+
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 .4em 0 #000;
+        }
+
+        & .price-header {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            & .plan-name {
+                font-size: 2rem;
+                margin-bottom: .5rem;
+                padding: 0;
+            }
+            & .plan-price {
+                font-size: 3rem;
+                font-weight: bold;
+                margin-left: 1rem;
+                &::after {
+                    content: '/mo';
+
+                    margin-left: -.75rem;
+                    font-style: italic;
+                    font-size: 1rem;
+                    color: #777;
+                }
+
+                &#free {
+                    font-size: 1.25rem;
+                    margin-left: 0;
+                    &::after {
+                        content: "";
+                    }
+                }
+            }
+        } 
+    }
+}
+
+#btn-trial {
+    margin: 2rem 0 1rem 0;
+    position: relative;
+    width: 35%;
+    max-width: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-weight: bold;
+    font-size: 2rem;
+    background-color: var(--primary-color);
+    color: var(--accent-color-secondary);
+    border: none;
+
+    transition: 200ms ease-in-out;
+
+    animation: jump-breathing 2s ease-in-out infinite alternate;
+
+    &:hover {
+        background-color: var(--accent-color-secondary);
+        color: var(--primary-color);
+        
+        animation-play-state: paused;
+        transform: translate(-50%) scale(1.1);
+        box-shadow: 0 0 .4em 0 var(--accent-color);
+    }
+}
+
+@media (max-width: 951px) {
+    .pricing-container {
+        flex-direction: column;
+        align-items: center;
+        & .pricing-container-item {
+            margin: 2em 1em;
+            width: 80vw;
+
+            &:first-child  {
+                border-top-right-radius: .3em;
+                border-bottom-right-radius: .3em;
+                border-right: 1px solid var(--accent-color);
+
+                transform-origin: center;
+
+                & .plan-features {
+                    padding-bottom: 0;
+                }
+            }
+
+            &:last-child {
+                border-top-left-radius: .3em;
+                border-bottom-left-radius: .3em;
+                border-left: 1px solid var(--accent-color);
+
+                transform-origin: center;
+            }
+
+            &.accent {
+                margin: 0px 16px;
+            }
+
+            & .plan-features {
+                text-align: center;
+            }
+        }
+    }
+}
+
+@keyframes jump-breathing {
+    0% {
+        transform: translate(-50%, 0);
+    }
+    100% {
+        transform: translate(-50%, -10px);
+    }
+}

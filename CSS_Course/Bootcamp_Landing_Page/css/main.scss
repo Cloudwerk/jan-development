@@ -1,0 +1,220 @@
+.curriculum-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    & .curriculum-grid-item {
+        display: flex;
+        align-items: center;
+        padding: .25em;
+
+        &:hover img {
+            animation: shake 100ms;
+        }
+
+        & p {
+            padding-left: 0.5em;
+        }
+
+        & img {
+            width: 3.2rem;
+            margin-right: 1rem;
+        }
+    }
+}
+
+.pricing-section {
+    background-color: #0af;
+}
+
+.form-section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section {
+    & .section-title {
+        font-size: 3rem;
+    }
+    & .form {
+        display: flex;
+        flex-direction: column;
+        width: 60vw;
+        max-width: 900px;
+        & label {
+            font-weight: bold;
+        }
+        & .btn {
+            align-self: flex-end;
+            color: #fff;
+            margin-top: .5rem;
+        }
+
+        & textarea {
+            resize: vertical;
+            min-height: 3rem;
+            max-height: 9rem;
+        }
+    }
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #1b2522;;
+    & img {
+        width: auto;
+        height: 2.5rem;
+        margin: .5rem;
+    }
+    & ul {
+        display: flex;
+        list-style: none;
+        padding-right: 2rem;
+        & li {
+            padding: .25rem .5rem;
+        }
+    }
+    & a {
+        color: #fff;
+        text-decoration: none;
+
+        transition: color 100ms;
+        &:hover{
+            color: #ddd;
+        }
+    }
+
+}
+
+.pricing-cards-container {
+    display: flex;
+    justify-content: center;
+    padding: .5em;
+    font-weight: light;
+
+    & .pricing-card {
+        --background-color: hsla(0, 100%, 100%, 50%);
+        padding: 1rem;
+        background-color: var(--background-color);
+        border: 1px solid #000;
+        border-radius: .3em;
+        margin: 1rem 0;
+
+        transition: transform 100ms;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        &:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: none;
+
+            transform-origin: right;
+        }
+
+        &:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none;
+
+            transform-origin: left;
+        }
+
+        &.accent {
+            --background-color: #fff;
+            margin: 0;
+            & .feature {
+                font-size: 1.2rem;
+            }
+        }
+
+        & .price-header {
+            text-align: center;
+            & .plan-name {
+                font-size: 2rem;
+            }
+            & .plan-price {
+                font-size: 3rem;
+                font-weight: bold;
+                &::after {
+                    content: '/mo';
+
+                    margin-left: -.75rem;
+                    font-style: italic;
+                    font-size: 1rem;
+                    color: #777;
+                }
+            }
+        } 
+        & .plan-features {
+            padding: .25em 0.5em, 0, 0;
+
+            & :nth-child(-n + 2)::first-letter {
+                font-weight: bold;
+            }
+
+            & .feature {
+                padding: .25em;
+
+                + .inactive {
+                    text-decoration: line-through;
+                    color: #a7a7a7;
+                }
+            }
+        }      
+    }
+}
+
+@media (max-width: 700px) {
+    .pricing-cards-container {
+        flex-wrap: wrap;
+
+        & .pricing-card {
+            width: 100%;
+            margin: 0 0 1rem 0;
+
+            &.accent {
+                margin: 0 0 1rem 0;
+            }
+
+            &:first-child, &:last-child {
+                border-radius: .3em;
+                border: 1px solid #000;
+                
+                transform-origin: center;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            & .feature {
+                text-align: center;
+
+                &.inactive {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .curriculum-grid {
+        grid-template-columns: minmax(auto, 450px);
+        row-gap: 30px;
+    }
+}
+
+@keyframes shake {
+    25% {
+        transform: rotate(5deg);
+    }
+    
+    75% {
+        transform: rotate(-5deg);
+    }
+}

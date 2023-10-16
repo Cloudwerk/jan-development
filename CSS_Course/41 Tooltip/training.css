@@ -1,0 +1,33 @@
+[data-tooltip-right] {
+    position: relative;
+
+    &::before, &::after {
+        --tooltip-color: #333;
+        --arrow-size: .5rem;
+    
+        position: absolute;
+        bottom: 50%;
+        transform: translate(0, 50%);
+    }
+
+    &:hover::before {
+
+        content: attr(data-tooltip-right);
+    
+        left: calc(100% + calc(var(--arrow-size) * 2));
+        background-color: var(--tooltip-color);
+        color: #fff;
+        padding: .5em;
+        border-radius: .3em;
+        width: max-content;
+        max-width: 100%;
+        text-align: center;
+    }
+
+    &:hover::after {
+        content: '';
+
+        border: var(--arrow-size) solid transparent;
+        border-right-color: var(--tooltip-color);
+    }
+}

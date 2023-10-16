@@ -1,0 +1,20 @@
+header {
+    text-align: center;
+}
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.listing {
+    background-color: green;
+    color: white;
+}
+.listing li:first-of-type{
+    color: turquoise;
+}
+#Favorite-Bands {
+    background-color: white;
+    color: black;
+}
+#Favorite-Bands li:last-of-type{
+    text-decoration: line-through;
+}
