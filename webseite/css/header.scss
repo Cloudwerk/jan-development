@@ -23,9 +23,9 @@ header {
         }
 
         & .scroll-down-icon {
-            position: relative;
+            position: absolute;
             height: 3em;
-            bottom: 40px;
+            bottom: 1rem;
 
             animation: vertical-breathing 2s infinite alternate;
         }
