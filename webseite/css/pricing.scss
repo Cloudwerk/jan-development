@@ -1,25 +1,17 @@
 .pricing-container {
     display: flex;
-    align-items: center;
     justify-content: center;
+    padding: .5em;
+
+    flex-wrap: nowrap;
 
     & .pricing-container-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
 
         border: 1px solid #000;
         border-radius: .3em;
 
         padding: 1.5rem;
-
         margin: 1rem 0;
-
-        width: 25vw;
-        height: 50vh;
-        min-width: max-content;
 
         transition: transform 100ms;
         &:first-of-type {
@@ -29,6 +21,10 @@
             transform-origin: right;
 
             z-index: 1;
+
+            & .plan-features {
+                padding-bottom: 2rem;
+            }
         }
         &:last-of-type {
             border-left: none;
@@ -43,58 +39,62 @@
             background-color: #A1FCDF;
             margin: 0;
             font-size: 1.25rem;
-            padding-top: 0;
-
-            height: 55vh;
-
-            & h3 {
-                padding: none;
-                margin: none;
-                font-size: 2.5rem;
-            }
-
-            & p {
-                padding: none;
-                margin: 0 0 1rem 0;
-            }
 
             z-index: 2;
         }
 
-        & ul {
-            list-style: none;
-            text-align: left;
-            
-            padding: 0;
-            & li::before {
-                font-family: 'NotoColorEmoji';
-                font-size: .75em;
-                content: "✅";
-                padding: 0 .3em 0 0;
+        & .plan-features {
+            & .feature {
+                &::before {
+                    font-family: 'NotoColorEmoji';
+                    font-size: .75em;
+                    content: "✅";
+                    padding: 0 .3em 0 0;
+                }
+            }
+
+            & .inactive {
+                &::before {
+                    content: "";
+                }
             }
         }
 
         &:hover {
             transform: scale(1.05);
+            box-shadow: 0 0 .4em 0 #054d87;
         }
 
-        & h3 {
-            font-size: 2rem;
-        }
-        & p {
-            font-weight: bold;
-            font-size: 2rem;
-            
-            &::after {
-                content: "/mo";
-                color: #777;
-                font-size: .75em;
+        & .price-header {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            & .plan-name {
+                font-size: 2rem;
+                margin-bottom: .5rem;
+                padding: 0;
             }
+            & .plan-price {
+                font-size: 3rem;
+                font-weight: bold;
+                margin-left: 1rem;
+                &::after {
+                    content: '/mo';
 
-            &#free::after {
-                content: " ";
+                    margin-left: -.75rem;
+                    font-style: italic;
+                    font-size: 1rem;
+                    color: #777;
+                }
+
+                &#free {
+                    font-size: 1.25rem;
+                    margin-left: 0;
+                    &::after {
+                        content: "";
+                    }
+                }
             }
-        }
+        } 
     }
 }
 
@@ -129,6 +129,7 @@
 @media (max-width: 951px) {
     .pricing-container {
         flex-direction: column;
+        align-items: center;
         & .pricing-container-item {
             margin: 2em 1em;
             width: 80vw;
@@ -139,6 +140,10 @@
                 border-right: 1px solid #000;
 
                 transform-origin: center;
+
+                & .plan-features {
+                    padding-bottom: 0;
+                }
             }
 
             &:last-child {
@@ -147,6 +152,14 @@
                 border-left: 1px solid #000;
 
                 transform-origin: center;
+            }
+
+            &.accent {
+                margin: 0px 16px;
+            }
+
+            & .plan-features {
+                text-align: center;
             }
         }
     }
