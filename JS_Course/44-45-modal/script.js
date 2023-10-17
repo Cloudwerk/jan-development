@@ -9,18 +9,8 @@ openModalBtn.addEventListener("click", () => {
 });
 
 function closeModal() {
-	const classListCopy = Array.from(modal.classList);
-	classListCopy.forEach((classli, index) => {
-		classListCopy[index] = "";
-	});
-	modal.classList = classListCopy;
-
-	const overlayClassList = Array.from(overlay.classList);
-	overlayClassList.forEach((classli, index) => {
-		overlayClassList[index] = "";
-	});
-
-	overlay.classList = overlayClassList;
+	modal.classList.remove("open");
+	overlay.classList.remove("open");
 }
 
 closeModalBtn.addEventListener("click", closeModal);
