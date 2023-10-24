@@ -1,5 +1,10 @@
 {
   "devDependencies": {
+    "parcel-bundler": "^1.12.5",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "date-fns": "^2.30.0",
+    "uuid": "^9.0.1"
   }
 }
