@@ -90,3 +90,9 @@ body {
 .noshow {
   display: none;
 }
+
+.date-picker-other-month-date:hover {
+  background-color: #fff;
+  cursor: auto;
+  color: #AAA;
+}

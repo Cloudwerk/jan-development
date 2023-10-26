@@ -9,8 +9,8 @@ import {
 	endOfMonth,
 	eachDayOfInterval,
 	getDay,
-	eachWeekOfInterval,
 	addDays,
+	isSameDay,
 } from "date-fns";
 
 const toggleModalBtn = document.querySelector(".date-picker-button");
@@ -22,6 +22,7 @@ const datePickerGridDateContainer = document.querySelector(
 const previousMonthButton = document.querySelector(".prev-month-button");
 const nextMonthButton = document.querySelector(".next-month-button");
 let currentDate = new Date();
+let currentSelectedDate = new Date();
 
 function setDate(date) {
 	toggleModalBtn.textContent = format(date, "MMMM do yyyy");
@@ -33,14 +34,22 @@ function setUpDatePicker(selectedDate) {
 	setupDates(selectedDate);
 }
 
+function setSelectedDateAsSelected(dates) {
+	dates.forEach((date) => {
+		date.classList.remove("selected");
+		if (isSameDay(fromUnixTime(date.dataset.utcdate), currentSelectedDate))
+			date.classList.add("selected");
+	});
+}
+
 function setupDates(selectedDate) {
 	let dates = document.querySelectorAll(".date");
 	dates.forEach((date) => {
 		date.classList.remove("date-picker-other-month-date");
 	});
-	console.log(dates);
+	// console.log(dates);
 	const firstWeekStart = getDay(startOfMonth(selectedDate));
-	console.log(firstWeekStart);
+	// console.log(firstWeekStart);
 
 	const currentMonthInterval = {
 		start: startOfMonth(selectedDate),
@@ -51,6 +60,7 @@ function setupDates(selectedDate) {
 	let weeksInMonthInDays = 28;
 	// console.log(entireMonthByDays);
 
+	// Add another row to the calendar, if the month is spread over 6 weeks
 	if (
 		(entireMonthByDays.length > 30 && firstWeekStart > 4) ||
 		(entireMonthByDays.length > 28 && firstWeekStart > 5)
@@ -66,7 +76,7 @@ function setupDates(selectedDate) {
 		}
 	}
 
-	// set before other month day
+	// set before other month days
 	const lastDayOfLastMonth = endOfMonth(subMonths(selectedDate, 1));
 	for (let weekDay = 0; weekDay < 7 - (7 - firstWeekStart); weekDay++) {
 		const date = dates[weekDay];
@@ -79,6 +89,7 @@ function setupDates(selectedDate) {
 			subDays(lastDayOfLastMonth, 6 - (7 - firstWeekStart) - weekDay)
 		);
 	}
+
 	// set regular days
 	for (let week = 0; week < 34; week += 7) {
 		for (
@@ -94,8 +105,8 @@ function setupDates(selectedDate) {
 			);
 		}
 	}
-	//set after month days
 
+	//set after month days
 	for (
 		let weekDay = getDay(entireMonthByDays[entireMonthByDays.length - 1]) + 1,
 			i = 1;
@@ -109,6 +120,8 @@ function setupDates(selectedDate) {
 			addDays(startOfMonth(addMonths(currentDate, 1)), i - 1)
 		);
 	}
+
+	setSelectedDateAsSelected(dates);
 }
 
 nextMonthButton.addEventListener("click", () => {
@@ -131,6 +144,12 @@ setDate(new Date());
 
 datePickerGridDateContainer.addEventListener("click", (e) => {
 	if (!e.target.matches(".date")) return;
-	document.querySelector(".selected").classList.remove("selected");
+	if (e.target.classList.contains("date-picker-other-month-date")) return;
+	let currentSelectedBtn = document.querySelector(".selected");
+	if (currentSelectedBtn != null)
+		currentSelectedBtn.classList.remove("selected");
 	e.target.classList.toggle("selected");
+	const selectedDate = fromUnixTime(e.target.dataset.utcdate);
+	currentSelectedDate = selectedDate;
+	setDate(selectedDate);
 });
