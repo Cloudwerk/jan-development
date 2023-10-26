@@ -1,7 +1,7 @@
 .btn {
-    --background-color: #e6e6e6;
+    --background-color: var(--primary-color);
     --border-color: #b3b3b3;
-    --text-color: #000;
+    --text-color: var(--accent-color-secondary);
 
     background-color: var(--background-color);
     border:1px solid var(--border-color);
