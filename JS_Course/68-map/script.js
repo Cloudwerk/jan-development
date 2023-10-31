@@ -1,5 +1,6 @@
-const MAPBOX_ACCESS_TOKEN =
-	"pk.eyJ1IjoiamFuMGg0Y2siLCJhIjoiY2xvMnhxa2NoMXp2djJ0bXhkODZ2MWdrYiJ9.JGIv7HVf1yo9Rgo7HYC82w";
+require("dotenv").config();
+const MAPBOX_ACCESS_TOKEN = process.env.MAPBOX_ACCESS_TOKEN;
+console.log(MAPBOX_ACCESS_TOKEN);
 
 mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 // const map = new mapboxgl.Map({
