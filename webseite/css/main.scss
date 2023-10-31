@@ -84,6 +84,11 @@ section h2 {
     section h2 {
         font-size: 3em;
     }
+
+    #map {
+        height: 80svh;
+        width: 80svw;
+    }
 }
 
 .contact-container {
@@ -127,4 +132,15 @@ section h2 {
             box-shadow: 0 0 .4em 0 var(--border-color);
         }
     }
+}
+
+.map-container {
+    display: flex;
+    justify-content: center;
+}
+
+#map {
+    height: 40svh;
+    width: 60svw;
+    padding-bottom: 2rem;
 }
