@@ -19,3 +19,10 @@ const nav = new mapboxgl.NavigationControl({ showZoom: true, showCompass: false 
 map.addControl(nav, "top-right");
 
 const marker1 = new mapboxgl.Marker({ color: "#007681" }).setLngLat(CLOUDWERK_COORDS).addTo(map);
+
+//This section exists solely bc prettier does not like the html notation of this symbol
+const scrollUpBtn = document.querySelector(".scroll-up-btn");
+
+if (scrollUpBtn != null) {
+	scrollUpBtn.textContent = "\uF148";
+}
