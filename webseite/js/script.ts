@@ -1,4 +1,6 @@
 import mapboxgl, { LngLatLike } from "mapbox-gl";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 require("dotenv").config();
 const MAPBOX_ACCESS_TOKEN = process.env.MAPBOX_ACCESS_TOKEN || "";
@@ -35,3 +37,47 @@ if (facebookBtn != null && instagramBtn != null && githubBtn != null) {
 	instagramBtn.textContent = "\uF437";
 	githubBtn.textContent = "\uF3ED";
 }
+
+const search = document.querySelector("#search");
+
+gsap.registerPlugin(ScrollTrigger);
+//Reveal
+gsap.utils.toArray(".reveal").forEach(function (elem: any, index: number) {
+	ScrollTrigger.create({
+		trigger: elem,
+		start: "top 80%",
+		end: "bottom 10%",
+		markers: true,
+		onEnter: function () {
+			gsap.fromTo(
+				elem,
+				{ autoAlpha: 0 },
+				{
+					duration: 1.25,
+					autoAlpha: 1,
+					ease: "back",
+					overwrite: "auto",
+					delay: index * 0.25,
+				}
+			);
+		},
+		onLeave: function () {
+			gsap.fromTo(elem, { autoAlpha: 1 }, { autoAlpha: 0, overwrite: "auto" });
+		},
+		onEnterBack: function () {
+			gsap.fromTo(
+				elem,
+				{ autoAlpha: 0 },
+				{
+					duration: 1.25,
+					autoAlpha: 1,
+					ease: "back",
+					overwrite: "auto",
+				}
+			);
+		},
+		onLeaveBack: function () {
+			gsap.fromTo(elem, { autoAlpha: 1 }, { autoAlpha: 0, overwrite: "auto" });
+		},
+	});
+});
