@@ -1,175 +1,183 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.scss">
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
-    <title>User Management by Cloudwerk</title>
-    <script defer src="js/script.ts"></script>
-</head>
-<body>
-    <header>
-        <nav id="navbar">
-            <ul class="horizontal-list">
-                <li><a href="#Pricing">Pricing</a></li>
-                <li><a href="#feature1">Manage Users</a></li>
-                <li><a href="#feature2">SharePoint Integration</a></li>
-                <li><a href="#Contact">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="header-content">
-            <a id="backlink" href="/"><img src="https://www.cloudwerk.com/img/logo_horizontal2.webp" alt="Startseite"</img></a>
-            <p>User Management</p>
-            <img class="scroll-down-icon" src="img/arrow_down.svg" alt="Scroll Down"></img>
-        </div>
-    </header>
-    <main>
-        <a href="#" class="scroll-up-btn btn btn-social">
-        </a>
-        <section id="Pricing">
-            <h2>Start Now!</h2>
-            <div class="pricing-container">
-                <div class="pricing-container-item">
-                    <div class="price-header">
-                        <div class="plan-name">
-                            Free
-                        </div>
-                        <div class="plan-price" id="free">
-                            Everything you need
-                        </div>
-                    </div>
-                    <div class="plan-features">
-                        <div class="feature">Up to <b>50</b> Users</div>
-                        <div class="feature">Integration into SharePoint</div>
-                        <div class="feature">Integration into Teams</div>
-                    </div>
-                    <button class="btn btn-pill">Start the free trial!</button>
-                </div>
-                <div class="pricing-container-item accent">
-                    <div class="price-header">
-                        <div class="plan-name">
-                            Basic
-                        </div>
-                        <div class="plan-price">
-                            100€
-                        </div>
-                    </div>
-                    <div class="plan-features">
-                        <div class="feature"><b>Everything</b> in the free tier <b>+</b></div>
-                        <div class="feature">Up to <b>500</b> Users</div>
-                    </div>
-                    <button class="btn btn-pill">Start the free trial!</button>
-                </div>
-                <div class="pricing-container-item">
-                    <div class="price-header">
-                        <div class="plan-name">
-                            Enterprise
-                        </div>
-                        <div class="plan-price">
-                            500€
-                        </div>
-                    </div>
-                    <div class="plan-features">
-                        <div class="feature"><b>Everything</b> in the Basic tier <b>+</b></div>
-                        <div class="feature"><b>More</b> than 500 Users</div>
-                        <div class="feature">Manage group memberships</div>
-                        <div class="feature">Storing in your local SharePoint<br>Environment</div>
-                    </div>
-                    <button class="btn btn-pill">Start the free trial!</button>
-                </div>
-            </div>
-        </section>
-        <section class="section" id="feature1">
-            <h2>Manage Users</h2>
-            <ul class="grid-container feature-list">
-                <li class="grid-item"><img class="feature-img" src="img/search_user.png"></img><h3>Easily Manage Users without Entra ID</h3></li>
-                <li class="grid-item"><img class="feature-img" src="img/edit_page.png"></img><h3>Edit multiple Properties at once</h3></li>
-                <li class="grid-item"><img class="feature-img" src="img/editors.png"></img><h3>Choose who can edit</h3></li>
-            </ul>
-            <button class="btn-trial btn btn-pill">Start the free trial now!</button>
-        </section>
-        <section class="section" id="feature2">
-            <h2>Customize Profiles</h2>
-            <div class="text-right-to-image">
-                <!-- <img src="https://dummyimage.com/720x720/000/fff"></img> -->
-                <div class="flex flex-vert text-list-stack">
-                    <p>Customize Profiles to your hearts content</p>
-                    <ul>
-                        <li>Set Profile Pictures in the App!</li>
-                        <li>Define Skills and Interests</li>
-                        <li>Add Pronouns</li>
-                        <li>Help other pronounciating complicated Names!</li>
-                        <li>Add Custom Fields</li>
-                    </ul>
-                </div>
-            </div>
-            <button class="btn-trial btn btn-pill">Start the free trial now!</button>
-        </section>
-        <section class="section" id="feature3">
-            <h2 id="search">Search</h2>
-            <div class="text-left-to-image">
-                <div class="flex flex-vert text-list-stack">
-                    <p>Unlock the full power of <b>User Management</b> with the Advanced Search!</p>
-                    <p class="mt-02">Search <b>and filter</b> by:</p>
-                    <ul>
-                        <li>Names</li>
-                        <li>Skills and Interests</li>
-                        <li>Department</li>
-                        <li>Location</li>
-                    </ul>
-                </div>
-                <!-- <img src="https://dummyimage.com/720x720/000/fff"></img> -->
-            </div>
-            <button class="btn-trial btn btn-pill">Start the free trial now!</button>
-        </section>
-        <section class="section" id="feature4">
-            <h2>Empower Users</h2>
-            <div class="text-right-to-image">
-                <!-- <img src="https://dummyimage.com/720x720/000/fff"></img> -->
-                <div class="flex flex-vert text-list-stack">
-                    <p><b>Empower</b> Users by allowing them to change their Data by themselves and <b>save time</b> while doing it!</p>
-                    <p class="mt-02"><b>You decide</b> what your Users can change <b>Including Profile Pictures!</b></p>
-                </div>
-            </div>
-            <button class="btn-trial btn btn-pill">Start the free trial now!</button>
-        </section>
-        <section id="Contact">
-            <h2>Get in Touch!</h2>
-            <div class="contact-container">
-                <form class="contact-form">
-                    <label for="name">Name</label>
-                    <input class="input" type="text" id="name" name="name">
-                    <label for="email">E-Mail</label>
-                    <input class="input" type="text" id="email" name="email">
-                    <label for="message">Message</label>
-                    <textarea class="input textarea" id="message" name="message" style="height:200px"></textarea>
-                    <button class="btn btn-pill">Submit</button>
-                </form>
-            </div>
-            <div class="map-container">
-                <div id='map'></div>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <div class="grid-container">
-            <div class="grid-item">
-                <a href="https://www.cloudwerk.com/"><img src="https://www.cloudwerk.com/img/cloudwerk_100x50.png"></img></a>
-            </div>
-            <div class="grid-item">
-                <p><a href="https://www.cloudwerk.com/">Unsere Homepage</a>
-                    <br><a href="#Contact">Contact</a>
-                    <br><a href="https://www.cloudwerk.com/de/impressum">Impressum</a>
-                    <br>© 2023 CloudWerk GmbH</p>
-            </div>
-            <div class="social-links">
-                <a href="https://www.facebook.com/CloudWerk" target="_blank"><button class="btn btn-pill btn-social">&#xF344</button></a>
-                <a href="https://www.instagram.com/cloudwerk/" target="_blank"><button class="btn btn-pill btn-social">&#xF437</button></a>
-                <a href="https://github.com/orgs/Cloudwerk" target="_blank"><button class="btn btn-pill btn-social">&#xF3ED</button></a>
-            </div>
-        </div>
-    </footer>
-</body>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/styles.scss" />
+		<script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+		<link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet" />
+		<title>User Management by Cloudwerk</title>
+		<script defer src="js/script.ts"></script>
+	</head>
+	<body>
+		<header>
+			<nav id="navbar">
+				<ul class="horizontal-list">
+					<li><a href="#Pricing">Pricing</a></li>
+					<li><a href="#feature1">Manage Users</a></li>
+					<li><a href="#feature2">SharePoint Integration</a></li>
+					<li><a href="#Contact">Contact</a></li>
+				</ul>
+			</nav>
+			<div class="header-content">
+				<a id="backlink" href="/"><img src="https://www.cloudwerk.com/img/logo_horizontal2.webp" alt="Startseite" /></a>
+				<p>User Management</p>
+				<img class="scroll-down-icon" src="img/arrow_down.svg" alt="Scroll Down" />
+			</div>
+		</header>
+		<main>
+			<a href="#" class="scroll-up-btn btn btn-social"> </a>
+			<section id="Pricing">
+				<h2>Start Now!</h2>
+				<div class="pricing-container">
+					<div class="pricing-container-item">
+						<div class="price-header">
+							<div class="plan-name">Free</div>
+							<div class="plan-price" id="free">Everything you need</div>
+						</div>
+						<div class="plan-features">
+							<div class="feature">Up to <b>50</b> Users</div>
+							<div class="feature">Integration into SharePoint</div>
+							<div class="feature">Integration into Teams</div>
+						</div>
+						<button class="btn btn-pill">Start the free trial!</button>
+					</div>
+					<div class="pricing-container-item accent">
+						<div class="price-header">
+							<div class="plan-name">Basic</div>
+							<div class="plan-price">100€</div>
+						</div>
+						<div class="plan-features">
+							<div class="feature"><b>Everything</b> in the free tier <b>+</b></div>
+							<div class="feature">Up to <b>500</b> Users</div>
+						</div>
+						<button class="btn btn-pill">Start the free trial!</button>
+					</div>
+					<div class="pricing-container-item">
+						<div class="price-header">
+							<div class="plan-name">Enterprise</div>
+							<div class="plan-price">500€</div>
+						</div>
+						<div class="plan-features">
+							<div class="feature"><b>Everything</b> in the Basic tier <b>+</b></div>
+							<div class="feature"><b>More</b> than 500 Users</div>
+							<div class="feature">Manage group memberships</div>
+							<div class="feature">Storing in your local SharePoint<br />Environment</div>
+						</div>
+						<button class="btn btn-pill">Start the free trial!</button>
+					</div>
+				</div>
+			</section>
+			<section class="section" id="feature1">
+				<h2>Manage Users</h2>
+				<ul class="grid-container feature-list">
+					<li class="grid-item">
+						<img class="feature-img" src="img/search_user.png" />
+						<h3>Easily Manage Users without Entra ID</h3>
+					</li>
+					<li class="grid-item">
+						<img class="feature-img" src="img/edit_page.png" />
+						<h3>Edit multiple Properties at once</h3>
+					</li>
+					<li class="grid-item">
+						<img class="feature-img" src="img/editors.png" />
+						<h3>Choose who can edit</h3>
+					</li>
+				</ul>
+				<button class="btn-trial btn btn-pill">Start the free trial now!</button>
+			</section>
+			<section class="section" id="feature2">
+				<h2>Customize Profiles</h2>
+				<div class="text-right-to-image">
+					<!-- <img src="https://dummyimage.com/720x720/000/fff"></img> -->
+					<div class="flex flex-vert text-list-stack">
+						<p>Customize Profiles to your hearts content</p>
+						<ul>
+							<li>Set Profile Pictures in the App!</li>
+							<li>Define Skills and Interests</li>
+							<li>Add Pronouns</li>
+							<li>Help other pronounciating complicated Names!</li>
+							<li>Add Custom Fields</li>
+						</ul>
+					</div>
+				</div>
+				<button class="btn-trial btn btn-pill">Start the free trial now!</button>
+			</section>
+			<section class="section" id="feature3">
+				<h2 id="search">Search</h2>
+				<div class="text-left-to-image">
+					<div class="flex flex-vert text-list-stack">
+						<p>Unlock the full power of <b>User Management</b> with the Advanced Search!</p>
+						<p class="mt-02">Search <b>and filter</b> by:</p>
+						<ul>
+							<li>Names</li>
+							<li>Skills and Interests</li>
+							<li>Department</li>
+							<li>Location</li>
+						</ul>
+					</div>
+					<!-- <img src="https://dummyimage.com/720x720/000/fff"></img> -->
+				</div>
+				<button class="btn-trial btn btn-pill">Start the free trial now!</button>
+			</section>
+			<section class="section" id="feature4">
+				<h2>Empower Users</h2>
+				<div class="text-right-to-image">
+					<!-- <img src="https://dummyimage.com/720x720/000/fff"></img> -->
+					<div class="flex flex-vert text-list-stack">
+						<p>
+							<b>Empower</b> Users by allowing them to change their Data by themselves and <b>save time</b> while doing
+							it!
+						</p>
+						<p class="mt-02"><b>You decide</b> what your Users can change <b>Including Profile Pictures!</b></p>
+					</div>
+				</div>
+				<button class="btn-trial btn btn-pill">Start the free trial now!</button>
+			</section>
+			<section id="Contact">
+				<h2>Get in Touch!</h2>
+				<div class="contact-container">
+					<form class="contact-form">
+						<label for="name">Name</label>
+						<input class="input" type="text" id="name" name="name" />
+						<label for="email">E-Mail</label>
+						<input class="input" type="text" id="email" name="email" />
+						<label for="message">Message</label>
+						<textarea class="input textarea" id="message" name="message" style="height: 200px"></textarea>
+						<button class="btn btn-pill">Submit</button>
+					</form>
+				</div>
+				<div class="map-container">
+					<div id="map"></div>
+				</div>
+			</section>
+		</main>
+		<footer>
+			<div class="grid-container">
+				<div class="grid-item">
+					<a href="https://www.cloudwerk.com/"><img src="https://www.cloudwerk.com/img/cloudwerk_100x50.png" /></a>
+				</div>
+				<div class="grid-item">
+					<p>
+						<a href="https://www.cloudwerk.com/">Unsere Homepage</a> <br /><a href="#Contact">Contact</a> <br /><a
+							href="https://www.cloudwerk.com/de/impressum"
+							>Impressum</a
+						>
+						<br />© 2023 CloudWerk GmbH
+					</p>
+				</div>
+				<div class="social-links">
+					<a href="https://www.facebook.com/CloudWerk" target="_blank"
+						><button class="btn btn-pill btn-social facebook"></button
+					></a>
+					<a href="https://www.instagram.com/cloudwerk/" target="_blank"
+						><button class="btn btn-pill btn-social instagram"></button
+					></a>
+					<a href="https://github.com/orgs/Cloudwerk" target="_blank"
+						><button class="btn btn-pill btn-social github"></button
+					></a>
+				</div>
+			</div>
+		</footer>
+	</body>
 </html>
