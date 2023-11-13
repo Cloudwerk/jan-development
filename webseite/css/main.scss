@@ -217,6 +217,13 @@ section h2 {
 	padding-bottom: 2rem;
 }
 
+#search {
+	border: var(--primary-color) 1px solid;
+	border-radius: 0.5rem;
+	padding-left: 1.5vw;
+	margin-left: 11.5vw;
+}
+
 #search::before {
 	font-family: "BootstrapIcons";
 	font-size: 0.75em;
@@ -229,6 +236,15 @@ section h2 {
 	animation: blink 1s steps(2, jump-none) infinite;
 	display: inline-block;
 	transform: translateY(-0.6rem);
+}
+
+#feature2 {
+	& h2::before {
+		font-family: "BootstrapIcons";
+		font-size: 0.75em;
+		padding-right: 2rem;
+		content: "\F4CB";
+	}
 }
 
 @keyframes blink {
