@@ -1,55 +1,55 @@
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .input {
-    --border-color: #aaa;
+	--border-color: #aaa;
 
-    border: 1px solid var(--border-color);
-    outline: none;
-    font-size: inherit;
-    padding: .5em;
-    border-radius: .2em;
-    
-    &:focus {
-        --border-color: teal;
-        box-shadow: 0 0 5px 0 var(--border-color);
-    }
+	border: 1px solid var(--border-color);
+	outline: none;
+	font-size: inherit;
+	padding: 0.5em;
+	border-radius: 0.2em;
 
-    &.inputsuccess {
-        --border-color: #37ae60;
+	&:focus {
+		--border-color: teal;
+		box-shadow: 0 0 5px 0 var(--border-color);
+	}
 
-        &:focus {
-            --border-color: #0f0;
-        }
-    }
+	&.inputsuccess {
+		--border-color: #37ae60;
 
-    &:disabled {
-        background-color: #eaeaea;
-        --border-color: #ccc;
-        color: #999;
-        cursor: not-allowed;
-    }
+		&:focus {
+			--border-color: #0f0;
+		}
+	}
 
-    &.inputerror {
-        --border-color: #eb5757;
+	&:disabled {
+		background-color: #eaeaea;
+		--border-color: #ccc;
+		color: #999;
+		cursor: not-allowed;
+	}
 
-        &:focus {
-            --border-color: #F00;
-        }
-    }
+	&.inputerror {
+		--border-color: #eb5757;
 
-    &.inputlarge  {
-        font-size: 1.25em;
-    }
+		&:focus {
+			--border-color: #f00;
+		}
+	}
 
-    &.inputsmall {
-        font-size: .6em;
-    }
+	&.inputlarge {
+		font-size: 1.25em;
+	}
 
-    &.textarea {
-        resize: vertical;
-        max-height: 15em;
-        min-height: 3em;
-    }
+	&.inputsmall {
+		font-size: 0.6em;
+	}
+
+	&.textarea {
+		resize: vertical;
+		max-height: 15em;
+		min-height: 3em;
+	}
 }

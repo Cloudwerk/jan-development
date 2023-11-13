@@ -1,11 +1,11 @@
 footer {
-    background-color: hsla(113, 25%, 47%, .5);
+	background-color: hsla(113, 25%, 47%, 0.5);
 }
 
 .social-links {
-    display: flex;
-    
-    & button {
-        margin: .5rem;
-    }
+	display: flex;
+
+	& button {
+		margin: 0.5rem;
+	}
 }

@@ -1,55 +1,55 @@
 header {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    height: 100vh;
-    height: 100svh;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	height: 100vh;
+	height: 100svh;
 
-    background-image: url(../img/platzhalter.png);
-    background-size: cover;
+	background-image: url(../img/platzhalter.png);
+	background-size: cover;
 
-    & .header-content {
-        margin: 2em 10vw 0 10vw;;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        & img {
-            margin-top: 40vh;
-            width: 20em;
-            height: auto;
-        }
+	& .header-content {
+		margin: 2em 10vw 0 10vw;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		& img {
+			margin-top: 40vh;
+			width: 20em;
+			height: auto;
+		}
 
-        & p {
-            font-size: 2em;
-            font-family: Arial, Helvetica, sans-serif;
-            transform: translateY(-0.675em);
-        }
+		& p {
+			font-size: 2em;
+			font-family: Arial, Helvetica, sans-serif;
+			transform: translateY(-0.675em);
+		}
 
-        & .scroll-down-icon {
-            position: absolute;
-            height: 3em;
-            bottom: 1rem;
+		& .scroll-down-icon {
+			position: absolute;
+			height: 3em;
+			bottom: 1rem;
 
-            animation: vertical-breathing 2s infinite alternate;
-        }
-    }
+			animation: vertical-breathing 2s infinite alternate;
+		}
+	}
 }
 
 @media (max-width: 700px) {
-    header {
-        & .header-content {
-            justify-content: center;
-            margin: 1.5em 1em 1em 1em;
-        }
-    }
+	header {
+		& .header-content {
+			justify-content: center;
+			margin: 1.5em 1em 1em 1em;
+		}
+	}
 }
 
 @keyframes vertical-breathing {
-    0% {
-        transform: translate(0, 0);
-    }
-    100% {
-        transform: translate(0, -10px);
-    }
+	0% {
+		transform: translate(0, 0);
+	}
+	100% {
+		transform: translate(0, -10px);
+	}
 }
