@@ -47,7 +47,7 @@ gsap.utils.toArray(".reveal").forEach(function (elem: any, index: number) {
 		trigger: elem,
 		start: "top 80%",
 		end: "bottom 10%",
-		markers: true,
+		// markers: true,
 		onEnter: function () {
 			gsap.fromTo(
 				elem,

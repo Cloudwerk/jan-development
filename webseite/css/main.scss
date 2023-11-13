@@ -227,9 +227,10 @@ section h2 {
 		margin: 0 -0.125em;
 		position: relative;
 		display: inline-block;
-		opacity: 0;
-		animation: reveal steps(2, jump-none) forwards;
-		animation-delay: calc(250ms * var(--i));
+		// This is a leftover from before i moved it to js
+		// opacity: 0;
+		// animation: reveal steps(2, jump-none) forwards;
+		// animation-delay: calc(250ms * var(--i));
 	}
 }
 
