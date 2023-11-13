@@ -222,6 +222,15 @@ section h2 {
 	border-radius: 0.5rem;
 	padding-left: 1.5vw;
 	margin-left: 11.5vw;
+
+	& span {
+		margin: 0 -0.125em;
+		position: relative;
+		display: inline-block;
+		opacity: 0;
+		animation: reveal steps(2, jump-none) forwards;
+		animation-delay: calc(250ms * var(--i));
+	}
 }
 
 #search::before {
@@ -234,6 +243,7 @@ section h2 {
 #search::after {
 	content: "|";
 	animation: blink 1s steps(2, jump-none) infinite;
+	opacity: 0;
 	display: inline-block;
 	transform: translateY(-0.6rem);
 }
@@ -263,6 +273,15 @@ section h2 {
 	}
 	100% {
 		transform: translate(-50%, -10px);
+	}
+}
+
+@keyframes reveal {
+	from {
+		opacity: 0%;
+	}
+	to {
+		opacity: 100%;
 	}
 }
 
