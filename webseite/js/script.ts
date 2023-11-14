@@ -6,6 +6,8 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
 require("dotenv").config();
 
+const scrollUpBtn = document.querySelector(".scroll-up-btn");
+
 setupMap();
 setupBootstrapIcons();
 setupAnimations();
@@ -34,19 +36,15 @@ function setupMap() {
 
 function setupBootstrapIcons() {
 	//This section exists solely bc prettier does not like the html notation of these symbols
-	const scrollUpBtn = document.querySelector(".scroll-up-btn");
 	const facebookBtn = document.querySelector(".btn-social.facebook");
 	const instagramBtn = document.querySelector(".btn-social.instagram");
 	const githubBtn = document.querySelector(".btn-social.github");
 
 	if (scrollUpBtn != null) {
 		scrollUpBtn.textContent = "\uF148";
-
-		scrollUpBtn.addEventListener("click", () => {
-			gsap.to(window, { duration: 1, scrollTo: { y: "min" }, ease: "power2" });
-		});
 	}
 
+	//chaining the checks bc chances are, if one them is null, all of them are
 	if (facebookBtn != null && instagramBtn != null && githubBtn != null) {
 		facebookBtn.textContent = "\uF344";
 		instagramBtn.textContent = "\uF437";
@@ -107,6 +105,12 @@ function setupSmoothScroll() {
 			btn.addEventListener("click", () => {
 				gsap.to(window, { duration: 1, scrollTo: { y: "#section" + (index + 1), offsetY: 70 }, ease: "power2" });
 			});
+		});
+	}
+
+	if (scrollUpBtn != null) {
+		scrollUpBtn.addEventListener("click", () => {
+			gsap.to(window, { duration: 1, scrollTo: { y: "min" }, ease: "power2" });
 		});
 	}
 }
