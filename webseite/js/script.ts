@@ -13,8 +13,6 @@ setupSmoothScroll();
 function setupMap() {
 	const MAPBOX_ACCESS_TOKEN = process.env.MAPBOX_ACCESS_TOKEN || "";
 
-	// console.log("API token: " + MAPBOX_ACCESS_TOKEN);
-
 	const CLOUDWERK_COORDS = new mapboxgl.LngLat(10.3301409, 47.7623819);
 
 	mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
@@ -32,8 +30,6 @@ function setupMap() {
 }
 
 function setupAnimations() {
-	const search = document.querySelector("#search");
-
 	//Reveal
 	gsap.utils.toArray(".reveal").forEach(function (elem: any, index: number) {
 		ScrollTrigger.create({
@@ -89,9 +85,7 @@ function setupSmoothScroll() {
 
 	const scrollUpBtn = document.querySelector(".scroll-up-btn");
 
-	if (scrollUpBtn != null) {
-		scrollUpBtn.addEventListener("click", () => {
-			gsap.to(window, { duration: 1, scrollTo: { y: 0 }, ease: "power4" });
-		});
-	}
+	scrollUpBtn?.addEventListener("click", () => {
+		gsap.to(window, { duration: 1, scrollTo: { y: 0 }, ease: "power4" });
+	});
 }
