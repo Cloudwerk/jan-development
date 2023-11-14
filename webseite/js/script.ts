@@ -9,7 +9,6 @@ require("dotenv").config();
 const scrollUpBtn = document.querySelector(".scroll-up-btn");
 
 setupMap();
-setupBootstrapIcons();
 setupAnimations();
 setupSmoothScroll();
 
@@ -32,24 +31,6 @@ function setupMap() {
 	map.addControl(nav, "top-right");
 
 	const marker1 = new mapboxgl.Marker({ color: "#007681" }).setLngLat(CLOUDWERK_COORDS).addTo(map);
-}
-
-function setupBootstrapIcons() {
-	//This section exists solely bc prettier does not like the html notation of these symbols
-	const facebookBtn = document.querySelector(".btn-social.facebook");
-	const instagramBtn = document.querySelector(".btn-social.instagram");
-	const githubBtn = document.querySelector(".btn-social.github");
-
-	if (scrollUpBtn != null) {
-		scrollUpBtn.textContent = "\uF148";
-	}
-
-	//chaining the checks bc chances are, if one them is null, all of them are
-	if (facebookBtn != null && instagramBtn != null && githubBtn != null) {
-		facebookBtn.textContent = "\uF344";
-		instagramBtn.textContent = "\uF437";
-		githubBtn.textContent = "\uF3ED";
-	}
 }
 
 function setupAnimations() {
