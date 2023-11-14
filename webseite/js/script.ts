@@ -1,6 +1,9 @@
 import mapboxgl, { LngLatLike } from "mapbox-gl";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
 
 require("dotenv").config();
 const MAPBOX_ACCESS_TOKEN = process.env.MAPBOX_ACCESS_TOKEN || "";
@@ -30,6 +33,10 @@ const githubBtn = document.querySelector(".btn-social.github");
 
 if (scrollUpBtn != null) {
 	scrollUpBtn.textContent = "\uF148";
+
+	scrollUpBtn.addEventListener("click", () => {
+		gsap.to(window, { duration: 1, scrollTo: { y: "min" }, ease: "power2" });
+	});
 }
 
 if (facebookBtn != null && instagramBtn != null && githubBtn != null) {
@@ -40,7 +47,6 @@ if (facebookBtn != null && instagramBtn != null && githubBtn != null) {
 
 const search = document.querySelector("#search");
 
-gsap.registerPlugin(ScrollTrigger);
 //Reveal
 gsap.utils.toArray(".reveal").forEach(function (elem: any, index: number) {
 	ScrollTrigger.create({
@@ -81,3 +87,13 @@ gsap.utils.toArray(".reveal").forEach(function (elem: any, index: number) {
 		},
 	});
 });
+
+const navButtons = document.querySelectorAll(".nav-btn");
+
+if (navButtons.length > 0) {
+	navButtons.forEach((btn: Element, index: number) => {
+		btn.addEventListener("click", () => {
+			gsap.to(window, { duration: 1, scrollTo: { y: "#section" + (index + 1), offsetY: 70 }, ease: "power2" });
+		});
+	});
+}
