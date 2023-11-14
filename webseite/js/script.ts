@@ -91,7 +91,7 @@ function setupSmoothScroll() {
 
 	if (scrollUpBtn != null) {
 		scrollUpBtn.addEventListener("click", () => {
-			gsap.to(window, { duration: 1, scrollTo: { y: "min" }, ease: "power4" });
+			gsap.to(window, { duration: 1, scrollTo: { y: 0 }, ease: "power4" });
 		});
 	}
 }
