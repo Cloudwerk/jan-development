@@ -226,10 +226,35 @@ section h2 {
 		margin: 0 -0.125em;
 		position: relative;
 		display: inline-block;
-		// This is a leftover from before i moved it to js
+		// This is a leftover from before I moved it to js
 		// opacity: 0;
 		// animation: reveal steps(2, jump-none) forwards;
 		// animation-delay: calc(250ms * var(--i));
+	}
+
+	& span:nth-last-child(2)::after {
+		content: "|";
+		animation: blink 1s steps(2, jump-none) infinite;
+		opacity: 0;
+		display: inline-block;
+		transform: translateY(-0.6rem);
+	}
+
+	& span:last-child {
+		font-family: "BootstrapIcons";
+		position: absolute;
+		right: 10svw;
+		transform: translateY(0.1em);
+
+		transition: border 200ms ease-in-out;
+
+		&:hover {
+			cursor: default;
+
+			border: thick solid var(--primary-color);
+			border-radius: 9999999999px;
+			transform: translateY(-0.0125em);
+		}
 	}
 }
 
@@ -238,14 +263,6 @@ section h2 {
 	font-size: 0.75em;
 	padding-right: 2rem;
 	content: "\F52A";
-}
-
-#search::after {
-	content: "|";
-	animation: blink 1s steps(2, jump-none) infinite;
-	opacity: 0;
-	display: inline-block;
-	transform: translateY(-0.6rem);
 }
 
 #section3 {
@@ -292,6 +309,12 @@ section h2 {
 
 	.btn-trial {
 		font-size: 1.5rem;
+	}
+
+	#search {
+		& span:last-child {
+			right: 5svw;
+		}
 	}
 }
 
