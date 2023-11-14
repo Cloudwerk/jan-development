@@ -6,8 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
 require("dotenv").config();
 
-const scrollUpBtn = document.querySelector(".scroll-up-btn");
-
 setupMap();
 setupAnimations();
 setupSmoothScroll();
@@ -84,14 +82,16 @@ function setupSmoothScroll() {
 	if (navButtons.length > 0) {
 		navButtons.forEach((btn: Element, index: number) => {
 			btn.addEventListener("click", () => {
-				gsap.to(window, { duration: 1, scrollTo: { y: "#section" + (index + 1), offsetY: 70 }, ease: "power2" });
+				gsap.to(window, { duration: 1, scrollTo: { y: "#section" + (index + 1), offsetY: 70 }, ease: "power4" });
 			});
 		});
 	}
 
+	const scrollUpBtn = document.querySelector(".scroll-up-btn");
+
 	if (scrollUpBtn != null) {
 		scrollUpBtn.addEventListener("click", () => {
-			gsap.to(window, { duration: 1, scrollTo: { y: "min" }, ease: "power2" });
+			gsap.to(window, { duration: 1, scrollTo: { y: "min" }, ease: "power4" });
 		});
 	}
 }
