@@ -1,10 +1,11 @@
 const board = document.querySelector(".board");
 const minesLeftDisplay = document.querySelector(".subtext");
 const gridSize = 10;
+const NUMBER_OF_TILES = 100;
 const elements = [];
 let numberOfMines = 0;
 
-for (let i = 0; i < gridSize * gridSize; i++) {
+for (let i = 0; i < NUMBER_OF_TILES; i++) {
 	const newElement = document.createElement("div");
 	newElement.dataset.status = "hidden";
 	const isMine = decideMine();
@@ -18,7 +19,7 @@ for (let i = 0; i < gridSize * gridSize; i++) {
 }
 setMinesLeftText();
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < NUMBER_OF_TILES; i++) {
 	setNumbers(i);
 }
 
@@ -34,6 +35,7 @@ function setupLeftClickEventListener(index) {
 			if (!elements[index].hasNumber) {
 				revealAllValidNeighbors(index);
 			}
+			checkWin();
 		}
 	});
 }
@@ -45,6 +47,7 @@ function setupRightClickEventListener(index) {
 			elements[index].isMarked = true;
 			numberOfMines--;
 			setMinesLeftText();
+			checkWin();
 		} else if (elements[index].element.dataset.status == "marked") {
 			elements[index].element.dataset.status = "hidden";
 			elements[index].isMarked = false;
@@ -54,8 +57,31 @@ function setupRightClickEventListener(index) {
 	});
 }
 
+function checkWin() {
+	let validTiles = 0;
+	elements.forEach((tile) => {
+		if (tile.isMarked && tile.isMine) {
+			validTiles++;
+		} else if (!tile.isHidden && !tile.isMine) {
+			validTiles++;
+		}
+	});
+	if (validTiles == NUMBER_OF_TILES) {
+		board.addEventListener("click", stopPropagation, { capture: true });
+		board.addEventListener("contextmenu", stopPropagation, { capture: true });
+		minesLeftDisplay.textContent = "You Won!";
+	}
+}
+
 function triggerGameOver() {
 	//figure out a way to block all input
+	board.addEventListener("click", stopPropagation, { capture: true });
+	board.addEventListener("contextmenu", stopPropagation, { capture: true });
+	minesLeftDisplay.textContent = "You lost!";
+}
+
+function stopPropagation(event) {
+	event.stopImmediatePropagation();
 }
 
 function setNumbers(index) {
@@ -139,7 +165,7 @@ function isNeighborIndexValid(index, neighbor) {
 	}
 	if (
 		(index % 10 === 9 || index === 9) &&
-		(neighbor === index + 1 || neighbor > index + 11 || neighbor === index - 9)
+		(neighbor === index + 1 || neighbor >= index + 11 || neighbor === index - 9)
 	) {
 		return false;
 	}
