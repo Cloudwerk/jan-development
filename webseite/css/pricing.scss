@@ -24,6 +24,10 @@
 			--text-color: var(--primary-color);
 			font-size: 1em;
 			font-weight: bold;
+
+			&.pricing-left {
+				bottom: -1.75rem;
+			}
 		}
 
 		&:first-of-type {
@@ -64,6 +68,7 @@
 				--background-color: var(--primary-color);
 				--text-color: var(--accent-color-secondary);
 				transition: 200ms ease-in-out;
+				bottom: -1.75rem;
 				&:hover {
 					animation-play-state: paused;
 				}
