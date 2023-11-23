@@ -21,6 +21,8 @@ main {
 
 	& .feature-img {
 		border: 1px solid #000;
+		width: fit-content;
+		align-self: center;
 
 		transition: transform 200ms ease-in-out;
 
