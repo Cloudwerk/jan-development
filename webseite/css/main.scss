@@ -242,18 +242,12 @@ section h2 {
 
 	& span:last-child {
 		font-family: "BootstrapIcons";
-		position: absolute;
-		right: 10svw;
 		transform: translateY(0.1em);
-
-		transition: border 200ms ease-in-out;
+		float: right;
+		margin-right: 0.5em;
 
 		&:hover {
 			cursor: default;
-
-			border: thick solid var(--primary-color);
-			border-radius: 9999999999px;
-			transform: translateY(-0.0125em);
 		}
 	}
 }
@@ -309,12 +303,6 @@ section h2 {
 
 	.btn-trial {
 		font-size: 1.5rem;
-	}
-
-	#search {
-		& span:last-child {
-			right: 5svw;
-		}
 	}
 }
 
