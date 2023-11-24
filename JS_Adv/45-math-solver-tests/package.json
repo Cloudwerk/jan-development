@@ -1,0 +1,17 @@
+{
+	"name": "45-math-solver-tests",
+	"version": "1.0.0",
+	"description": "",
+	"main": "parse.js",
+	"scripts": {
+		"test": "jest --coverage"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.23.3",
+		"@babel/preset-env": "^7.23.3",
+		"jest": "^29.7.0"
+	}
+}
