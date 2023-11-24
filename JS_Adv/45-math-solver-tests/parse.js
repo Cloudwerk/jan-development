@@ -43,6 +43,8 @@ function handleMath({ operand1, operand2, operation }) {
 			return number1 - number2;
 		case "^":
 			return number1 ** number2;
+		default:
+			return NaN;
 	}
 }
 

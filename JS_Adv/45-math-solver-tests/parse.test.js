@@ -29,7 +29,15 @@ describe("#parse", () => {
 		expect(parse("2 * 3 ^ 2 / 3 - 1 + 2")).toBe(7);
 	});
 	test("NaN", () => {
-		expect(parse("3 - 1")).toBe(2);
+		expect(parse("sdsdfdsaf")).toBeNaN();
+	});
+	test("large number", () => {
+		expect(parse("999999999999999 + 99999999999999")).toBe(1099999999999998);
+	});
+	test("small number", () => {
+		expect(parse("0.000000000000001 + 0.99999999999999")).toBe(
+			0.999999999999991
+		);
 	});
 });
 
@@ -62,9 +70,25 @@ describe("#handle-math", () => {
 			operand2: "dfsdfsdf",
 			operation: "dfasdfas",
 		};
-		expect(handleMath(group)).toBe(undefined);
+		expect(handleMath(group)).toBeNaN();
 	});
 	test("WrongInput", () => {
-		expect(handleMath("jdflasjdf")).toBe(undefined);
+		expect(handleMath("jdflasjdf")).toBeNaN();
+	});
+	test("large number", () => {
+		const group = {
+			operand1: 999999999999999,
+			operand2: 99999999999999,
+			operation: "+",
+		};
+		expect(handleMath(group)).toBe(1099999999999998);
+	});
+	test("small number", () => {
+		const group = {
+			operand1: 0.000000000000001,
+			operand2: 0.99999999999999,
+			operation: "+",
+		};
+		expect(handleMath(group)).toBe(0.999999999999991);
 	});
 });

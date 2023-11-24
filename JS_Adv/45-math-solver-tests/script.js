@@ -1,4 +1,4 @@
-import parse from "./parse.js";
+import { parse } from "./parse.js";
 
 const inputElement = document.getElementById("equation");
 const outputElement = document.getElementById("results");
