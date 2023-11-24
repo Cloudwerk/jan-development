@@ -1,0 +1,20 @@
+{
+	"name": "41-atm-integration-test",
+	"version": "1.0.0",
+	"description": "",
+	"main": "Account.int.test.js",
+	"scripts": {
+		"test": "jest --coverage",
+		"test:unit": "jest \\.unit\\. --coverage",
+		"test:int": "jest \\.int\\. --coverage"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"jest": "^29.7.0"
+	},
+	"dependencies": {
+		"@types/jest": "^29.5.10"
+	}
+}
