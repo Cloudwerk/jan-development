@@ -1,0 +1,19 @@
+{
+	"name": "42-calculator-end-to-end-tests",
+	"version": "1.0.0",
+	"description": "",
+	"main": "Calculator.js",
+	"scripts": {
+		"cy:open": "cypress open",
+		"start": "serve",
+		"test": "start-server-and-test start http://localhost:3000 cy:open"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"cypress": "^13.6.0",
+		"serve": "^14.2.1",
+		"start-server-and-test": "^2.0.3"
+	}
+}
