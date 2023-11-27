@@ -6,7 +6,9 @@
 	"scripts": {
 		"build": "parcel build index.html",
 		"start": "parcel index.html",
-		"test:unit": "jest --coverage"
+		"test:unit": "jest --coverage",
+		"cy:open": "cypress open",
+		"test": "start-server-and-test start http://localhost:3000 cy:open"
 	},
 	"keywords": [],
 	"author": "",
@@ -18,7 +20,9 @@
 	"devDependencies": {
 		"@babel/core": "^7.23.3",
 		"@babel/preset-env": "^7.23.3",
+		"cypress": "^13.6.0",
 		"jest": "^29.7.0",
-		"parcel-bundler": "^1.12.5"
+		"parcel-bundler": "^1.12.5",
+		"start-server-and-test": "^2.0.3"
 	}
 }
