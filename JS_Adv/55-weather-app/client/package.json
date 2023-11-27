@@ -13,6 +13,7 @@
 		"axios": "^1.6.2"
 	},
 	"devDependencies": {
+		"buffer": "^6.0.3",
 		"parcel": "^2.10.3"
 	}
 }
