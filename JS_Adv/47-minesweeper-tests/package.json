@@ -5,10 +5,10 @@
 	"main": "minesweeper.js",
 	"scripts": {
 		"build": "parcel build index.html",
-		"start": "parcel index.html",
+		"start": "parcel serve index.html",
 		"test:unit": "jest --coverage",
 		"cy:open": "cypress open",
-		"test": "start-server-and-test start http://localhost:3000 cy:open"
+		"test": "start-server-and-test start http://localhost:1234 cy:open"
 	},
 	"keywords": [],
 	"author": "",
