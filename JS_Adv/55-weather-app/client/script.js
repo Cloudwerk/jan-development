@@ -31,19 +31,6 @@ function renderWeather({ current, daily, hourly }) {
 	renderHourlyWeather(hourly);
 }
 
-function setValue(selector, value, { parent = document } = {}) {
-	parent.querySelector(selector).textContent = value;
-}
-
-function setWeatherIcon(selector, icon, isLarge = false, { parent = document } = {}) {
-	parent.querySelector(selector).src = getIconUrl(icon, isLarge);
-}
-
-function getIconUrl(icon, large = false) {
-	const size = large ? "@2x" : "";
-	return `http://openweathermap.org/img/wn/${icon}${size}.png`;
-}
-
 function renderCurrentWeather(currentWeatherObject) {
 	setValue("[data-current-temp]", currentWeatherObject.currentTemp);
 	setValue("[date-current-description]", currentWeatherObject.description);
@@ -64,13 +51,6 @@ function renderDailyWeather(dailyWeatherObject) {
 	setDailyCardValues("[data-fifth-day]", dailyWeatherObject.fifthDay);
 }
 
-function setDailyCardValues(parentQuery, { unixTimestamp, average: averageTemperature, icon }) {
-	const currentDay = fromUnixTime(unixTimestamp);
-	setValue(`${parentQuery} .day-card-date`, format(currentDay, "eeee"));
-	setValue(`${parentQuery} .temperature-display`, averageTemperature);
-	setWeatherIcon(`${parentQuery} .weather-icon`, icon);
-}
-
 function renderHourlyWeather(hourlyWeatherArray) {
 	const hourSection = document.querySelector(".hour-section tbody");
 	const template = document.querySelector("#hour-row-template");
@@ -89,4 +69,24 @@ function renderHourlyWeather(hourlyWeatherArray) {
 		setValue("[data-precip]", precip, { parent: element });
 		hourSection.appendChild(element);
 	});
+}
+
+function setValue(selector, value, { parent = document } = {}) {
+	parent.querySelector(selector).textContent = value;
+}
+
+function setWeatherIcon(selector, icon, isLarge = false, { parent = document } = {}) {
+	parent.querySelector(selector).src = getIconUrl(icon, isLarge);
+}
+
+function getIconUrl(icon, large = false) {
+	const size = large ? "@2x" : "";
+	return `http://openweathermap.org/img/wn/${icon}${size}.png`;
+}
+
+function setDailyCardValues(parentQuery, { unixTimestamp, average: averageTemperature, icon }) {
+	const currentDay = fromUnixTime(unixTimestamp);
+	setValue(`${parentQuery} .day-card-date`, format(currentDay, "eeee"));
+	setValue(`${parentQuery} .temperature-display`, averageTemperature);
+	setWeatherIcon(`${parentQuery} .weather-icon`, icon);
 }
