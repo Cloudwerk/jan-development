@@ -107,7 +107,7 @@ function parseHourlyWeather({ list }) {
 			temp: Math.round(element.main.temp),
 			tempFeelsLike: Math.round(element.main.feels_like),
 			wind: Math.round(element.wind.speed),
-			precip: element.pop,
+			precip: element.pop * 100,
 		};
 	});
 }

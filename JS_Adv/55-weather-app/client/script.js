@@ -1,5 +1,5 @@
 import axios from "axios";
-import { fromUnixTime } from "date-fns";
+import { fromUnixTime, format } from "date-fns";
 
 navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
 
@@ -31,20 +31,23 @@ function renderWeather({ current, daily, hourly }) {
 	renderHourlyWeather(hourly);
 }
 
-function setValue(selector, value) {
-	const element = document.querySelector(selector);
-	element.textContent = value;
+function setValue(selector, value, { parent = document } = {}) {
+	parent.querySelector(selector).textContent = value;
 }
 
-function setWeatherIcon(selector, icon) {
-	const element = document.querySelector(selector);
-	element.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+function setWeatherIcon(selector, icon, isLarge = false, { parent = document } = {}) {
+	parent.querySelector(selector).src = getIconUrl(icon, isLarge);
+}
+
+function getIconUrl(icon, large = false) {
+	const size = large ? "@2x" : "";
+	return `http://openweathermap.org/img/wn/${icon}${size}.png`;
 }
 
 function renderCurrentWeather(currentWeatherObject) {
 	setValue("[data-current-temp]", currentWeatherObject.currentTemp);
 	setValue("[date-current-description]", currentWeatherObject.description);
-	setWeatherIcon("[current-weather-icon]", currentWeatherObject.icon);
+	setWeatherIcon("[current-weather-icon]", currentWeatherObject.icon, true);
 	setValue("[data-current-high]", currentWeatherObject.highTemp);
 	setValue("[data-current-wind]", currentWeatherObject.windSpeed);
 	setValue("[data-current-low]", currentWeatherObject.lowTemp);
@@ -88,4 +91,22 @@ function getDayString(date) {
 	}
 }
 
-function renderHourlyWeather(hourlyWeatherObject) {}
+function renderHourlyWeather(hourlyWeatherArray) {
+	const hourSection = document.querySelector(".hour-section tbody");
+	const template = document.querySelector("#hour-row-template");
+	hourSection.innerHTML = "";
+
+	hourlyWeatherArray.forEach((hour) => {
+		const { timestamp, icon, temp, tempFeelsLike, wind, precip } = hour;
+		const time = fromUnixTime(timestamp);
+		const element = template.content.cloneNode(true);
+		setValue(".time-display .weekday", getDayString(time), { parent: element });
+		setValue(".time-display [data-time]", format(time, "HH:mm"), { parent: element });
+		setWeatherIcon(".weather-icon", icon, false, { parent: element });
+		setValue("[data-temp]", temp, { parent: element });
+		setValue("[data-fl-temp]", tempFeelsLike, { parent: element });
+		setValue("[data-wind]", wind, { parent: element });
+		setValue("[data-precip]", precip, { parent: element });
+		hourSection.appendChild(element);
+	});
+}
