@@ -66,29 +66,9 @@ function renderDailyWeather(dailyWeatherObject) {
 
 function setDailyCardValues(parentQuery, { unixTimestamp, average: averageTemperature, icon }) {
 	const currentDay = fromUnixTime(unixTimestamp);
-	setValue(`${parentQuery} .day-card-date`, getDayString(currentDay));
+	setValue(`${parentQuery} .day-card-date`, format(currentDay, "eeee"));
 	setValue(`${parentQuery} .temperature-display`, averageTemperature);
 	setWeatherIcon(`${parentQuery} .weather-icon`, icon);
-}
-
-function getDayString(date) {
-	const day = date.getDay();
-	switch (day) {
-		case 0:
-			return "Sunday";
-		case 1:
-			return "Monday";
-		case 2:
-			return "Tuesday";
-		case 3:
-			return "Wednesday";
-		case 4:
-			return "Thursday";
-		case 5:
-			return "Friday";
-		case 6:
-			return "Saturday";
-	}
 }
 
 function renderHourlyWeather(hourlyWeatherArray) {
@@ -100,7 +80,7 @@ function renderHourlyWeather(hourlyWeatherArray) {
 		const { timestamp, icon, temp, tempFeelsLike, wind, precip } = hour;
 		const time = fromUnixTime(timestamp);
 		const element = template.content.cloneNode(true);
-		setValue(".time-display .weekday", getDayString(time), { parent: element });
+		setValue(".time-display .weekday", format(time, "eeee"), { parent: element });
 		setValue(".time-display [data-time]", format(time, "HH:mm"), { parent: element });
 		setWeatherIcon(".weather-icon", icon, false, { parent: element });
 		setValue("[data-temp]", temp, { parent: element });
