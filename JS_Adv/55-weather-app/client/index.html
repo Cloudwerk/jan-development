@@ -11,74 +11,59 @@
 	<body class="blurred">
 		<header class="header">
 			<div class="header-left">
-				<img class="weather-icon large" src="http://openweathermap.org/img/wn/10d@2x.png" />
+				<img class="weather-icon large" src="http://openweathermap.org/img/wn/10d@2x.png" current-weather-icon />
 				<div class="header-left-details">
-					<div class="header-current-temp">21&deg;</div>
-					<div class="header-current-description">Sunny</div>
+					<div class="header-current-temp"><span data-current-temp>21</span>&deg;</div>
+					<div class="header-current-description" date-current-description>Sunny</div>
 				</div>
 			</div>
 			<div class="header-right">
 				<div class="info-group">
 					<div class="label">High</div>
-					<div>23&deg;</div>
+					<div><span data-current-high>23</span>&deg;</div>
 				</div>
 				<div class="info-group">
 					<div class="label">FL High</div>
-					<div>26&deg;</div>
+					<div><span data-current-fl-high>26</span>&deg;</div>
 				</div>
 				<div class="info-group">
 					<div class="label">Wind</div>
-					<div>12<span class="value-sub-info">mph</span></div>
+					<div><span data-current-wind>12</span><span class="value-sub-info">kph</span></div>
 				</div>
 				<div class="info-group">
 					<div class="label">LOW</div>
-					<div>12&deg;</div>
+					<div><span data-current-low>12</span>&deg;</div>
 				</div>
 				<div class="info-group">
 					<div class="label">FL Low</div>
-					<div>13&deg;</div>
+					<div><span data-current-fl-low>13</span>&deg;</div>
 				</div>
 				<div class="info-group">
 					<div class="label">Precip</div>
-					<div>14%</div>
+					<div><span data-current-precip>14</span>%</div>
 				</div>
 			</div>
 		</header>
 		<section class="day-section">
-			<div class="day-card">
+			<div class="day-card" data-tomorrow>
 				<img class="weather-icon" src="http://openweathermap.org/img/wn/10d.png" />
 				<div class="day-card-date">Monday</div>
-				<div>23&deg;</div>
+				<div><span class="temperature-display">23</span>&deg;</div>
 			</div>
-			<div class="day-card">
+			<div class="day-card" data-third-day>
 				<img class="weather-icon" src="http://openweathermap.org/img/wn/10d.png" />
 				<div class="day-card-date">Tuesday</div>
-				<div>23&deg;</div>
+				<div><span class="temperature-display">23</span>&deg;</div>
 			</div>
-			<div class="day-card">
+			<div class="day-card" data-fourth-day>
 				<img class="weather-icon" src="http://openweathermap.org/img/wn/10d.png" />
 				<div class="day-card-date">Wednesday</div>
-				<div>23&deg;</div>
+				<div><span class="temperature-display">23</span>&deg;</div>
 			</div>
-			<div class="day-card">
+			<div class="day-card" data-fifth-day>
 				<img class="weather-icon" src="http://openweathermap.org/img/wn/10d.png" />
 				<div class="day-card-date">Thursday</div>
-				<div>23&deg;</div>
-			</div>
-			<div class="day-card">
-				<img class="weather-icon" src="http://openweathermap.org/img/wn/10d.png" />
-				<div class="day-card-date">Friday</div>
-				<div>23&deg;</div>
-			</div>
-			<div class="day-card">
-				<img class="weather-icon" src="http://openweathermap.org/img/wn/10d.png" />
-				<div class="day-card-date">Saturday</div>
-				<div>23&deg;</div>
-			</div>
-			<div class="day-card">
-				<img class="weather-icon" src="http://openweathermap.org/img/wn/10d.png" />
-				<div class="day-card-date">Sunday</div>
-				<div>23&deg;</div>
+				<div><span class="temperature-display">23</span>&deg;</div>
 			</div>
 		</section>
 		<table class="hour-section">
