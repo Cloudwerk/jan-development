@@ -39,4 +39,15 @@ describe("Create Color class and read value", () => {
     const color = new Color(redValue, greenValue, blueValue);
     expect(color.getColor("amogus")).toEqual({ error: "wrong format" });
   });
+  test("input out of range", () => {
+    const redValue = 512,
+      greenValue = -25,
+      blueValue = 666;
+    const color = new Color(redValue, greenValue, blueValue);
+    expect(color.getColor(COLOR_FORMATS.RGB)).toEqual({
+      red: 255,
+      green: 0,
+      blue: 255,
+    });
+  });
 });

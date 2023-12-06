@@ -11,9 +11,9 @@ export const DIFFICULTIES = {
 
 export class Color {
   constructor(red: number, green: number, blue: number) {
-    this.red = red;
-    this.green = green;
-    this.blue = blue;
+    this.red = this.clamp(0, 255, red);
+    this.green = this.clamp(0, 255, green);
+    this.blue = this.clamp(0, 255, blue);
   }
 
   private red: number;
@@ -31,6 +31,10 @@ export class Color {
       default:
         return { error: "wrong format" };
     }
+  }
+
+  private clamp(min: number, max: number, x: number) {
+    return Math.min(Math.max(x, min), max);
   }
 }
 
