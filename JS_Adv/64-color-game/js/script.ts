@@ -75,6 +75,16 @@ function deriveColorWithDifficulty(startColor: Color, difficulty: string) {
   }
 }
 
+function createRandomColor() {
+  const min = 0,
+    max = 255;
+  return new Color(
+    getRandomInt(min, max),
+    getRandomInt(min, max),
+    getRandomInt(min, max)
+  );
+}
+
 function toggleResult() {
   resultsElement?.classList.toggle("hide");
 }
