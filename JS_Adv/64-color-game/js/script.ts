@@ -8,6 +8,9 @@ const colorDisplay = document.querySelector(".color-string");
 let colorFormat = COLOR_FORMATS.RGB;
 let difficulty = DIFFICULTIES.EASY;
 
+let mainColor = createRandomColor();
+updateColorDisplay(COLOR_FORMATS.RGB, mainColor);
+
 onStart();
 
 function onStart() {
@@ -19,17 +22,39 @@ function setupEventListeners() {
   if (colorDisplay == null) return;
   colorElement?.addEventListener("change", (e) => {
     const target = <HTMLInputElement>e.target;
-    colorFormat = target.id;
-    colorDisplay.textContent = colorFormat;
+    mainColor = createRandomColor();
+    colorFormat = target.value;
+    updateColorDisplay(colorFormat, mainColor);
     //TODO regenerate colors
     console.log(colorFormat);
   });
   difficultyElement?.addEventListener("change", (e) => {
     const target = <HTMLInputElement>e.target;
-    difficulty = target.id;
+    difficulty = target.value;
+    mainColor = createRandomColor();
+    updateColorDisplay(colorFormat, mainColor);
     //TODO regenerate colors
     console.log(difficulty);
   });
+}
+
+function updateColorDisplay(colorFormat: string, color: Color) {
+  if (colorDisplay == null) return;
+  const colorValues = color.getColors();
+  switch (colorFormat) {
+    case COLOR_FORMATS.RGB:
+      colorDisplay.textContent = `rgb(${colorValues.rgb.red}, ${colorValues.rgb.green}, ${colorValues.rgb.blue})`;
+      break;
+    case COLOR_FORMATS.HEX:
+      colorDisplay.textContent = `hex(${colorValues.hex})`;
+      break;
+    case COLOR_FORMATS.HSL:
+      colorDisplay.textContent = `hsl(${colorValues.hsl.hue}, ${colorValues.hsl.sat}, ${colorValues.hsl.light})`;
+      break;
+    default:
+      colorDisplay.textContent = "internal error, please refresh the page";
+      break;
+  }
 }
 
 function deriveRandomColorWithOffset(offset: number, startColor: Color) {
