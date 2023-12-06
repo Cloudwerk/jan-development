@@ -11,31 +11,26 @@ export const DIFFICULTIES = {
 
 export class Color {
   constructor(red: number, green: number, blue: number) {
-    this.red = this.clamp(0, 255, red);
-    this.green = this.clamp(0, 255, green);
-    this.blue = this.clamp(0, 255, blue);
+    this.red = clamp(0, 255, red);
+    this.green = clamp(0, 255, green);
+    this.blue = clamp(0, 255, blue);
   }
 
   private red: number;
   private green: number;
   private blue: number;
 
-  public getColor(format: string) {
-    switch (format) {
-      case COLOR_FORMATS.HEX:
-        return RGBToHEX(this.red, this.green, this.blue);
-      case COLOR_FORMATS.HSL:
-        return RGBToHSL(this.red, this.green, this.blue);
-      case COLOR_FORMATS.RGB:
-        return { red: this.red, green: this.green, blue: this.blue };
-      default:
-        return { error: "wrong format" };
-    }
+  public getColors() {
+    return {
+      hex: RGBToHEX(this.red, this.green, this.blue),
+      hsl: RGBToHSL(this.red, this.green, this.blue),
+      rgb: { red: this.red, green: this.green, blue: this.blue },
+    };
   }
+}
 
-  private clamp(min: number, max: number, x: number) {
-    return Math.min(Math.max(x, min), max);
-  }
+export function clamp(min: number, max: number, x: number) {
+  return Math.min(Math.max(x, min), max);
 }
 
 function RGBToHSL(red: number, green: number, blue: number) {
@@ -89,5 +84,5 @@ function RGBToHEX(red: number, green: number, blue: number) {
   if (green_part.length == 1) green_part = "0" + green_part;
   if (blue_part.length == 1) blue_part = "0" + blue_part;
 
-  return { hex: "#" + red_part + green_part + blue_part };
+  return "#" + red_part + green_part + blue_part;
 }
