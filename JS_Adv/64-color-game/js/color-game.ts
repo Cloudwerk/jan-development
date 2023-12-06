@@ -28,6 +28,8 @@ export class Color {
         return RGBToHSL(this.red, this.green, this.blue);
       case COLOR_FORMATS.RGB:
         return { red: this.red, green: this.green, blue: this.blue };
+      default:
+        return { error: "wrong format" };
     }
   }
 }
@@ -71,7 +73,7 @@ function RGBToHSL(red: number, green: number, blue: number) {
   s = +(s * 100).toFixed(1);
   l = +(l * 100).toFixed(1);
 
-  return { hue: h, sat: s, light: l };
+  return { hue: h, sat: Math.round(s), light: Math.round(l) };
 }
 
 function RGBToHEX(red: number, green: number, blue: number) {
