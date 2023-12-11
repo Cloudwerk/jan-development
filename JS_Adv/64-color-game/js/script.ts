@@ -1,4 +1,5 @@
-import { COLOR_FORMATS, DIFFICULTIES, Color, clamp } from "./color-game";
+import { COLOR_FORMATS, DIFFICULTIES, Color } from "./color-game";
+import { clamp, getRandomIntInRange, shuffleArray } from "./utils";
 
 const resultsElement = <HTMLDivElement>document.querySelector(".results");
 const colorElement = <HTMLFieldSetElement>document.querySelector(".form #color-selector");
@@ -62,7 +63,7 @@ function generateTiles() {
 	}
 	tiles.push(mainColor);
 
-	const shuffledTiles = shuffle(tiles);
+	const shuffledTiles = <Array<Color>>shuffleArray(tiles);
 	shuffledTiles.forEach((tile) => {
 		if (tile.getColors().hex === mainColor.getColors().hex) {
 			const templateClone = <HTMLElement>tileCorrectTemplate.content.cloneNode(true);
@@ -151,9 +152,9 @@ function deriveRandomColorWithOffset(offset: number, startColor: Color) {
 	};
 
 	return new Color(
-		getRandomInt(clamp(rgbMin, rgbMax, min.red), clamp(rgbMin, rgbMax, max.red)),
-		getRandomInt(clamp(rgbMin, rgbMax, min.green), clamp(rgbMin, rgbMax, max.green)),
-		getRandomInt(clamp(rgbMin, rgbMax, min.blue), clamp(rgbMin, rgbMax, max.blue))
+		getRandomIntInRange(clamp(rgbMin, rgbMax, min.red), clamp(rgbMin, rgbMax, max.red)),
+		getRandomIntInRange(clamp(rgbMin, rgbMax, min.green), clamp(rgbMin, rgbMax, max.green)),
+		getRandomIntInRange(clamp(rgbMin, rgbMax, min.blue), clamp(rgbMin, rgbMax, max.blue))
 	);
 }
 
@@ -173,7 +174,7 @@ function deriveColorWithDifficulty(startColor: Color, difficulty: string) {
 function createRandomColor() {
 	const min = 0,
 		max = 255;
-	return new Color(getRandomInt(min, max), getRandomInt(min, max), getRandomInt(min, max));
+	return new Color(getRandomIntInRange(min, max), getRandomIntInRange(min, max), getRandomIntInRange(min, max));
 }
 
 function toggleResult() {
@@ -182,27 +183,4 @@ function toggleResult() {
 
 function stopProp(e) {
 	e.stopImmediatePropagation();
-}
-
-function getRandomInt(min: number, max: number) {
-	min = Math.ceil(min);
-	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
-}
-
-function shuffle(array: Array<Color>) {
-	let currentIndex = array.length,
-		randomIndex: number;
-
-	// While there remain elements to shuffle.
-	while (currentIndex > 0) {
-		// Pick a remaining element.
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex--;
-
-		// And swap it with the current element.
-		[array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-	}
-
-	return array;
 }
