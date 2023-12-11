@@ -93,8 +93,12 @@ function win() {
 }
 
 function lose() {
-	console.log("you just lost");
-	//TODO add lose
+	toggleResult();
+	const resultText = <HTMLDivElement>resultsElement.querySelector("div");
+	const resultButton = <HTMLButtonElement>resultsElement.querySelector("button");
+	resultText.textContent = "Wrong";
+	colorGrid.addEventListener("click", stopProp, { capture: true });
+	resultButton.addEventListener("click", nextColorCallback);
 }
 
 function nextColorCallback() {
