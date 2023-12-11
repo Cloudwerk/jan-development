@@ -1,9 +1,9 @@
 import { COLOR_FORMATS, DIFFICULTIES, Color, clamp } from "./color-game";
 
 const resultsElement = <HTMLDivElement>document.querySelector(".results");
-const colorElement = document.querySelector(".form #color-selector");
-const difficultyElement = document.querySelector(".form #difficulty-selector");
-const colorDisplay = document.querySelector(".color-string");
+const colorElement = <HTMLFieldSetElement>document.querySelector(".form #color-selector");
+const difficultyElement = <HTMLFieldSetElement>document.querySelector(".form #difficulty-selector");
+const colorDisplay = <HTMLHeadingElement>document.querySelector(".color-string");
 const colorGrid = <HTMLDivElement>document.querySelector(".color-grid");
 const tileTemplate = <HTMLTemplateElement>document.querySelector("#color-tile-template");
 const tileCorrectTemplate = <HTMLTemplateElement>document.querySelector("#color-tile-right");
@@ -33,7 +33,7 @@ function resetTiles() {
 
 function setupEventListeners() {
 	if (colorDisplay == null) return;
-	colorElement?.addEventListener("change", (e) => {
+	colorElement.addEventListener("change", (e) => {
 		const target = <HTMLInputElement>e.target;
 		mainColor = createRandomColor();
 		colorFormat = target.value;
@@ -41,7 +41,7 @@ function setupEventListeners() {
 
 		resetTiles();
 	});
-	difficultyElement?.addEventListener("change", (e) => {
+	difficultyElement.addEventListener("change", (e) => {
 		const target = <HTMLInputElement>e.target;
 		difficulty = target.value;
 		mainColor = createRandomColor();
@@ -134,12 +134,12 @@ function deriveRandomColorWithOffset(offset: number, startColor: Color) {
 		rgbMax = 255;
 	const min = {
 		red: startingColors.rgb.red - offset,
-		green: startingColors.rgb.red - offset,
+		green: startingColors.rgb.green - offset,
 		blue: startingColors.rgb.blue - offset,
 	};
 	const max = {
 		red: startingColors.rgb.red + offset,
-		green: startingColors.rgb.red + offset,
+		green: startingColors.rgb.green + offset,
 		blue: startingColors.rgb.blue + offset,
 	};
 	return new Color(
@@ -152,11 +152,11 @@ function deriveRandomColorWithOffset(offset: number, startColor: Color) {
 function deriveColorWithDifficulty(startColor: Color, difficulty: string) {
 	switch (difficulty) {
 		case DIFFICULTIES.EASY:
-			return deriveRandomColorWithOffset(50, startColor);
+			return deriveRandomColorWithOffset(75, startColor);
 		case DIFFICULTIES.MEDIUM:
-			return deriveRandomColorWithOffset(25, startColor);
+			return deriveRandomColorWithOffset(50, startColor);
 		case DIFFICULTIES.HARD:
-			return deriveRandomColorWithOffset(10, startColor);
+			return deriveRandomColorWithOffset(25, startColor);
 		default:
 			return deriveRandomColorWithOffset(0, startColor);
 	}
