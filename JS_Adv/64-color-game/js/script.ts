@@ -4,6 +4,10 @@ const resultsElement = document.querySelector(".results");
 const colorElement = document.querySelector(".form #color-selector");
 const difficultyElement = document.querySelector(".form #difficulty-selector");
 const colorDisplay = document.querySelector(".color-string");
+const colorGrid = document.querySelector(".color-grid");
+const tileTemplate = <HTMLTemplateElement>(
+  document.querySelector("#color-tile-template")
+);
 
 let colorFormat = COLOR_FORMATS.RGB;
 let difficulty = DIFFICULTIES.EASY;
@@ -25,6 +29,19 @@ function setupEventListeners() {
     mainColor = createRandomColor();
     colorFormat = target.value;
     updateColorDisplay(colorFormat, mainColor);
+
+    const tile = <HTMLElement>tileTemplate.content.cloneNode(true);
+    // tile.style.backgroundColor = "#b00b69";
+
+    const tileButton = <HTMLButtonElement>tile.querySelector("button");
+    tileButton.style.backgroundColor = mainColor.getColors().hex;
+    colorGrid?.appendChild(tile);
+
+    console.log(tile);
+
+    // tile.style.backgroundColor = mainColor.getColors().hex;
+    // colorGrid?.appendChild(tile);
+
     //TODO regenerate colors
     console.log(colorFormat);
   });
@@ -118,4 +135,24 @@ function getRandomInt(min: number, max: number) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+}
+
+function shuffle(array: Array<any>) {
+  let currentIndex = array.length,
+    randomIndex: number;
+
+  // While there remain elements to shuffle.
+  while (currentIndex > 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
 }
