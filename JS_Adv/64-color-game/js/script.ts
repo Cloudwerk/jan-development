@@ -1,6 +1,6 @@
 import { COLOR_FORMATS, DIFFICULTIES, Color, clamp } from "./color-game";
 
-const resultsElement = document.querySelector(".results");
+const resultsElement = <HTMLDivElement>document.querySelector(".results");
 const colorElement = document.querySelector(".form #color-selector");
 const difficultyElement = document.querySelector(".form #difficulty-selector");
 const colorDisplay = document.querySelector(".color-string");
@@ -21,6 +21,12 @@ function onStart() {
 	toggleResult();
 	setupEventListeners();
 
+	resetTiles();
+}
+
+function resetTiles() {
+	mainColor = createRandomColor();
+	updateColorDisplay(colorFormat, mainColor);
 	removeOldTiles();
 	generateTiles();
 }
@@ -33,8 +39,7 @@ function setupEventListeners() {
 		colorFormat = target.value;
 		updateColorDisplay(colorFormat, mainColor);
 
-		removeOldTiles();
-		generateTiles();
+		resetTiles();
 	});
 	difficultyElement?.addEventListener("change", (e) => {
 		const target = <HTMLInputElement>e.target;
@@ -42,8 +47,7 @@ function setupEventListeners() {
 		mainColor = createRandomColor();
 		updateColorDisplay(colorFormat, mainColor);
 
-		removeOldTiles();
-		generateTiles();
+		resetTiles();
 	});
 }
 
@@ -80,13 +84,25 @@ function generateTiles() {
 }
 
 function win() {
-	console.log("you win");
-	//TODO add win
+	toggleResult();
+	const resultText = <HTMLDivElement>resultsElement.querySelector("div");
+	const resultButton = <HTMLButtonElement>resultsElement.querySelector("button");
+	resultText.textContent = "Correct";
+	colorGrid.addEventListener("click", stopProp, { capture: true });
+	resultButton.addEventListener("click", nextColorCallback);
 }
 
 function lose() {
 	console.log("you just lost");
 	//TODO add lose
+}
+
+function nextColorCallback() {
+	colorGrid.removeEventListener("click", stopProp, { capture: true });
+	toggleResult();
+	resetTiles();
+	const resultButton = <HTMLButtonElement>resultsElement.querySelector("button");
+	resultButton.removeEventListener("click", nextColorCallback);
 }
 
 function updateColorDisplay(colorFormat: string, color: Color) {
@@ -149,7 +165,11 @@ function createRandomColor() {
 }
 
 function toggleResult() {
-	resultsElement?.classList.toggle("hide");
+	resultsElement.classList.toggle("hide");
+}
+
+function stopProp(e) {
+	e.stopImmediatePropagation();
 }
 
 function getRandomInt(min: number, max: number) {
