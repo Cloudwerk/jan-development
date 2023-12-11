@@ -61,6 +61,7 @@ function generateTiles() {
 		tiles.push(deriveColorWithDifficulty(mainColor, difficulty));
 	}
 	tiles.push(mainColor);
+
 	const shuffledTiles = shuffle(tiles);
 	shuffledTiles.forEach((tile) => {
 		if (tile.getColors().hex === mainColor.getColors().hex) {
@@ -88,6 +89,7 @@ function win() {
 	const resultText = <HTMLDivElement>resultsElement.querySelector("div");
 	const resultButton = <HTMLButtonElement>resultsElement.querySelector("button");
 	resultText.textContent = "Correct";
+
 	colorGrid.addEventListener("click", stopProp, { capture: true });
 	resultButton.addEventListener("click", nextColorCallback);
 }
@@ -97,6 +99,7 @@ function lose() {
 	const resultText = <HTMLDivElement>resultsElement.querySelector("div");
 	const resultButton = <HTMLButtonElement>resultsElement.querySelector("button");
 	resultText.textContent = "Wrong";
+
 	colorGrid.addEventListener("click", stopProp, { capture: true });
 	resultButton.addEventListener("click", nextColorCallback);
 }
@@ -105,6 +108,7 @@ function nextColorCallback() {
 	colorGrid.removeEventListener("click", stopProp, { capture: true });
 	toggleResult();
 	resetTiles();
+
 	const resultButton = <HTMLButtonElement>resultsElement.querySelector("button");
 	resultButton.removeEventListener("click", nextColorCallback);
 }
@@ -112,6 +116,7 @@ function nextColorCallback() {
 function updateColorDisplay(colorFormat: string, color: Color) {
 	if (colorDisplay == null) return;
 	const colorValues = color.getColors();
+
 	switch (colorFormat) {
 		case COLOR_FORMATS.RGB:
 			colorDisplay.textContent = `rgb(${colorValues.rgb.red}, ${colorValues.rgb.green}, ${colorValues.rgb.blue})`;
@@ -132,16 +137,19 @@ function deriveRandomColorWithOffset(offset: number, startColor: Color) {
 	const startingColors = startColor.getColors();
 	const rgbMin = 0,
 		rgbMax = 255;
+
 	const min = {
 		red: startingColors.rgb.red - offset,
 		green: startingColors.rgb.green - offset,
 		blue: startingColors.rgb.blue - offset,
 	};
+
 	const max = {
 		red: startingColors.rgb.red + offset,
 		green: startingColors.rgb.green + offset,
 		blue: startingColors.rgb.blue + offset,
 	};
+
 	return new Color(
 		getRandomInt(clamp(rgbMin, rgbMax, min.red), clamp(rgbMin, rgbMax, max.red)),
 		getRandomInt(clamp(rgbMin, rgbMax, min.green), clamp(rgbMin, rgbMax, max.green)),
