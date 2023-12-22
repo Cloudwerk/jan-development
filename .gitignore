@@ -408,3 +408,9 @@ playground/
 coverage/
 
 .parcel-cache/
+
+# vite
+.eslintrc.cjs
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
