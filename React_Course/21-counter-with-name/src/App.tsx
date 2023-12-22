@@ -1,7 +1,8 @@
 import "./App.css";
+import { PersonCounter } from "./PersonCounter";
 
 function App() {
-	return <h1>Hello World!</h1>;
+	return <PersonCounter></PersonCounter>;
 }
 
 export default App;
