@@ -1,8 +1,28 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { UserLi } from "./UserLi";
+
+interface UserObject {
+	id: number;
+	name: string;
+	username: string;
+	email: string;
+	address: {
+		street: string;
+		suite: string;
+		city: string;
+		zipcode: string;
+		geo: {
+			lat: number;
+			lng: number;
+		};
+	};
+	phone: string;
+	website: string;
+}
 
 function App() {
-	const [users, setUsers] = useState();
+	const [users, setUsers] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState();
 
@@ -29,10 +49,21 @@ function App() {
 		};
 	}, []);
 
+	let loadingContent;
+	if (loading) loadingContent = <h2>Loading...</h2>;
+	else loadingContent = undefined;
+
 	return (
 		<>
 			<h1>User List</h1>
-			<ul>{JSON.stringify(users)}</ul>
+			{loadingContent}
+			{error == undefined && (
+				<pre>
+					{users.map((item: UserObject) => {
+						return <UserLi name={item.name}></UserLi>;
+					})}
+				</pre>
+			)}
 		</>
 	);
 }
