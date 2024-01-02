@@ -8,7 +8,7 @@ interface IUseFetchOptions {
 	};
 }
 
-export function useFetch(_url: string) {
+export function useFetch(_url: string, options?: IUseFetchOptions) {
 	const [data, setData] = useState();
 	const [isLoading, setIsLoading] = useState(true);
 	const [isError, setIsError] = useState(false);
@@ -19,7 +19,7 @@ export function useFetch(_url: string) {
 		setIsLoading(true);
 
 		const controller = new AbortController();
-		fetch(_url, { signal: controller.signal })
+		fetch(_url, { signal: controller.signal, ...options })
 			.then((res) => res.json())
 			.then(setData)
 			.catch((e) => {
