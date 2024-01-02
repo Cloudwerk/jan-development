@@ -21,14 +21,14 @@ export function useArray(initialArray: Array<number>) {
 				: setArray([..._array.slice(0, index), ..._array.slice(index + 1)]),
 		[_array]
 	);
-
+	const clear = useCallback(() => setArray([]), []);
 	// function set(array: Array<number>) {
 	// 	setArray(array);
 	// }
 	// function replace(toReplace: number, replacement: number) {}
 	// function filter(callback: CallableFunction) {}
 	// function remove(index: number) {}
-	function clear() {}
+	// function clear() {}
 	function reset() {}
 	return { array: _array, set, push, replace, filter, remove, clear, reset };
 }
