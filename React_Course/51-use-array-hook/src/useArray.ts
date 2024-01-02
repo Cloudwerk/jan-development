@@ -22,6 +22,6 @@ export function useArray(initialArray: Array<number>) {
 		[_array]
 	);
 	const clear = useCallback(() => setArray([]), []);
-	const reset = useCallback(() => setArray(initialArray), []);
+	const reset = useCallback(() => setArray(initialArray), [initialArray]);
 	return { array: _array, set, push, replace, filter, remove, clear, reset };
 }
