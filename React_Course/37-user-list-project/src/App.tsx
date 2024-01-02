@@ -60,7 +60,7 @@ function App() {
 			{error == undefined && (
 				<pre>
 					{users.map((item: UserObject) => {
-						return <UserLi name={item.name}></UserLi>;
+						return <UserLi key={item.id} name={item.name}></UserLi>;
 					})}
 				</pre>
 			)}
