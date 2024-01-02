@@ -4,8 +4,7 @@ import { ListItem } from "./ListItem";
 
 function App() {
 	const [items, setItems] = useState(Array<string>);
-	let newItemName = "";
-	// console.log(items);
+	let newItemName = items.length > 0 ? items[items.length - 1] : "";
 
 	return (
 		<>
