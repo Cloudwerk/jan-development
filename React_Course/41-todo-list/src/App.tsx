@@ -9,11 +9,14 @@ function App() {
 	return (
 		<>
 			<ul id="list">
-				{items.map((item: string) => {
+				{items.map((item: string, index) => {
 					return (
 						<>
 							<ListItem item={item}>
-								<button onClick={() => setItems(items.slice(0, -1))} data-button-delete>
+								<button
+									onClick={() => setItems([...items.slice(0, index), ...items.slice(index + 1)])}
+									data-button-delete
+								>
 									Delete
 								</button>
 							</ListItem>
