@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 export function useArray(initialArray: Array<number>) {
 	const [_array, setArray] = useState(initialArray);
 
+	const set = useCallback((array: Array<number>) => setArray(array), []);
 	const push = useCallback((number: number) => setArray([..._array, number]), [_array]);
 	const replace = useCallback(
 		(indexToReplace: number, replacement: number) =>
@@ -21,9 +22,9 @@ export function useArray(initialArray: Array<number>) {
 		[_array]
 	);
 
-	function set(array: Array<number>) {
-		setArray(array);
-	}
+	// function set(array: Array<number>) {
+	// 	setArray(array);
+	// }
 	// function replace(toReplace: number, replacement: number) {}
 	// function filter(callback: CallableFunction) {}
 	// function remove(index: number) {}
