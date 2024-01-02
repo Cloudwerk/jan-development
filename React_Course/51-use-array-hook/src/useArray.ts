@@ -13,13 +13,20 @@ export function useArray(initialArray: Array<number>) {
 		(callback: (value: number, index?: number, array?: number[]) => boolean) => setArray(_array.filter(callback)),
 		[_array]
 	);
+	const remove = useCallback(
+		(index: number) =>
+			_array.length === index + 1
+				? setArray([..._array.slice(0, index)])
+				: setArray([..._array.slice(0, index), ..._array.slice(index + 1)]),
+		[_array]
+	);
 
 	function set(array: Array<number>) {
 		setArray(array);
 	}
 	// function replace(toReplace: number, replacement: number) {}
 	// function filter(callback: CallableFunction) {}
-	function remove(index: number) {}
+	// function remove(index: number) {}
 	function clear() {}
 	function reset() {}
 	return { array: _array, set, push, replace, filter, remove, clear, reset };
