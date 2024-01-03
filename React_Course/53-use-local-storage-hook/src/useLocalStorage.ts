@@ -5,7 +5,7 @@ export function useLocalStorage(key: string, initialValue: string) {
 
 	useEffect(() => {
 		const _value = localStorage.getItem(key);
-		_value ? setValue(_value) : console.log("nothing found in local storage!");
+		if (_value) setValue(_value);
 	}, []);
 
 	useEffect(() => {
