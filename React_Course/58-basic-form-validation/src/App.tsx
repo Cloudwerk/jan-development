@@ -9,13 +9,65 @@ function App() {
 	const [isMailError, setIsMailError] = useState(false);
 	const [mailErrorMessage, setMailErrorMessage] = useState("");
 
+	const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
+
 	const PW_LC_REGEX = /([a-z])+/;
 	const PW_UC_REGEX = /([A-Z])+/;
 	const NUMBER_REGEX = /([0-9])+/;
 
 	function onFormSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
+		setHasBeenSubmitted(true);
 
+		emailValidation();
+		passwordValidation();
+	}
+
+	return (
+		<>
+			<form className="form" onSubmit={(e) => onFormSubmit(e)}>
+				<div className={`form-group ${isMailError ? "error" : ""}`}>
+					<label className="label" htmlFor="email">
+						Email
+					</label>
+					<input
+						className="input"
+						type="email"
+						id="email"
+						value={mail}
+						onChange={(e) => {
+							setMail(e.target.value);
+							hasBeenSubmitted ? emailValidation() : [];
+						}}
+					/>
+					{isMailError ? <ErrorMessage message={mailErrorMessage}></ErrorMessage> : <></>}
+				</div>
+				<div className={`form-group ${passwordErrorMessages.length >= 1 ? "error" : ""}`}>
+					<label className="label" htmlFor="password">
+						Password
+					</label>
+					<input
+						className="input"
+						value={password}
+						type="password"
+						id="password"
+						onChange={(e) => {
+							setPassword(e.target.value);
+							hasBeenSubmitted ? passwordValidation() : [];
+						}}
+					/>
+					{passwordErrorMessages.map((msg) => {
+						return <ErrorMessage message={msg}></ErrorMessage>;
+					})}
+				</div>
+				<button className="btn" type="submit">
+					Submit
+				</button>
+			</form>
+		</>
+	);
+
+	function emailValidation() {
 		if (mail === "") {
 			setIsMailError(true);
 			setMailErrorMessage("Cannot be blank!");
@@ -25,7 +77,9 @@ function App() {
 		} else if (isMailError) {
 			setIsMailError(false);
 		}
+	}
 
+	function passwordValidation() {
 		setPasswordErrorMessages([]);
 		if (password === "") {
 			setPasswordErrorMessages(["Cannot be blank!"]);
@@ -42,40 +96,7 @@ function App() {
 		if (!password.match(NUMBER_REGEX)) {
 			setPasswordErrorMessages((msg) => [...msg, "Must include a number"]);
 		}
-		//validation
 	}
-
-	return (
-		<>
-			<form className="form" onSubmit={(e) => onFormSubmit(e)}>
-				<div className={`form-group ${isMailError ? "error" : ""}`}>
-					<label className="label" htmlFor="email">
-						Email
-					</label>
-					<input className="input" type="email" id="email" value={mail} onChange={(e) => setMail(e.target.value)} />
-					{isMailError ? <ErrorMessage message={mailErrorMessage}></ErrorMessage> : <></>}
-				</div>
-				<div className={`form-group ${passwordErrorMessages.length >= 1 ? "error" : ""}`}>
-					<label className="label" htmlFor="password">
-						Password
-					</label>
-					<input
-						className="input"
-						value={password}
-						type="password"
-						id="password"
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-					{passwordErrorMessages.map((msg) => {
-						return <ErrorMessage message={msg}></ErrorMessage>;
-					})}
-				</div>
-				<button className="btn" type="submit">
-					Submit
-				</button>
-			</form>
-		</>
-	);
 }
 
 export default App;
