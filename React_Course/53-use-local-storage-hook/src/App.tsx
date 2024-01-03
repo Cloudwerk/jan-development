@@ -2,7 +2,6 @@ import { useLocalStorage } from "./useLocalStorage";
 
 function App() {
 	const { value: firstName, setValue: setFirstName } = useLocalStorage("FIRST_NAME", "");
-
 	// Bonus:
 	// const [lastName, setLastName] = useLocalStorage("LAST_NAME", () => {
 	//   return "Default"
@@ -25,7 +24,7 @@ function App() {
 				}}
 			>
 				<label>First Name</label>
-				<input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+				<input type="text" value={firstName as string} onChange={(e) => setFirstName(e.target.value)} />
 			</div>
 
 			{/* Bonus: */}
