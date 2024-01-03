@@ -7,8 +7,8 @@ function App() {
 		return "Default";
 	});
 
-	// // Bonus:
-	// const { value: hobbies, setValue: setHobbies } = useLocalStorage("HOBBIES", ["Programming", "Weight Lifting"]);
+	// Bonus:
+	const { value: hobbies, setValue: setHobbies } = useLocalStorage("HOBBIES", ["Programming", "Weight Lifting"]);
 
 	return (
 		<>
@@ -39,15 +39,15 @@ function App() {
 				</div>
 			}
 
-			{/* Bonus:
+			{/* Bonus: */}
 			{
 				<>
 					<div>{hobbies.join(", ")}</div>
-					<button onClick={() => setHobbies((currentHobbies) => [...currentHobbies, "New Hobby"])}>
+					<button onClick={() => setHobbies((currentHobbies: string) => [...currentHobbies, "New Hobby"])}>
 						Add Hobby
 					</button>{" "}
 				</>
-			} */}
+			}
 		</>
 	);
 }
