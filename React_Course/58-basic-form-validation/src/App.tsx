@@ -53,7 +53,7 @@ function App() {
 						Email
 					</label>
 					<input className="input" type="email" id="email" value={mail} onChange={(e) => setMail(e.target.value)} />
-					<div className={`msg ${isMailError ? "" : "hidden"}`}>{mailErrorMessage}</div>
+					{isMailError ? <ErrorMessage message={mailErrorMessage}></ErrorMessage> : <></>}
 				</div>
 				<div className={`form-group ${passwordErrorMessages.length >= 1 ? "error" : ""}`}>
 					<label className="label" htmlFor="password">
