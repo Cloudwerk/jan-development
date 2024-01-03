@@ -5,6 +5,7 @@ import AppRef from "./AppRef.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
+		<App />
 		<AppRef />
 	</React.StrictMode>
 );

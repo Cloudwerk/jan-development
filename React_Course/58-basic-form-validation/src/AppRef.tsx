@@ -21,6 +21,7 @@ function AppRef() {
 
 	return (
 		<>
+			<h2>Use Ref</h2>
 			<form className="form" onSubmit={(e) => onFormSubmit(e)}>
 				<div className={`form-group ${mailErrorMessage !== "" ? "error" : ""}`}>
 					<label className="label" htmlFor="email">
