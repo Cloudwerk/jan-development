@@ -1,10 +1,26 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TodoListContext } from "./App";
 
 export function TodoItem({ id, name, completed, toggleTodo, deleteTodo }) {
+	const [isHide, setIsHide] = useState(false);
 	const { filter, hideComplete } = useContext(TodoListContext);
+
+	useEffect(() => {
+		if (hideComplete.hideCompleted && completed) {
+			setIsHide(true);
+			return;
+		}
+		if (filter.filterWord !== "") {
+			if (!name.includes(filter.filterWord)) {
+				setIsHide(true);
+				return;
+			}
+		}
+		setIsHide(false);
+	}, [filter.filterWord, hideComplete.hideCompleted]);
+
 	return (
-		<li className={`list-item ${hideComplete.hideCompleted && completed ? "hidden" : ""}`}>
+		<li className={`list-item ${isHide ? "hidden" : ""}`}>
 			<label className="list-item-label">
 				<input
 					checked={completed}
