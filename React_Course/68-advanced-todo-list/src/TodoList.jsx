@@ -34,6 +34,8 @@ function reducer(todos, action) {
 			const localItems = localStorage.getItem(TODOS_KEY);
 			if (localItems == null) return;
 			return JSON.parse(localItems);
+		default:
+			return todos;
 	}
 }
 
