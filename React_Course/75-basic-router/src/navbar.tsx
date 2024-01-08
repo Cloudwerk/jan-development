@@ -6,13 +6,13 @@ export function Navbar() {
 			<div className="nav-text-large">My App</div>
 			<ul className="nav-list">
 				<li>
-					<Link to="/posts">Posts</Link>
+					<Link to="/Posts">Posts</Link>
 				</li>
 				<li>
-					<Link to="/posts">Users</Link>
+					<Link to="/Users">Users</Link>
 				</li>
 				<li>
-					<Link to="/posts">Todos</Link>
+					<Link to="/Todos">Todos</Link>
 				</li>
 			</ul>
 		</nav>
