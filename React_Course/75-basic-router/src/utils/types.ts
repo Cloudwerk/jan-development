@@ -58,3 +58,16 @@ export interface IUserCardsProps {
 		bs?: string;
 	};
 }
+
+export interface ITodoObject {
+	userId: number;
+	id: number;
+	title: string;
+	completed: boolean;
+}
+
+export interface IUseFetchTodosReturn {
+	data: Array<ITodoObject> | undefined;
+	isLoading: boolean;
+	isError: boolean;
+}
