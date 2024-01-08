@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useFetch } from "../utils/useFetch";
 import { IPostObject, IUseFetchPostReturn } from "../utils/types";
 import { PostCard } from "./components/PostCard";
@@ -8,12 +7,6 @@ const API_URL = import.meta.env.VITE_API_BASE_URL;
 export function Posts() {
 	const { data: fetchData, isError, isLoading }: IUseFetchPostReturn = useFetch(`${API_URL}/posts`);
 
-	useEffect(() => {
-		if (!isLoading) return;
-		console.log(JSON.stringify(fetchData, null, 2), isError);
-	}, [fetchData, isLoading]);
-
-	// return <p>{isLoading ? "Loading..." : JSON.stringify(fetchData, null, 2)}</p>;
 	return (
 		<div className="container">
 			<h1 className="page-title">Posts</h1>
