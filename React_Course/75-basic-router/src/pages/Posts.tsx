@@ -18,9 +18,11 @@ export function Posts() {
 			<div className="card-grid">
 				{isLoading ? (
 					"Loading..."
+				) : isError ? (
+					"There has been an Error!"
 				) : (
 					<>
-						{fetchData?.map((entry: IPostObject) => {
+						{fetchData!.map((entry: IPostObject) => {
 							return <PostCard title={entry.title} body={entry.body} id={entry.id}></PostCard>;
 						})}
 					</>

@@ -16,3 +16,45 @@ export interface IPostCardOptions {
 	body: string;
 	id: number;
 }
+
+export interface IUserObject {
+	id: number;
+	name: string;
+	username: string;
+	email: string;
+	address: {
+		street: string;
+		suite: string;
+		city: string;
+		zipcode: string;
+		geo: {
+			lat: number;
+			lng: number;
+		};
+	};
+	phone: string;
+	website: string;
+	company: {
+		name: string;
+		catchPhrase: string;
+		bs: string;
+	};
+}
+
+export interface IUseFetchUsersReturn {
+	data: Array<IUserObject> | undefined;
+	isLoading: boolean;
+	isError: boolean;
+}
+
+export interface IUserCardsProps {
+	name: string;
+	website: string;
+	email: string;
+	id: number;
+	company: {
+		name: string;
+		catchPhrase?: string;
+		bs?: string;
+	};
+}
