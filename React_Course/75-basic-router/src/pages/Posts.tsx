@@ -3,8 +3,10 @@ import { useFetch } from "../utils/useFetch";
 import { IPostObject, IUseFetchPostReturn } from "../utils/types";
 import { PostCard } from "./components/PostCard";
 
+const API_URL = import.meta.env.VITE_API_BASE_URL;
+
 export function Posts() {
-	const { data: fetchData, isError, isLoading }: IUseFetchPostReturn = useFetch("http://localhost:3000/posts");
+	const { data: fetchData, isError, isLoading }: IUseFetchPostReturn = useFetch(`${API_URL}/posts`);
 
 	useEffect(() => {
 		if (!isLoading) return;
@@ -23,7 +25,9 @@ export function Posts() {
 				) : (
 					<>
 						{fetchData!.map((entry: IPostObject) => {
-							return <PostCard title={entry.title} body={entry.body} id={entry.id}></PostCard>;
+							return (
+								<PostCard key={crypto.randomUUID()} title={entry.title} body={entry.body} id={entry.id}></PostCard>
+							);
 						})}
 					</>
 				)}
