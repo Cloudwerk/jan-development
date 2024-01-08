@@ -1,47 +1,66 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import "./styles.css";
 import { TodoItem } from "./TodoItem";
 
+const TODOS_KEY = "TODOS";
+const ACTIONS = {
+	ADD_TODO: "ADD_TODO",
+	TOGGLE_TODO: "TOGGLE_TODO",
+	REMOVE_TODO: "REMOVE_TODO",
+	SET_ALL: "SET_ALL",
+};
+
+function reducer(todos, action) {
+	switch (action.type) {
+		case ACTIONS.ADD_TODO:
+			const newTodos = [...todos, action.payload.item];
+			localStorage.setItem(TODOS_KEY, JSON.stringify(newTodos));
+			return newTodos;
+
+		case ACTIONS.TOGGLE_TODO:
+			const doneItems = todos.map((todo) => {
+				if (todo.id === action.payload.id) return { ...todo, completed: action.payload.completed };
+				return todo;
+			});
+
+			localStorage.setItem(TODOS_KEY, JSON.stringify(doneItems));
+			return doneItems;
+
+		case ACTIONS.REMOVE_TODO:
+			const newItems = todos.filter((todo) => todo.id !== action.payload.id);
+			localStorage.setItem(TODOS_KEY, JSON.stringify(newItems));
+			return newItems;
+		case ACTIONS.SET_ALL:
+			const localItems = localStorage.getItem(TODOS_KEY);
+			if (localItems == null) return;
+			return JSON.parse(localItems);
+	}
+}
+
 function TodoList() {
 	const [newTodoName, setNewTodoName] = useState("");
-	const [todos, setTodos] = useState([]);
-	const TODOS_KEY = "TODOS";
+	const [todos, dispatch] = useReducer(reducer, []);
 
 	useEffect(() => {
-		const localItems = localStorage.getItem(TODOS_KEY);
-		if (localItems == null) return;
-		setTodos(JSON.parse(localItems));
+		dispatch({ type: ACTIONS.SET_ALL });
 	}, []);
 
 	function addNewTodo() {
 		if (newTodoName === "") return;
 
-		setTodos((currentTodos) => {
-			const newTodos = [...currentTodos, { name: newTodoName, completed: false, id: crypto.randomUUID() }];
-			localStorage.setItem(TODOS_KEY, JSON.stringify(newTodos));
-			return newTodos;
+		dispatch({
+			type: ACTIONS.ADD_TODO,
+			payload: { item: { name: newTodoName, completed: false, id: crypto.randomUUID() } },
 		});
 		setNewTodoName("");
 	}
 
 	function toggleTodo(todoId, completed) {
-		setTodos((currentTodos) => {
-			const doneItems = currentTodos.map((todo) => {
-				if (todo.id === todoId) return { ...todo, completed };
-
-				return todo;
-			});
-			localStorage.setItem(TODOS_KEY, JSON.stringify(doneItems));
-			return doneItems;
-		});
+		dispatch({ type: ACTIONS.TOGGLE_TODO, payload: { id: todoId, completed: completed } });
 	}
 
 	function deleteTodo(todoId) {
-		setTodos((currentTodos) => {
-			const newItems = currentTodos.filter((todo) => todo.id !== todoId);
-			localStorage.setItem(TODOS_KEY, JSON.stringify(newItems));
-			return newItems;
-		});
+		dispatch({ type: ACTIONS.REMOVE_TODO, payload: { id: todoId } });
 	}
 
 	return (
