@@ -1,8 +1,5 @@
-interface IPostCardOptions {
-	title: string;
-	body: string;
-	id: number;
-}
+import { Link } from "react-router-dom";
+import { IPostCardOptions } from "../../utils/types";
 
 export function PostCard({ title, body, id }: IPostCardOptions) {
 	return (
@@ -12,9 +9,9 @@ export function PostCard({ title, body, id }: IPostCardOptions) {
 				<div className="card-preview-text">{body.slice(0, 100)}</div>
 			</div>
 			<div className="card-footer">
-				<a className="btn" href="post.html">
+				<Link className="btn" to={id.toString()}>
 					View
-				</a>
+				</Link>
 			</div>
 		</div>
 	);

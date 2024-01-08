@@ -10,3 +10,9 @@ export interface IUseFetchPostReturn {
 	isError: boolean;
 	isLoading: boolean;
 }
+
+export interface IPostCardOptions {
+	title: string;
+	body: string;
+	id: number;
+}
