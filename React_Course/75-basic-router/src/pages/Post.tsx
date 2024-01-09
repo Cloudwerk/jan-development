@@ -5,7 +5,7 @@ import { CommentCard } from "./components/CommentCard";
 export function Post() {
 	const { userData, commentData, data: post } = useLoaderData() as SinglePostLoaderReturn;
 	return (
-		<div className="container">
+		<>
 			<h1 className="page-title">{post.title}</h1>
 			<span className="page-subtitle">
 				By: <Link to={`/Users/${post.userId}`}>{userData.name}</Link>
@@ -17,6 +17,6 @@ export function Post() {
 					return <CommentCard key={crypto.randomUUID()} {...comment} />;
 				})}
 			</div>
-		</div>
+		</>
 	);
 }
