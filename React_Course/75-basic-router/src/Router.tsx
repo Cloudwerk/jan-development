@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import { Navbar } from "./navbar";
 import { Posts } from "./pages/Posts";
 import { Users } from "./pages/Users";
@@ -18,7 +18,6 @@ export const router = createBrowserRouter([
 	{
 		element: <NavLayout />,
 		children: [
-			{ path: "/", element: <h1>Hello!</h1> },
 			{
 				path: "/Posts",
 				children: [
@@ -42,6 +41,8 @@ export const router = createBrowserRouter([
 				],
 			},
 			{ path: "/Todos", element: <Todos />, loader: FetchTodosData },
+			{ path: "/404", element: <ErrorNotExist /> },
+			{ path: "*", element: <Navigate to="/Posts" /> },
 		],
 	},
 ]);
@@ -52,5 +53,14 @@ function NavLayout() {
 			<Navbar />
 			<LoadingWrapper />
 		</>
+	);
+}
+
+function ErrorNotExist() {
+	return (
+		<div className="container">
+			<h2>Oops!</h2>
+			<p>This site doesn't exist!</p>
+		</div>
 	);
 }
