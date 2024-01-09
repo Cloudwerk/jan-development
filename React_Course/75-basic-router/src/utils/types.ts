@@ -5,8 +5,14 @@ export interface IPostObject {
 	body: string;
 }
 
-export interface IUseFetchPostReturn {
+export interface IUseFetchPostsReturn {
 	data: Array<IPostObject> | undefined;
+	isError: boolean;
+	isLoading: boolean;
+}
+
+export interface IUseFetchPostReturn {
+	data: IPostObject | undefined;
 	isError: boolean;
 	isLoading: boolean;
 }
@@ -68,6 +74,20 @@ export interface ITodoObject {
 
 export interface IUseFetchTodosReturn {
 	data: Array<ITodoObject> | undefined;
+	isLoading: boolean;
+	isError: boolean;
+}
+
+export interface ICommentObject {
+	postId: number;
+	id: number;
+	name: string;
+	email: string;
+	body: string;
+}
+
+export interface ICommentsFetchReturn {
+	data: Array<ICommentObject> | undefined;
 	isLoading: boolean;
 	isError: boolean;
 }

@@ -1,11 +1,11 @@
 import { useFetch } from "../utils/useFetch";
-import { IPostObject, IUseFetchPostReturn } from "../utils/types";
+import { IPostObject, IUseFetchPostsReturn } from "../utils/types";
 import { PostCard } from "./components/PostCard";
 
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 export function Posts() {
-	const { data: fetchData, isError, isLoading }: IUseFetchPostReturn = useFetch(`${API_URL}/posts`);
+	const { data: fetchData, isError, isLoading }: IUseFetchPostsReturn = useFetch(`${API_URL}/posts`);
 
 	return (
 		<div className="container">

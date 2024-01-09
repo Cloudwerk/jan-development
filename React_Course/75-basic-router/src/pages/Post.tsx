@@ -1,56 +1,56 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { ICommentsFetchReturn, IUseFetchPostReturn } from "../utils/types";
+import { useFetch } from "../utils/useFetch";
+import { useEffect, useState } from "react";
+import { CommentCard } from "./components/CommentCard";
+
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 export function Post() {
 	const { PostId } = useParams();
+	const [postNumber, setPostNumber] = useState(0);
+
+	if (!PostId) return <h1>Invalid Post ID!</h1>;
+	useEffect(() => {
+		setPostNumber(parseInt(PostId));
+	}, []);
+	if (postNumber == null) return <h1>Invalid Post ID!</h1>;
+	const {
+		data: fetchData,
+		isError,
+		isLoading,
+	}: IUseFetchPostReturn = useFetch(`${API_URL}/posts/${postNumber.toString()}`);
+	const {
+		data: commentsData,
+		isError: commentsIsError,
+		isLoading: commentsIsLoading,
+	}: ICommentsFetchReturn = useFetch(`${API_URL}/posts/${postNumber.toString()}/comments`);
+
 	return (
 		<div className="container">
-			<h1 className="page-title">PostID: {PostId}</h1>
-			<span className="page-subtitle">
-				By: <a href="user.html">Leanne Graham</a>
-			</span>
-			<div>
-				quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam
-				nostrum rerum est autem sunt rem eveniet architecto
-			</div>
-			<h3 className="mt-4 mb-2">Comments</h3>
-			<div className="card-stack">
-				<div className="card">
-					<div className="card-body">
-						<div className="text-sm mb-1">Eliseo@gardner.biz</div>
-						laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem
-						quasi reiciendis et nam sapiente accusantium
+			{isLoading ? (
+				"Loading..."
+			) : isError ? (
+				"There has been an Error!"
+			) : (
+				<>
+					<h1 className="page-title">{fetchData!.title}</h1>
+					<span className="page-subtitle">
+						By: <Link to={`/Users/${fetchData!.userId}`}>Leanne Graham</Link>
+					</span>
+					<div>{fetchData!.body}</div>
+					<h3 className="mt-4 mb-2">Comments</h3>
+					<div className="card-stack">
+						{commentsIsLoading
+							? "Loading..."
+							: commentsIsError
+							? "There has been an Error!"
+							: commentsData!.map((comment) => {
+									return <CommentCard {...comment} />;
+							  })}
 					</div>
-				</div>
-				<div className="card">
-					<div className="card-body">
-						<div className="text-sm mb-1">Jayne_Kuhic@sydney.com</div>
-						est natus enim nihil est dolore omnis voluptatem numquam et omnis occaecati quod ullam at voluptatem error
-						expedita pariatur nihil sint nostrum voluptatem reiciendis et
-					</div>
-				</div>
-				<div className="card">
-					<div className="card-body">
-						<div className="text-sm mb-1">Nikita@garfield.biz</div>
-						quia molestiae reprehenderit quasi aspernatur aut expedita occaecati aliquam eveniet laudantium omnis
-						quibusdam delectus saepe quia accusamus maiores nam est cum et ducimus et vero voluptates excepturi deleniti
-						ratione
-					</div>
-				</div>
-				<div className="card">
-					<div className="card-body">
-						<div className="text-sm mb-1">Lew@alysha.tv</div>
-						non et atque occaecati deserunt quas accusantium unde odit nobis qui voluptatem quia voluptas consequuntur
-						itaque dolor et qui rerum deleniti ut occaecati
-					</div>
-				</div>
-				<div className="card">
-					<div className="card-body">
-						<div className="text-sm mb-1">Hayden@althea.biz</div>
-						harum non quasi et ratione tempore iure ex voluptates in ratione harum architecto fugit inventore cupiditate
-						voluptates magni quo et
-					</div>
-				</div>
-			</div>
+				</>
+			)}
 		</div>
 	);
 }
