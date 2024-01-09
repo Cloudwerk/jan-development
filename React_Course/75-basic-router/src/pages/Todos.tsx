@@ -1,27 +1,19 @@
-import { useFetch } from "../utils/useFetch";
-import { ITodoObject, IUseFetchTodosReturn } from "../utils/types";
+import { ITodoObject } from "../utils/types";
 import { Todo } from "./components/Todo";
+import { useLoaderData } from "react-router-dom";
 
-const API_URL = import.meta.env.VITE_API_BASE_URL;
 const NR_OF_TODOS = 25;
 
 export function Todos() {
-	const { data: todoData, isError, isLoading }: IUseFetchTodosReturn = useFetch(`${API_URL}/todos`);
+	const todoData = useLoaderData() as Array<ITodoObject>;
 	return (
 		<>
-			{isLoading ? <div className="loading-spinner"></div> : ""}
-			<div className={`container ${isLoading ? "loading" : ""}`}>
-				<h1 className="page-title">Todos</h1>
-				<ul>
-					{isLoading
-						? "Loading..."
-						: isError
-						? "There has been an Error!"
-						: todoData!.slice(0, NR_OF_TODOS).map((todo: ITodoObject) => {
-								return <Todo key={crypto.randomUUID()} {...todo} />;
-						  })}
-				</ul>
-			</div>
+			<h1 className="page-title">Todos</h1>
+			<ul>
+				{todoData!.slice(0, NR_OF_TODOS).map((todo: ITodoObject) => {
+					return <Todo key={crypto.randomUUID()} {...todo} />;
+				})}
+			</ul>
 		</>
 	);
 }
