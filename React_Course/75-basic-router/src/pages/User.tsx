@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../utils/useFetch";
-import { IUseFetchPostsReturn, IUserFetchReturn } from "../utils/types";
+import { IUseFetchPostsReturn, IUseFetchTodosReturn, IUserFetchReturn } from "../utils/types";
 import { PostCard } from "./components/PostCard";
+import { Todo } from "./components/Todo";
 
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -22,6 +23,11 @@ export function User() {
 		isError: postsIsError,
 		isLoading: postsIsLoading,
 	}: IUseFetchPostsReturn = useFetch(`${API_URL}/posts?userId=${userID}`);
+	const {
+		data: todosData,
+		isError: todosIsError,
+		isLoading: todosIsLoading,
+	}: IUseFetchTodosReturn = useFetch(`${API_URL}/todos?userId=${userID}`);
 
 	return (
 		<div className="container">
@@ -58,16 +64,17 @@ export function User() {
 					  })}
 			</div>
 			<h3 className="mt-4 mb-2">Todos</h3>
-			<ul>
-				<li>delectus aut autem</li>
-				<li>quis ut nam facilis et officia qui</li>
-				<li>fugiat veniam minus</li>
-				<li className="strike-through">et porro tempora</li>
-				<li>laboriosam mollitia et enim quasi adipisci quia provident illum</li>
-				<li>qui ullam ratione quibusdam voluptatem quia omnis</li>
-				<li>illo expedita consequatur quia in</li>
-				<li className="strike-through">quo adipisci enim quam ut ab</li>
-			</ul>
+			{todosIsLoading ? (
+				"Loading..."
+			) : todosIsError ? (
+				"There has been an Error!"
+			) : (
+				<ul>
+					{todosData!.map((todo) => {
+						return <Todo key={crypto.randomUUID()} {...todo} />;
+					})}
+				</ul>
+			)}
 		</div>
 	);
 }
