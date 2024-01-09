@@ -7,18 +7,6 @@ export interface IPostObject {
 	body: string;
 }
 
-export interface IUseFetchPostsReturn {
-	data: Array<IPostObject> | undefined;
-	isError: boolean;
-	isLoading: boolean;
-}
-
-export interface IUseFetchPostReturn {
-	data: IPostObject | undefined;
-	isError: boolean;
-	isLoading: boolean;
-}
-
 export interface IPostCardOptions {
 	title: string;
 	body: string;
@@ -49,18 +37,6 @@ export interface IUserObject {
 	};
 }
 
-export interface IUserFetchReturn {
-	data: IUserObject | undefined;
-	isLoading: boolean;
-	isError: boolean;
-}
-
-export interface IUseFetchUsersReturn {
-	data: Array<IUserObject> | undefined;
-	isLoading: boolean;
-	isError: boolean;
-}
-
 export interface IUserCardsProps {
 	name: string;
 	website: string;
@@ -80,24 +56,12 @@ export interface ITodoObject {
 	completed: boolean;
 }
 
-export interface IUseFetchTodosReturn {
-	data: Array<ITodoObject> | undefined;
-	isLoading: boolean;
-	isError: boolean;
-}
-
 export interface ICommentObject {
 	postId: number;
 	id: number;
 	name: string;
 	email: string;
 	body: string;
-}
-
-export interface ICommentsFetchReturn {
-	data: Array<ICommentObject> | undefined;
-	isLoading: boolean;
-	isError: boolean;
 }
 
 export interface ILoaderFunctionsProps {
@@ -111,4 +75,10 @@ export interface SinglePostLoaderReturn {
 	commentData: Array<ICommentObject>;
 	userData: IUserObject;
 	data: IPostObject;
+}
+
+export interface SingleUserLoaderReturn {
+	userData: IUserObject;
+	postsData: Array<IPostObject>;
+	todosData: Array<ITodoObject>;
 }
