@@ -8,17 +8,20 @@ const NR_OF_TODOS = 25;
 export function Todos() {
 	const { data: todoData, isError, isLoading }: IUseFetchTodosReturn = useFetch(`${API_URL}/todos`);
 	return (
-		<div className="container">
-			<h1 className="page-title">Todos</h1>
-			<ul>
-				{isLoading
-					? "Loading..."
-					: isError
-					? "There has been an Error!"
-					: todoData!.slice(0, NR_OF_TODOS).map((todo: ITodoObject) => {
-							return <Todo key={crypto.randomUUID()} {...todo} />;
-					  })}
-			</ul>
-		</div>
+		<>
+			{isLoading ? <div className="loading-spinner"></div> : ""}
+			<div className={`container ${isLoading ? "loading" : ""}`}>
+				<h1 className="page-title">Todos</h1>
+				<ul>
+					{isLoading
+						? "Loading..."
+						: isError
+						? "There has been an Error!"
+						: todoData!.slice(0, NR_OF_TODOS).map((todo: ITodoObject) => {
+								return <Todo key={crypto.randomUUID()} {...todo} />;
+						  })}
+				</ul>
+			</div>
+		</>
 	);
 }

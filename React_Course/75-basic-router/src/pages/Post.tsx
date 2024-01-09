@@ -41,33 +41,36 @@ export function Post() {
 	}: IUserFetchReturn = useFetch(`${API_URL}/users/${authorId}`);
 
 	return (
-		<div className="container">
-			{isLoading ? (
-				"Loading..."
-			) : isError ? (
-				"There has been an Error!"
-			) : (
-				<>
-					<h1 className="page-title">{fetchData!.title}</h1>
-					<span className="page-subtitle">
-						By:{" "}
-						<Link to={`/Users/${fetchData!.userId}`}>
-							{userIsLoading ? "Loading..." : userIsError ? "There has been an Error" : user!.name}
-						</Link>
-					</span>
-					<div>{fetchData!.body}</div>
-				</>
-			)}
-			<h3 className="mt-4 mb-2">Comments</h3>
-			<div className="card-stack">
-				{commentsIsLoading
-					? "Loading..."
-					: commentsIsError
-					? "There has been an Error!"
-					: commentsData!.map((comment) => {
-							return <CommentCard {...comment} />;
-					  })}
+		<>
+			{isLoading ? <div className="loading-spinner"></div> : ""}
+			<div className={`container ${isLoading ? "loading" : ""}`}>
+				{isLoading ? (
+					"Loading..."
+				) : isError ? (
+					"There has been an Error!"
+				) : (
+					<>
+						<h1 className="page-title">{fetchData!.title}</h1>
+						<span className="page-subtitle">
+							By:{" "}
+							<Link to={`/Users/${fetchData!.userId}`}>
+								{userIsLoading ? "Loading..." : userIsError ? "There has been an Error" : user!.name}
+							</Link>
+						</span>
+						<div>{fetchData!.body}</div>
+					</>
+				)}
+				<h3 className="mt-4 mb-2">Comments</h3>
+				<div className="card-stack">
+					{commentsIsLoading
+						? "Loading..."
+						: commentsIsError
+						? "There has been an Error!"
+						: commentsData!.map((comment) => {
+								return <CommentCard {...comment} />;
+						  })}
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }
