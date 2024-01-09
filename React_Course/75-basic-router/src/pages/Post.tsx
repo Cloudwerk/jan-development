@@ -56,18 +56,18 @@ export function Post() {
 						</Link>
 					</span>
 					<div>{fetchData!.body}</div>
-					<h3 className="mt-4 mb-2">Comments</h3>
-					<div className="card-stack">
-						{commentsIsLoading
-							? "Loading..."
-							: commentsIsError
-							? "There has been an Error!"
-							: commentsData!.map((comment) => {
-									return <CommentCard {...comment} />;
-							  })}
-					</div>
 				</>
 			)}
+			<h3 className="mt-4 mb-2">Comments</h3>
+			<div className="card-stack">
+				{commentsIsLoading
+					? "Loading..."
+					: commentsIsError
+					? "There has been an Error!"
+					: commentsData!.map((comment) => {
+							return <CommentCard {...comment} />;
+					  })}
+			</div>
 		</div>
 	);
 }
