@@ -1,29 +1,16 @@
-import { useFetch } from "../utils/useFetch";
-import { IUserObject, IUseFetchUsersReturn } from "../utils/types";
+import { IUserObject } from "../utils/types";
 import { UserCard } from "./components/UserCard";
-
-const API_URL = import.meta.env.VITE_API_BASE_URL;
+import { useLoaderData } from "react-router-dom";
 
 export function Users() {
-	const { data: usersData, isError, isLoading }: IUseFetchUsersReturn = useFetch(`${API_URL}/users`);
+	const usersData = useLoaderData() as Array<IUserObject>;
 	return (
 		<>
-			{isLoading ? <div className="loading-spinner"></div> : ""}
-			<div className={`container ${isLoading ? "loading" : ""}`}>
-				<h1 className="page-title">Users</h1>
-				<div className="card-grid">
-					{isLoading ? (
-						"Loading..."
-					) : isError ? (
-						"There has been an Error!"
-					) : (
-						<>
-							{usersData!.map((user: IUserObject) => {
-								return <UserCard key={crypto.randomUUID()} {...user} />;
-							})}
-						</>
-					)}
-				</div>
+			<h1 className="page-title">Users</h1>
+			<div className="card-grid">
+				{usersData.map((user: IUserObject) => {
+					return <UserCard key={crypto.randomUUID()} {...user} />;
+				})}
 			</div>
 		</>
 	);

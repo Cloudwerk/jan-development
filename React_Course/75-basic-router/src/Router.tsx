@@ -6,7 +6,7 @@ import { Todos } from "./pages/Todos";
 import { Post } from "./pages/Post";
 import { User } from "./pages/User";
 import { LoadingWrapper } from "./pages/Wrappers/LoadingWrapper";
-import { FetchPostData, FetchSinglePostData } from "./utils/loaderfunctions";
+import { FetchPostData, FetchSinglePostData, FetchUsersData } from "./utils/loaderfunctions";
 
 export const router = createBrowserRouter([
 	{
@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
 			{
 				path: "/Users",
 				children: [
-					{ index: true, element: <Users /> },
+					{ index: true, element: <Users />, loader: FetchUsersData },
 					{ path: ":userID", element: <User /> },
 				],
 			},

@@ -11,6 +11,14 @@ export function FetchPostData({ request: { signal } }: ILoaderFunctionsProps) {
 	});
 }
 
+export function FetchUsersData({ request: { signal } }: ILoaderFunctionsProps) {
+	return fetch(`${API_URL}/Users`, { signal }).then((res) => {
+		if (res.status === 200) return res.json();
+
+		throw redirect("/404");
+	});
+}
+
 export function FetchSinglePostData({ params, request: { signal } }: ILoaderFunctionsProps) {
 	return fetch(`${API_URL}/posts/${params.PostId!.toString()}`, { signal })
 		.then((res) => {
