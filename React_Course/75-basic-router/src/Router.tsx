@@ -4,6 +4,7 @@ import { Posts } from "./pages/Posts";
 import { Users } from "./pages/Users";
 import { Todos } from "./pages/Todos";
 import { Post } from "./pages/Post";
+import { User } from "./pages/User";
 
 export const router = createBrowserRouter([
 	{
@@ -20,7 +21,13 @@ export const router = createBrowserRouter([
 					},
 				],
 			},
-			{ path: "/Users", element: <Users /> },
+			{
+				path: "/Users",
+				children: [
+					{ index: true, element: <Users /> },
+					{ path: ":userID", element: <User /> },
+				],
+			},
 			{ path: "/Todos", element: <Todos /> },
 		],
 	},
