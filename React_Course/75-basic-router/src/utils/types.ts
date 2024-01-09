@@ -1,3 +1,5 @@
+import { Params } from "react-router-dom";
+
 export interface IPostObject {
 	userId: number;
 	id: number;
@@ -96,4 +98,17 @@ export interface ICommentsFetchReturn {
 	data: Array<ICommentObject> | undefined;
 	isLoading: boolean;
 	isError: boolean;
+}
+
+export interface ILoaderFunctionsProps {
+	request: {
+		signal: AbortSignal;
+	};
+	params: Params<string>;
+}
+
+export interface SinglePostLoaderReturn {
+	commentData: Array<ICommentObject>;
+	userData: IUserObject;
+	data: IPostObject;
 }
