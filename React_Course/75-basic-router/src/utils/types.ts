@@ -47,6 +47,12 @@ export interface IUserObject {
 	};
 }
 
+export interface IUserFetchReturn {
+	data: IUserObject | undefined;
+	isLoading: boolean;
+	isError: boolean;
+}
+
 export interface IUseFetchUsersReturn {
 	data: Array<IUserObject> | undefined;
 	isLoading: boolean;
