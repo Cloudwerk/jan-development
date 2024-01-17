@@ -15,6 +15,7 @@ import {
 } from "./utils/loaderfunctions";
 import { NewPost } from "./pages/NewPost";
 import { postNewPost } from "./utils/actionfunctions";
+import { EditPost } from "./pages/EditPost";
 
 export const router = createBrowserRouter([
 	{
@@ -32,6 +33,7 @@ export const router = createBrowserRouter([
 						path: ":PostId",
 						element: <Post />,
 						loader: FetchSinglePostData,
+						children: [{ path: "edit", element: <EditPost /> }],
 					},
 					{
 						path: "new",
