@@ -3,6 +3,7 @@ import { IEditPostFetchObject } from "../utils/types";
 
 export function EditPost() {
 	const { postData, usersData } = useLoaderData() as IEditPostFetchObject;
+	const errorMessage = useActionData() as string;
 
 	return (
 		<>
