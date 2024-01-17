@@ -1,5 +1,6 @@
-import { Form, Link, useLoaderData } from "react-router-dom";
+import { Form, Link, useActionData, useLoaderData } from "react-router-dom";
 import { IEditPostFetchObject } from "../utils/types";
+import { UserSelector } from "./components/UserSelector";
 
 export function EditPost() {
 	const { postData, usersData } = useLoaderData() as IEditPostFetchObject;
@@ -10,22 +11,12 @@ export function EditPost() {
 			<h1 className="page-title">Edit Post</h1>
 			<Form className="form" method="put">
 				<div className="form-row">
-					<div className="form-group">
+					<div className={`form-group ${errorMessage ? "error" : ""}`}>
 						<label htmlFor="title">Title</label>
 						<input type="text" name="title" id="title" defaultValue={postData.title} />
+						<div className="error-message">{errorMessage}</div>
 					</div>
-					<div className="form-group">
-						<label htmlFor="userId">Author</label>
-						<select name="userId" id="userId" defaultValue={postData.userId}>
-							{usersData.map((user) => {
-								return (
-									<option value={user.id} key={crypto.randomUUID()}>
-										{user.name}
-									</option>
-								);
-							})}
-						</select>
-					</div>
+					<UserSelector users={usersData} defaultValue={postData.userId} />
 				</div>
 				<div className="form-row">
 					<div className="form-group">

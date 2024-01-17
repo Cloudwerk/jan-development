@@ -1,5 +1,6 @@
 import { Form, Link, useActionData, useLoaderData } from "react-router-dom";
 import { IUserObject } from "../utils/types";
+import { UserSelector } from "./components/UserSelector";
 
 export function NewPost() {
 	const usersData = useLoaderData() as Array<IUserObject>;
@@ -15,18 +16,7 @@ export function NewPost() {
 						<input type="text" name="title" id="title" />
 						<div className="error-message">{errorMessage}</div>
 					</div>
-					<div className="form-group">
-						<label htmlFor="userId">Author</label>
-						<select name="userId" id="userId">
-							{usersData.map((user, index) => {
-								return (
-									<option value={index + 1} key={crypto.randomUUID()}>
-										{user.name}
-									</option>
-								);
-							})}
-						</select>
-					</div>
+					<UserSelector users={usersData} defaultValue={1} />
 				</div>
 				<div className="form-row">
 					<div className="form-group">
