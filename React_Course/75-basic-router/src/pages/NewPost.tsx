@@ -1,22 +1,34 @@
 import { useLoaderData } from "react-router-dom";
 import { IUserObject } from "../utils/types";
+import { useRef, useState } from "react";
 
 export function NewPost() {
 	const usersData = useLoaderData() as Array<IUserObject>;
+	const titleRef = useRef<HTMLInputElement>(null);
+	const bodyRef = useRef<HTMLTextAreaElement>(null);
+	const authorRef = useRef<HTMLSelectElement>(null);
+	const [errorClass, setErrorClass] = useState("");
+
+	function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		if (titleRef.current?.value === "") setErrorClass("error");
+		else setErrorClass("");
+		// TODO POST
+	}
 
 	return (
-		<div className="container">
+		<>
 			<h1 className="page-title">New Post</h1>
-			<form method="post" action="/posts/new" className="form">
+			<form method="post" action="/posts/new" className="form" onSubmit={onSubmit}>
 				<div className="form-row">
-					<div className="form-group error">
+					<div className={`form-group ${errorClass}`}>
 						<label htmlFor="title">Title</label>
-						<input type="text" name="title" id="title" />
-						<div className="error-message">Required</div>
+						<input ref={titleRef} type="text" name="title" id="title" />
+						{errorClass === "" ? "" : <div className="error-message">Required</div>}
 					</div>
 					<div className="form-group">
 						<label htmlFor="userId">Author</label>
-						<select name="userId" id="userId">
+						<select ref={authorRef} name="userId" id="userId">
 							{usersData.map((user, index) => {
 								return (
 									<option value={index + 1} key={crypto.randomUUID()}>
@@ -30,16 +42,18 @@ export function NewPost() {
 				<div className="form-row">
 					<div className="form-group">
 						<label htmlFor="body">Body</label>
-						<textarea name="body" id="body"></textarea>
+						<textarea ref={bodyRef} name="body" id="body"></textarea>
 					</div>
 				</div>
 				<div className="form-row form-btn-row">
 					<a className="btn btn-outline" href="/posts">
 						Cancel
 					</a>
-					<button className="btn">Save</button>
+					<button className="btn" type="submit">
+						Save
+					</button>
 				</div>
 			</form>
-		</div>
+		</>
 	);
 }
