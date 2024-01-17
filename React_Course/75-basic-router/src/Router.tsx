@@ -13,6 +13,7 @@ import {
 	FetchTodosData,
 	FetchUsersData,
 } from "./utils/loaderfunctions";
+import { NewPost } from "./pages/NewPost";
 
 export const router = createBrowserRouter([
 	{
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
 						path: ":PostId",
 						element: <Post />,
 						loader: FetchSinglePostData,
+					},
+					{
+						path: "new",
+						element: <NewPost />,
 					},
 				],
 			},
