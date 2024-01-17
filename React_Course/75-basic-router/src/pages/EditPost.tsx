@@ -4,12 +4,10 @@ import { IEditPostFetchObject } from "../utils/types";
 export function EditPost() {
 	const { postData, usersData } = useLoaderData() as IEditPostFetchObject;
 
-	console.log(postData, usersData);
-
 	return (
 		<>
 			<h1 className="page-title">Edit Post</h1>
-			<Form className="form">
+			<Form className="form" method="put">
 				<div className="form-row">
 					<div className="form-group">
 						<label htmlFor="title">Title</label>
@@ -38,7 +36,9 @@ export function EditPost() {
 					<Link className="btn btn-outline" to={".."}>
 						Cancel
 					</Link>
-					<button className="btn">Save</button>
+					<button className="btn" type="submit">
+						Save
+					</button>
 				</div>
 			</Form>
 		</>

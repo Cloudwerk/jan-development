@@ -20,3 +20,22 @@ export async function postNewPost({ request }: ActionFunctionArgs) {
 
 	return redirect("/posts");
 }
+
+export async function updatePost({ request, params: { PostId } }: ActionFunctionArgs) {
+	const formData = await request.formData();
+	const title = formData.get("title");
+	const body = formData.get("body");
+	const userId = parseInt(formData.get("userId")!.toString());
+
+	if (title === "") return "Title is required!";
+	if (userId == null) return "User is required!";
+
+	await fetch(`${API_URL}/posts/${PostId}`, {
+		method: request.method,
+		signal: request.signal,
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ userId: userId, title: title, body: body }),
+	}).then((res) => res.json());
+
+	return redirect("/posts");
+}
