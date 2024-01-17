@@ -1,4 +1,4 @@
-import { Form, useActionData, useLoaderData } from "react-router-dom";
+import { Form, Link, useActionData, useLoaderData } from "react-router-dom";
 import { IUserObject } from "../utils/types";
 import { useRef } from "react";
 
@@ -39,9 +39,9 @@ export function NewPost() {
 					</div>
 				</div>
 				<div className="form-row form-btn-row">
-					<a className="btn btn-outline" href="/posts">
+					<Link className="btn btn-outline" to="..">
 						Cancel
-					</a>
+					</Link>
 					<button className="btn" type="submit">
 						Save
 					</button>
