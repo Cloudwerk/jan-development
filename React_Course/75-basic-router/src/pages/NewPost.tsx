@@ -1,4 +1,9 @@
+import { useLoaderData } from "react-router-dom";
+import { IUserObject } from "../utils/types";
+
 export function NewPost() {
+	const usersData = useLoaderData() as Array<IUserObject>;
+
 	return (
 		<div className="container">
 			<h1 className="page-title">New Post</h1>
@@ -12,16 +17,13 @@ export function NewPost() {
 					<div className="form-group">
 						<label htmlFor="userId">Author</label>
 						<select name="userId" id="userId">
-							<option value="1">Leanne Graham</option>
-							<option value="2">Ervin Howell</option>
-							<option value="3">Clementine Bauch</option>
-							<option value="4">Patricia Lebsack</option>
-							<option value="5">Chelsey Dietrich</option>
-							<option value="6">Mrs. Dennis Schulist</option>
-							<option value="7">Kurtis Weissnat</option>
-							<option value="8">Nicholas Runolfsdottir V</option>
-							<option value="9">Glenna Reichert</option>
-							<option value="10">Clementina DuBuque</option>
+							{usersData.map((user, index) => {
+								return (
+									<option value={index + 1} key={crypto.randomUUID()}>
+										{user.name}
+									</option>
+								);
+							})}
 						</select>
 					</div>
 				</div>

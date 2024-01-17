@@ -35,6 +35,7 @@ export const router = createBrowserRouter([
 					{
 						path: "new",
 						element: <NewPost />,
+						loader: FetchUsersData,
 					},
 				],
 			},
