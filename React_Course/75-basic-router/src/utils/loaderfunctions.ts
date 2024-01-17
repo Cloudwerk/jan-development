@@ -11,6 +11,30 @@ export function FetchPostData({ request: { signal } }: ILoaderFunctionsProps) {
 	});
 }
 
+export async function FetchPostsAndUsersData({ request: { signal, url } }: ILoaderFunctionsProps) {
+	const searchParams = new URL(url).searchParams;
+	const query = searchParams.get("query") || "";
+	const userId = searchParams.get("userId")?.toString() || "";
+
+	return fetch(`${API_URL}/Posts?q=${query}${userId === "" ? "" : `&userId=${userId}`}`, { signal })
+		.then((res) => {
+			if (res.status === 200) return res.json();
+
+			throw redirect("/404");
+		})
+		.then((postsData: Array<IPostObject>) => {
+			return fetch(`${API_URL}/users`, { signal })
+				.then((_res) => {
+					if (_res.status === 200) return _res.json();
+
+					throw redirect("/404");
+				})
+				.then((usersData: Array<IUserObject>) => {
+					return { searchParams: { query, userId }, data: { postsData, usersData } };
+				});
+		});
+}
+
 export function FetchUsersData({ request: { signal } }: ILoaderFunctionsProps) {
 	return fetch(`${API_URL}/Users`, { signal }).then((res) => {
 		if (res.status === 200) return res.json();

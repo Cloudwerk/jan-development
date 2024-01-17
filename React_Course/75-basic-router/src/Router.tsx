@@ -8,7 +8,7 @@ import { User } from "./pages/User";
 import { LoadingWrapper } from "./pages/Wrappers/LoadingWrapper";
 import {
 	FetchEditPostData,
-	FetchPostData,
+	FetchPostsAndUsersData,
 	FetchSinglePostData,
 	FetchSingleUserData,
 	FetchTodosData,
@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
 					{
 						index: true,
 						element: <Posts />,
-						loader: FetchPostData,
+						loader: FetchPostsAndUsersData,
 					},
 					{
 						path: ":PostId",

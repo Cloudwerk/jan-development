@@ -67,8 +67,14 @@ export interface ICommentObject {
 export interface ILoaderFunctionsProps {
 	request: {
 		signal: AbortSignal;
+		url: string;
 	};
 	params: Params<string>;
+}
+
+export interface IPostsAndUserLoaderReturn {
+	searchParams: { query: string; userId: string };
+	data: { postsData: Array<IPostObject>; usersData: Array<IUserObject> };
 }
 
 export interface SinglePostLoaderReturn {
