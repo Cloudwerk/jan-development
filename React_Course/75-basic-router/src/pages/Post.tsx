@@ -6,7 +6,14 @@ export function Post() {
 	const { userData, commentData, data: post } = useLoaderData() as SinglePostLoaderReturn;
 	return (
 		<>
-			<h1 className="page-title">{post.title}</h1>
+			<h1 className="page-title">
+				{post.title}
+				<div className="title-btns">
+					<Link className="btn btn-outline" to="edit">
+						Edit
+					</Link>
+				</div>
+			</h1>
 			<span className="page-subtitle">
 				By: <Link to={`/Users/${post.userId}`}>{userData.name}</Link>
 			</span>
