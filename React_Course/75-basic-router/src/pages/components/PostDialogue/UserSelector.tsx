@@ -1,4 +1,4 @@
-import { IUserObject } from "../../utils/types";
+import { IUserObject } from "../../../utils/types";
 
 interface IUsersSelectorArgs {
 	defaultValue: number;

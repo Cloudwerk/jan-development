@@ -1,6 +1,19 @@
-import { Form, Link, useActionData, useLoaderData } from "react-router-dom";
-import { IEditPostFetchObject } from "../utils/types";
-import { UserSelector } from "./components/UserSelector";
+import { Form, useActionData, useLoaderData } from "react-router-dom";
+import { IEditPostFetchObject, IPostObject, IUserObject } from "../utils/types";
+import { PostDialogueFooter } from "./components/PostDialogue/PostDialogueFooter";
+import { PostDialogueBody } from "./components/PostDialogue/PostDialogueBody";
+import { createContext } from "react";
+import { PostDialogueTitle } from "./components/PostDialogue/PostDialogueTitle";
+
+interface IEditPostContextProps {
+	postData?: IPostObject;
+	usersData: Array<IUserObject>;
+}
+
+export const EditPostContext = createContext<IEditPostContextProps>({
+	postData: { userId: 0, id: 0, title: "", body: "" },
+	usersData: new Array<IUserObject>(),
+});
 
 export function EditPost() {
 	const { postData, usersData } = useLoaderData() as IEditPostFetchObject;
@@ -10,28 +23,11 @@ export function EditPost() {
 		<>
 			<h1 className="page-title">Edit Post</h1>
 			<Form className="form" method="put">
-				<div className="form-row">
-					<div className={`form-group ${errorMessage ? "error" : ""}`}>
-						<label htmlFor="title">Title</label>
-						<input type="text" name="title" id="title" defaultValue={postData.title} />
-						<div className="error-message">{errorMessage}</div>
-					</div>
-					<UserSelector users={usersData} defaultValue={postData.userId} />
-				</div>
-				<div className="form-row">
-					<div className="form-group">
-						<label htmlFor="body">Body</label>
-						<textarea name="body" id="body" defaultValue={postData.body} />
-					</div>
-				</div>
-				<div className="form-row form-btn-row">
-					<Link className="btn btn-outline" to={".."}>
-						Cancel
-					</Link>
-					<button className="btn" type="submit">
-						Save
-					</button>
-				</div>
+				<EditPostContext.Provider value={{ postData, usersData }}>
+					<PostDialogueTitle defaultValue={postData.title} errorMessage={errorMessage} />
+				</EditPostContext.Provider>
+				<PostDialogueBody defaultValue={postData.body} />
+				<PostDialogueFooter />
 			</Form>
 		</>
 	);
