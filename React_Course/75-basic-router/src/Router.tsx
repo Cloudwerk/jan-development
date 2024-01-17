@@ -14,6 +14,7 @@ import {
 	FetchUsersData,
 } from "./utils/loaderfunctions";
 import { NewPost } from "./pages/NewPost";
+import { postNewPost } from "./utils/actionfunctions";
 
 export const router = createBrowserRouter([
 	{
@@ -36,6 +37,7 @@ export const router = createBrowserRouter([
 						path: "new",
 						element: <NewPost />,
 						loader: FetchUsersData,
+						action: postNewPost,
 					},
 				],
 			},
