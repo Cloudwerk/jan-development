@@ -85,3 +85,21 @@ export function FetchSinglePostData({ params, request: { signal } }: ILoaderFunc
 				});
 		});
 }
+
+export async function FetchEditPostData({ params, request: { signal } }: ILoaderFunctionsProps) {
+	return fetch(`${API_URL}/posts/${params.PostId!.toString()}`, { signal })
+		.then((res) => {
+			if (res.status === 200) return res.json();
+			throw redirect("/404");
+		})
+		.then((postData: IPostObject) => {
+			return fetch(`${API_URL}/users`, { signal })
+				.then((_res) => {
+					if (_res.status === 200) return _res.json();
+					throw redirect("/404");
+				})
+				.then((usersData) => {
+					return { postData, usersData };
+				});
+		});
+}

@@ -82,3 +82,8 @@ export interface SingleUserLoaderReturn {
 	postsData: Array<IPostObject>;
 	todosData: Array<ITodoObject>;
 }
+
+export interface IEditPostFetchObject {
+	postData: IPostObject;
+	usersData: Array<IUserObject>;
+}
