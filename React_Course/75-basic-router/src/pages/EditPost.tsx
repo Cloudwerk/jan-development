@@ -1,4 +1,10 @@
+import { useLoaderData } from "react-router-dom";
+
 export function EditPost() {
+	const loaderData = useLoaderData();
+
+	console.log(loaderData);
+
 	return (
 		<>
 			<h1 className="page-title">Edit Post</h1>

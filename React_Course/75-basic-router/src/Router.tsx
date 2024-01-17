@@ -31,9 +31,10 @@ export const router = createBrowserRouter([
 					},
 					{
 						path: ":PostId",
-						element: <Post />,
-						loader: FetchSinglePostData,
-						children: [{ path: "edit", element: <EditPost /> }],
+						children: [
+							{ index: true, element: <Post />, loader: FetchSinglePostData },
+							{ path: "edit", element: <EditPost />, loader: FetchSinglePostData },
+						],
 					},
 					{
 						path: "new",
