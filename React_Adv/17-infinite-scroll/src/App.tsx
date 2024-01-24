@@ -1,4 +1,4 @@
-import { useFetchWithLinkHeader } from "./utils/useFetch";
+import { IImageData, IUseFetchLinkHeaderValues, useFetchWithLinkHeader } from "./utils/useFetch";
 
 const URL_SHORTLIST = "http://127.0.0.1:3000/photos-short-list";
 
@@ -7,7 +7,9 @@ function App() {
 		loading,
 		error,
 		value: imgData,
-	} = useFetchWithLinkHeader(`${URL_SHORTLIST}?_page=1&_limit=10`, { method: "GET" });
+	} = useFetchWithLinkHeader<IUseFetchLinkHeaderValues<IImageData>>(`${URL_SHORTLIST}?_page=1&_limit=10`, {
+		method: "GET",
+	});
 	console.log(imgData);
 
 	return (
