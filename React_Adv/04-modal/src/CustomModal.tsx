@@ -1,10 +1,11 @@
 import { createPortal } from "react-dom";
 
-interface ICustomModalProps {
+export interface IModalProps {
+	isOpen?: boolean;
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export function CustomModal({ setIsOpen }: ICustomModalProps) {
+export function CustomModal({ setIsOpen }: IModalProps) {
 	return createPortal(
 		<div className="modal-overlay show">
 			<div className="modal">
