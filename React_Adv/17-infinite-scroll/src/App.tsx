@@ -10,10 +10,12 @@ function App() {
 	} = useFetchWithLinkHeader<IUseFetchLinkHeaderValues<IImageData>>(`${URL_SHORTLIST}?_page=1&_limit=10`, {
 		method: "GET",
 	});
-	console.log(imgData);
 
 	return (
 		<div className="grid">
+			{imgData?.data.map((img) => {
+				return <img src={img.url}></img>;
+			})}
 			<img src="https://via.placeholder.com/600/92c952" />
 			<img src="https://via.placeholder.com/600/771796" />
 			<img src="https://via.placeholder.com/600/24f355" />

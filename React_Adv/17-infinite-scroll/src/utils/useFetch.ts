@@ -2,7 +2,7 @@ import { parseLinkHeader } from "./parseLinkHeader";
 import useAsync from "./useAsync";
 
 export interface IUseFetchLinkHeaderValues<T> {
-	data: T;
+	data: Array<T>;
 	linkHeaders: {
 		fist: string;
 		next: string;
