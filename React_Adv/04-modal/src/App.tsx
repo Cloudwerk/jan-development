@@ -1,7 +1,18 @@
+import { useState } from "react";
+import { CustomModal } from "./CustomModal";
+
 function App() {
+	const [isCustomModelOpen, setIsCustomModalOpen] = useState(false);
+
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape") {
+			isCustomModelOpen && setIsCustomModalOpen(false);
+		}
+	});
+
 	return (
 		<>
-			<button data-custom-open>Show Custom Modal</button>
+			<button onClick={() => setIsCustomModalOpen(true)}>Show Custom Modal</button>
 			<br />
 			<button data-dialog-open>Show Dialog Modal</button>
 
@@ -12,14 +23,7 @@ function App() {
 				<button>Close</button>
 			</dialog>
 
-			<div className="modal-overlay">
-				<div className="modal">
-					<p>
-						This is a <strong>CUSTOM</strong> modal
-					</p>
-					<button>Close</button>
-				</div>
-			</div>
+			{isCustomModelOpen && <CustomModal setIsOpen={setIsCustomModalOpen} />}
 		</>
 	);
 }
