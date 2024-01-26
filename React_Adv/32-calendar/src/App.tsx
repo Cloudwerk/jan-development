@@ -24,7 +24,7 @@ function App() {
 						&gt;
 					</button>
 				</div>
-				<span className="month-title">June 2023</span>
+				<span className="month-title">{format(currentMonth, "MMMM yyyy")}</span>
 			</div>
 			<div className="days">
 				<div className="day non-month-day old-month-day">
