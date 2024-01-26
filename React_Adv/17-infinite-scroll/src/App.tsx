@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { IImageData, IUseFetchLinkHeaderValues, useFetchWithLinkHeader } from "./utils/useFetch";
 
 const URL_SHORTLIST = "http://127.0.0.1:3000/photos-short-list";
@@ -13,6 +13,18 @@ function App() {
 	} = useFetchWithLinkHeader<IUseFetchLinkHeaderValues<IImageData>>(`${URL_SHORTLIST}?_page=${currentPage}&_limit=20`, {
 		method: "GET",
 	});
+
+	const lastElementObserver = new IntersectionObserver((elements, observer) => {
+		if (elements[0].isIntersecting) {
+			console.log("intersecting!");
+			observer.unobserve(elements[0].target);
+		}
+	}, {});
+
+	const lastImgRef = useCallback((img: HTMLImageElement) => {
+		if (img == null) return;
+		lastElementObserver.observe(img);
+	}, []);
 
 	// function getNewImages() {
 	// 	const {
@@ -39,6 +51,7 @@ function App() {
 	return (
 		<div className="grid">
 			{images.map((img, index) => {
+				if (index === images.length - 1) return <img key={index} src={img.url} ref={lastImgRef} />;
 				return <img key={index} src={img.url} />;
 			})}
 			<img src="https://via.placeholder.com/600/92c952" />
