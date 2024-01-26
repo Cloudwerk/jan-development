@@ -1,11 +1,28 @@
+import { add, format, startOfMonth, sub } from "date-fns";
+import { useEffect, useState } from "react";
+
 function App() {
+	const [currentMonth, setCurrentMonth] = useState(new Date());
+	useEffect(() => {
+		setCurrentMonth((month) => startOfMonth(month));
+	}, []);
+	console.log(format(currentMonth, "MMMM"));
+
+	function changeMonth(isPrevious: boolean) {
+		if (isPrevious) setCurrentMonth((month) => sub(month, { months: 1 }));
+		setCurrentMonth((month) => add(month, { months: 1 }));
+	}
 	return (
 		<div className="calendar">
 			<div className="header">
 				<button className="btn">Today</button>
 				<div>
-					<button className="month-change-btn">&lt;</button>
-					<button className="month-change-btn">&gt;</button>
+					<button className="month-change-btn" onClick={() => changeMonth(true)}>
+						&lt;
+					</button>
+					<button className="month-change-btn" onClick={() => changeMonth(false)}>
+						&gt;
+					</button>
 				</div>
 				<span className="month-title">June 2023</span>
 			</div>
