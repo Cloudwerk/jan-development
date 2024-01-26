@@ -9,8 +9,11 @@ function App() {
 	console.log(format(currentMonth, "MMMM"));
 
 	function changeMonth(isPrevious: boolean) {
-		if (isPrevious) setCurrentMonth((month) => sub(month, { months: 1 }));
-		setCurrentMonth((month) => add(month, { months: 1 }));
+		if (isPrevious) {
+			setCurrentMonth((month) => startOfMonth(sub(month, { months: 1 })));
+			return;
+		}
+		setCurrentMonth((month) => startOfMonth(add(month, { months: 1 })));
 	}
 	return (
 		<div className="calendar">
