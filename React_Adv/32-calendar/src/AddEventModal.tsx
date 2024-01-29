@@ -1,12 +1,21 @@
 import { format } from "date-fns";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RadioBtn } from "./Partials/RadioBtn";
+import { useLocalStorage } from "./Partials/useLocalStorage";
 
 interface IAddEventModalProps {
 	day: Date;
 	setAddEventModalDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
 	addEventModalDate: Date | undefined;
+}
+
+export interface IEventProps {
+	name: string;
+	allDay: boolean;
+	startTime: Date;
+	endTime: Date;
+	color: "Blue" | "Green" | "Red";
 }
 
 export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: IAddEventModalProps) {
@@ -15,6 +24,7 @@ export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: 
 	const startTimeRef = useRef<HTMLInputElement>(null);
 	const endTimeRef = useRef<HTMLInputElement>(null);
 	const [color, setColor] = useState<"Blue" | "Green" | "Red">("Blue");
+	const { value, setValue } = useLocalStorage(`${format(day, "yyyy_MM_dd")}-event`, Array<IEventProps>());
 
 	function clearForm() {
 		nameRef.current ? (nameRef.current.value = "") : "";
@@ -27,6 +37,17 @@ export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: 
 	useEffect(() => {
 		nameRef.current?.focus();
 	}, [addEventModalDate]);
+
+	function formSubmit(e: React.FormEvent<HTMLFormElement>) {
+		e.preventDefault();
+		setValue({
+			name: nameRef.current?.value,
+			allDayRef: allDayRef.current?.checked,
+			startTime: startTimeRef.current?.valueAsDate,
+			endTime: endTimeRef.current?.valueAsDate,
+			color: color,
+		});
+	}
 
 	return createPortal(
 		<div className="modal">
@@ -51,7 +72,7 @@ export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: 
 						&times;
 					</button>
 				</div>
-				<form>
+				<form onSubmit={formSubmit}>
 					<div className="form-group">
 						<label htmlFor="name">Name</label>
 						<input type="text" name="name" id="name" ref={nameRef} />
