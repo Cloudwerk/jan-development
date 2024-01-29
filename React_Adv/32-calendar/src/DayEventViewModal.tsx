@@ -32,7 +32,7 @@ export function DayEventViewModal({ day, setEventModalDate, eventModalDate }: ID
 			<div className="modal-body">
 				<div className="modal-title">
 					{format(day, "dd/MMM/yy")}
-					<button className="close-btn" onClick={() => setEventModalDate(undefined)}>
+					<button className="close-btn" ref={bodyRef} onClick={() => setEventModalDate(undefined)}>
 						&times;
 					</button>
 				</div>
@@ -40,7 +40,7 @@ export function DayEventViewModal({ day, setEventModalDate, eventModalDate }: ID
 					<button className="all-day-event green event">
 						<div className="event-name">Short</div>
 					</button>
-					<button className="event" ref={bodyRef}>
+					<button className="event">
 						<div className="color-dot blue"></div>
 						<div className="event-time">7am</div>
 						<div className="event-name">Event Name</div>
