@@ -4,9 +4,10 @@ interface IDayCardsProps {
 	day: Date;
 	currentMonth: Date;
 	setEventModalDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
+	setAddEventModalDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
 }
 
-export function DayCard({ day, currentMonth, setEventModalDate }: IDayCardsProps) {
+export function DayCard({ day, currentMonth, setEventModalDate, setAddEventModalDate }: IDayCardsProps) {
 	const sameDay = isSameDay(day, Date.now());
 	if (isSameMonth(currentMonth, new Date())) {
 		return (
@@ -20,7 +21,9 @@ export function DayCard({ day, currentMonth, setEventModalDate }: IDayCardsProps
 						{format(day, "eee")}
 					</div>
 					<div className={`day-number ${sameDay ? "today" : ""}`}>{format(day, "d")}</div>
-					<button className="add-event-btn">+</button>
+					<button className="add-event-btn" onClick={() => setAddEventModalDate(day)}>
+						+
+					</button>
 				</div>
 			</div>
 		);
@@ -33,7 +36,9 @@ export function DayCard({ day, currentMonth, setEventModalDate }: IDayCardsProps
 						{format(day, "eee")}
 					</div>
 					<div className={`day-number`}>{format(day, "d")}</div>
-					<button className="add-event-btn">+</button>
+					<button className="add-event-btn" onClick={() => setAddEventModalDate(day)}>
+						+
+					</button>
 				</div>
 			</div>
 		);
@@ -49,7 +54,9 @@ export function DayCard({ day, currentMonth, setEventModalDate }: IDayCardsProps
 					{format(day, "eee")}
 				</div>
 				<div className={`day-number ${sameDay ? "today" : ""}`}>{format(day, "d")}</div>
-				<button className="add-event-btn">+</button>
+				<button className="add-event-btn" onClick={() => setAddEventModalDate(day)}>
+					+
+				</button>
 			</div>
 		</div>
 	);
