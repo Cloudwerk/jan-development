@@ -31,8 +31,20 @@ function App() {
 
 	return (
 		<>
-			{addEventModalDate ? <AddEventModal day={addEventModalDate} setAddEventModalDate={setAddEventModalDate} /> : ""}
-			{eventModalDate ? <DayEventViewModal day={eventModalDate} setEventModalDate={setEventModalDate} /> : ""}
+			{addEventModalDate ? (
+				<AddEventModal
+					day={addEventModalDate}
+					setAddEventModalDate={setAddEventModalDate}
+					addEventModalDate={addEventModalDate}
+				/>
+			) : (
+				""
+			)}
+			{eventModalDate ? (
+				<DayEventViewModal day={eventModalDate} setEventModalDate={setEventModalDate} eventModalDate={eventModalDate} />
+			) : (
+				""
+			)}
 			<div className="calendar">
 				<div className="header">
 					<button className="btn">Today</button>

@@ -1,14 +1,15 @@
 import { format } from "date-fns";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { RadioBtn } from "./Partials/RadioBtn";
 
 interface IAddEventModalProps {
 	day: Date;
 	setAddEventModalDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
+	addEventModalDate: Date | undefined;
 }
 
-export function AddEventModal({ day, setAddEventModalDate }: IAddEventModalProps) {
+export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: IAddEventModalProps) {
 	const nameRef = useRef<HTMLInputElement>(null);
 	const allDayRef = useRef<HTMLInputElement>(null);
 	const startTimeRef = useRef<HTMLInputElement>(null);
@@ -23,10 +24,26 @@ export function AddEventModal({ day, setAddEventModalDate }: IAddEventModalProps
 		setColor("Blue");
 	}
 
+	useEffect(() => {
+		nameRef.current?.focus();
+	}, [addEventModalDate]);
+
 	return createPortal(
 		<div className="modal">
-			<div className="overlay"></div>
-			<div className="modal-body">
+			<div
+				className="overlay"
+				onClick={() => {
+					setAddEventModalDate(undefined);
+				}}
+			></div>
+			<div
+				className="modal-body"
+				onKeyDown={(e) => {
+					if (e.key === "Escape") {
+						setAddEventModalDate(undefined);
+					}
+				}}
+			>
 				<div className="modal-title">
 					<div>Add Event</div>
 					<small>{format(day, "dd/MMM/yy")}</small>
