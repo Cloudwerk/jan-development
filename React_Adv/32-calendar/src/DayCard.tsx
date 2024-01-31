@@ -1,4 +1,7 @@
 import { format, isBefore, isSameDay, isSameMonth } from "date-fns";
+import { useParseEvent } from "./Partials/useLocalStorage";
+import { IEventProps } from "./AddEventModal";
+import { EventContainer } from "./Partials/EventContainer";
 
 interface IDayCardsProps {
 	day: Date;
@@ -8,6 +11,7 @@ interface IDayCardsProps {
 }
 
 export function DayCard({ day, currentMonth, setEventModalDate, setAddEventModalDate }: IDayCardsProps) {
+	const { value } = useParseEvent(`${format(day, "yyyy_MM_dd")}-event`, Array<IEventProps>());
 	const sameDay = isSameDay(day, Date.now());
 	if (isSameMonth(currentMonth, new Date())) {
 		return (
@@ -25,6 +29,7 @@ export function DayCard({ day, currentMonth, setEventModalDate, setAddEventModal
 						+
 					</button>
 				</div>
+				<EventContainer events={value} />
 			</div>
 		);
 	}
@@ -40,6 +45,7 @@ export function DayCard({ day, currentMonth, setEventModalDate, setAddEventModal
 						+
 					</button>
 				</div>
+				<EventContainer events={value} />
 			</div>
 		);
 	}
@@ -58,6 +64,7 @@ export function DayCard({ day, currentMonth, setEventModalDate, setAddEventModal
 					+
 				</button>
 			</div>
+			<EventContainer events={value} />
 		</div>
 	);
 }

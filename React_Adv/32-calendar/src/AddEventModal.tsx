@@ -13,8 +13,8 @@ interface IAddEventModalProps {
 export interface IEventProps {
 	name: string;
 	allDay: boolean;
-	startTime: Date;
-	endTime: Date;
+	startTime: Date | undefined;
+	endTime: Date | undefined;
 	color: "blue" | "green" | "red";
 }
 

@@ -8,7 +8,6 @@ function App() {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 	const [eventModalDate, setEventModalDate] = useState<Date | undefined>(undefined);
 	const [addEventModalDate, setAddEventModalDate] = useState<Date | undefined>(undefined);
-	console.log(format(currentMonth, "MMMM"));
 
 	function changeMonth(isPrevious: boolean) {
 		if (isPrevious) {
