@@ -24,7 +24,7 @@ export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: 
 	const startTimeRef = useRef<HTMLInputElement>(null);
 	const endTimeRef = useRef<HTMLInputElement>(null);
 	const [color, setColor] = useState<"Blue" | "Green" | "Red">("Blue");
-	const { value, setValue } = useLocalStorage(`${format(day, "yyyy_MM_dd")}-event`, Array<IEventProps>());
+	const { setValue } = useLocalStorage(`${format(day, "yyyy_MM_dd")}-event`, Array<IEventProps>());
 
 	function clearForm() {
 		nameRef.current ? (nameRef.current.value = "") : "";
@@ -40,13 +40,16 @@ export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: 
 
 	function formSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		setValue({
-			name: nameRef.current?.value,
-			allDayRef: allDayRef.current?.checked,
-			startTime: startTimeRef.current?.valueAsDate,
-			endTime: endTimeRef.current?.valueAsDate,
-			color: color,
-		});
+		setValue((oldData: Array<IEventProps>) => [
+			...oldData,
+			{
+				name: nameRef.current?.value,
+				allDayRef: allDayRef.current?.checked,
+				startTime: startTimeRef.current?.valueAsDate,
+				endTime: endTimeRef.current?.valueAsDate,
+				color: color,
+			},
+		]);
 	}
 
 	return createPortal(
