@@ -44,11 +44,11 @@ export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: 
 			...oldData,
 			{
 				name: nameRef.current?.value,
-				allDayRef: allDayRef.current?.checked,
+				allDay: allDayRef.current?.checked,
 				startTime: startTimeRef.current?.valueAsDate,
 				endTime: endTimeRef.current?.valueAsDate,
 				color: color,
-			},
+			} as IEventProps,
 		]);
 	}
 
