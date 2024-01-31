@@ -24,7 +24,7 @@ export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: 
 	const startTimeRef = useRef<HTMLInputElement>(null);
 	const endTimeRef = useRef<HTMLInputElement>(null);
 	const [color, setColor] = useState<"blue" | "green" | "red">("blue");
-	const { setValue } = useLocalStorage(`${format(day, "yyyy_MM_dd")}-event`, Array<IEventProps>());
+	const { setValue } = useLocalStorage(`${format(day, "yyyy_MM_dd")}-event`, new Array<IEventProps>());
 
 	function clearForm() {
 		nameRef.current ? (nameRef.current.value = "") : "";

@@ -11,7 +11,7 @@ interface IDayCardsProps {
 }
 
 export function DayCard({ day, currentMonth, setEventModalDate, setAddEventModalDate }: IDayCardsProps) {
-	const { value } = useParseEvent(`${format(day, "yyyy_MM_dd")}-event`, Array<IEventProps>());
+	const { value } = useParseEvent(`${format(day, "yyyy_MM_dd")}-event`, new Array<IEventProps>());
 	const sameDay = isSameDay(day, Date.now());
 	if (isSameMonth(currentMonth, new Date())) {
 		return (
