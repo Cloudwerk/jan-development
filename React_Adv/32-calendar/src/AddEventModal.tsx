@@ -15,7 +15,7 @@ export interface IEventProps {
 	allDay: boolean;
 	startTime: Date;
 	endTime: Date;
-	color: "Blue" | "Green" | "Red";
+	color: "blue" | "green" | "red";
 }
 
 export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: IAddEventModalProps) {
@@ -23,7 +23,7 @@ export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: 
 	const allDayRef = useRef<HTMLInputElement>(null);
 	const startTimeRef = useRef<HTMLInputElement>(null);
 	const endTimeRef = useRef<HTMLInputElement>(null);
-	const [color, setColor] = useState<"Blue" | "Green" | "Red">("Blue");
+	const [color, setColor] = useState<"blue" | "green" | "red">("blue");
 	const { setValue } = useLocalStorage(`${format(day, "yyyy_MM_dd")}-event`, Array<IEventProps>());
 
 	function clearForm() {
@@ -31,7 +31,7 @@ export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: 
 		allDayRef.current ? (allDayRef.current.checked = false) : "";
 		startTimeRef.current ? (startTimeRef.current.valueAsDate = null) : "";
 		endTimeRef.current ? (endTimeRef.current.valueAsDate = null) : "";
-		setColor("Blue");
+		setColor("blue");
 	}
 
 	useEffect(() => {
@@ -101,8 +101,8 @@ export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: 
 								name="color"
 								value="blue"
 								id="blue"
-								checked={color === "Blue"}
-								onChange={() => setColor("Blue")}
+								checked={color === "blue"}
+								onChange={() => setColor("blue")}
 								className="color-radio"
 							/>
 							<label htmlFor="blue">
@@ -112,8 +112,8 @@ export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: 
 								name="color"
 								value="red"
 								id="red"
-								checked={color === "Red"}
-								onChange={() => setColor("Red")}
+								checked={color === "red"}
+								onChange={() => setColor("red")}
 								className="color-radio"
 							/>
 							<label htmlFor="red">
@@ -123,8 +123,8 @@ export function AddEventModal({ day, setAddEventModalDate, addEventModalDate }: 
 								name="color"
 								value="green"
 								id="green"
-								checked={color === "Green"}
-								onChange={() => setColor("Green")}
+								checked={color === "green"}
+								onChange={() => setColor("green")}
 								className="color-radio"
 							/>
 							<label htmlFor="green">
