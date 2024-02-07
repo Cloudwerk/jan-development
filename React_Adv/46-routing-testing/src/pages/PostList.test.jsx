@@ -71,7 +71,7 @@ describe("#PostList", () => {
 		const filterBtn = screen.getByText("Filter");
 		await user.selectOptions(authorInput, "user one");
 		await user.click(filterBtn);
-		screen.debug();
+
 		expect(screen.queryByText("second post")).not.toBeInTheDocument();
 		expect(screen.getByText("first post")).toBeInTheDocument();
 	});
