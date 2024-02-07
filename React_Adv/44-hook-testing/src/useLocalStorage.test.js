@@ -1,8 +1,12 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, afterEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import { useLocalStorage } from "./useLocalStorage";
 
 describe(useLocalStorage, () => {
+	afterEach(() => {
+		localStorage.clear();
+	});
+
 	it("stores the inital value", () => {
 		const { result } = renderHook(({ key, value }) => useLocalStorage(key, value), {
 			initialProps: { key: "SIMPLE_KEY", value: "foo" },
