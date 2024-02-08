@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 import { routes } from "../routes";
@@ -7,7 +7,7 @@ import { addMockAPIRouteHandler } from "../../test-setup/mockServer";
 import userEvent from "@testing-library/user-event";
 
 describe("#PostList", () => {
-	beforeAll(() => {
+	beforeEach(() => {
 		addMockAPIRouteHandler("get", "/posts", ({ request }) => {
 			const posts = [
 				{
