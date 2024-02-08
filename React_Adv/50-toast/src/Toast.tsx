@@ -1,5 +1,7 @@
+import { toastPositions } from "./utils/models";
+
 type ToastProps = {
-	position: "top-right" | "top-left" | "top-center" | "bottom-right" | "bottom-left" | "bottom-center";
+	position: toastPositions;
 	messages: Array<string>;
 };
 
