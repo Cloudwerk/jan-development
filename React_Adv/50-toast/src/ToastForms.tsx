@@ -1,18 +1,18 @@
 import { useRef, useState } from "react";
-import { useToastDispatchContext } from "./ToastContextProvider";
+import { useToastDispatchContext, useToastValueContext } from "./ToastContextProvider";
 import { toastPositions } from "./utils/models";
 
 export function ToastForms() {
 	const [currentId, setCurrentId] = useState(1);
 	const [isAutoDissmiss, setIsAutoDissmiss] = useState(false);
 	const dispatchToasts = useToastDispatchContext();
+	const toasts = useToastValueContext();
 
 	const positionRef = useRef<HTMLSelectElement>(null);
 	const messageRef = useRef<HTMLInputElement>(null);
 	const dismissMSRef = useRef<HTMLInputElement>(null);
 
 	const idInputRef = useRef<HTMLInputElement>(null);
-	const delPositionRef = useRef<HTMLInputElement>(null);
 
 	function onCreateNewToast(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		e.preventDefault();
@@ -49,6 +49,11 @@ export function ToastForms() {
 
 	function onDeleteToast(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		e.preventDefault();
+		if (idInputRef.current && idInputRef.current.value != undefined) {
+			const id = parseInt(idInputRef.current.value);
+			const toast = toasts.find((t) => t.id === id);
+			if (toast) dispatchToasts({ action: "DEL", payload: toast });
+		}
 	}
 
 	return (
@@ -87,8 +92,7 @@ export function ToastForms() {
 				<div>.</div>
 				<label htmlFor="messageId">Message ID</label>
 				<input type="text" name="messageId" ref={idInputRef} />
-				<label htmlFor="positionDEL">Positions</label>
-				<input type="text" name="positionDEL" ref={delPositionRef} />
+				<label htmlFor="positionDEL">Position</label>
 				<button type="submit" onClick={(e) => onDeleteToast(e)}>
 					Delete
 				</button>
