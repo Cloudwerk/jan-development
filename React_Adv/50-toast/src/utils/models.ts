@@ -3,6 +3,8 @@ export type Toast = {
 	id: number;
 	position: toastPositions;
 	message: string;
+	autoDismiss: boolean;
+	autoDismissTimeout?: number;
 };
 
 export type ToastContextProps = {

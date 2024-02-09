@@ -4,10 +4,12 @@ import { toastPositions } from "./utils/models";
 
 export function ToastForms() {
 	const [currentId, setCurrentId] = useState(1);
+	const [isAutoDissmiss, setIsAutoDissmiss] = useState(false);
 	const dispatchToasts = useToastDispatchContext();
 
 	const positionRef = useRef<HTMLSelectElement>(null);
 	const messageRef = useRef<HTMLInputElement>(null);
+	const dismissMSRef = useRef<HTMLInputElement>(null);
 
 	const idInputRef = useRef<HTMLInputElement>(null);
 	const delPositionRef = useRef<HTMLInputElement>(null);
@@ -17,10 +19,29 @@ export function ToastForms() {
 		if (messageRef.current && positionRef.current) {
 			if (messageRef.current.value !== "" && positionRef.current.value !== "") {
 				const toastPosition = positionRef.current.value as toastPositions;
-				dispatchToasts({
-					action: "ADD",
-					payload: { id: currentId, message: messageRef.current.value, position: toastPosition },
-				});
+				if (isAutoDissmiss) {
+					const dismissTime = dismissMSRef.current ? parseInt(dismissMSRef.current.value) : 1000;
+					dispatchToasts({
+						action: "ADD",
+						payload: {
+							id: currentId,
+							message: messageRef.current.value,
+							position: toastPosition,
+							autoDismiss: true,
+							autoDismissTimeout: dismissTime,
+						},
+					});
+				} else {
+					dispatchToasts({
+						action: "ADD",
+						payload: {
+							id: currentId,
+							message: messageRef.current.value,
+							position: toastPosition,
+							autoDismiss: false,
+						},
+					});
+				}
 				setCurrentId((id) => id + 1);
 			}
 		}
@@ -44,6 +65,21 @@ export function ToastForms() {
 				</select>
 				<label htmlFor="message">Message</label>
 				<input name="message" type="text" ref={messageRef}></input>
+				<label htmlFor="autoDismiss">Auto Dismiss?</label>
+				<input
+					name="autoDismiss"
+					type="checkbox"
+					checked={isAutoDissmiss}
+					onClick={() => setIsAutoDissmiss((value) => !value)}
+				/>
+				{isAutoDissmiss ? (
+					<>
+						<label htmlFor="autoDismissTimeout">Dismiss after how many ms?</label>
+						<input name="autoDismissTimeout" type="number" ref={dismissMSRef} />
+					</>
+				) : (
+					""
+				)}
 				<div>{`ID: ${currentId}`}</div>
 				<button type="submit" onClick={(e) => onCreateNewToast(e)}>
 					Submit
