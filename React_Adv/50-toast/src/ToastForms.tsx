@@ -75,7 +75,7 @@ export function ToastForms() {
 					name="autoDismiss"
 					type="checkbox"
 					checked={isAutoDissmiss}
-					onClick={() => setIsAutoDissmiss((value) => !value)}
+					onChange={() => setIsAutoDissmiss((value) => !value)}
 				/>
 				{isAutoDissmiss ? (
 					<>
