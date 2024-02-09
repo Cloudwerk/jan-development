@@ -1,15 +1,13 @@
+import { useEffect } from "react";
 import { useToastDispatchContext } from "./ToastContextProvider";
-import { toastPositions } from "./utils/models";
+import { Toast } from "./utils/models";
 
-type ToastProps = {
-	message: string;
-	id: number;
-	position: toastPositions;
-	autoDismiss: boolean;
-};
-
-export function Toast({ message, id, position, autoDismiss }: ToastProps) {
+export function Toast({ message, id, position, autoDismiss, autoDismissTimeout }: Toast) {
 	const dispatchToasts = useToastDispatchContext();
+
+	useEffect(() => {
+		if (autoDismiss) setTimeout(() => deleteSelf(), autoDismissTimeout);
+	}, []);
 
 	function deleteSelf() {
 		dispatchToasts({ action: "DEL", payload: { message, id, position, autoDismiss } });
