@@ -4,7 +4,7 @@ import { Toast, reducerProps, takesChildren } from "./utils/models";
 function reducer(toasts: Array<Toast>, { action, payload }: reducerProps) {
 	switch (action) {
 		case "ADD":
-			return { ...toasts, payload };
+			return [...toasts, payload];
 		case "DEL":
 			return toasts.filter((toast) => toast.id != payload.id);
 		default:
