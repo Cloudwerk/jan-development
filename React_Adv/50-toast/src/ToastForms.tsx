@@ -1,6 +1,11 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useToastDispatchContext } from "./ToastContextProvider";
+import { toastPositions } from "./utils/models";
 
 export function ToastForms() {
+	const [currentId, setCurrentId] = useState(1);
+	const dispatchToasts = useToastDispatchContext();
+
 	const positionRef = useRef<HTMLSelectElement>(null);
 	const messageRef = useRef<HTMLInputElement>(null);
 
@@ -9,6 +14,16 @@ export function ToastForms() {
 
 	function onCreateNewToast(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		e.preventDefault();
+		if (messageRef.current && positionRef.current) {
+			if (messageRef.current.value !== "" && positionRef.current.value !== "") {
+				const toastPosition = positionRef.current.value as toastPositions;
+				dispatchToasts({
+					action: "ADD",
+					payload: { id: currentId, message: messageRef.current.value, position: toastPosition },
+				});
+				setCurrentId((id) => id + 1);
+			}
+		}
 	}
 
 	function onDeleteToast(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -29,7 +44,7 @@ export function ToastForms() {
 				</select>
 				<label htmlFor="message">Message</label>
 				<input name="message" type="text" ref={messageRef}></input>
-				<div>{`ID:`}</div>
+				<div>{`ID: ${currentId}`}</div>
 				<button type="submit" onClick={(e) => onCreateNewToast(e)}>
 					Submit
 				</button>
