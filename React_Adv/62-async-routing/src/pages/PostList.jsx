@@ -3,7 +3,7 @@ import { Await, Form, Link, defer, useLoaderData } from "react-router-dom";
 import { getPosts } from "../api/posts";
 import { getUsers } from "../api/users";
 import { FormGroup } from "../components/FormGroup";
-import { PostCard, SkeletonCard } from "../components/PostCard";
+import { PostCard } from "../components/PostCard";
 import { CardsFallback } from "../components/SkeletonCard";
 
 function PostList() {
