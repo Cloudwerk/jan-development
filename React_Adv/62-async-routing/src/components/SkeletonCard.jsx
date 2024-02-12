@@ -18,10 +18,10 @@ export function SkeletonCard() {
 		</div>
 	);
 }
-export function CardsFallback() {
+export function CardsFallback({ amount = 10 }) {
 	return (
 		<>
-			{Array(10)
+			{Array(amount)
 				.fill(null)
 				.map((_, index) => {
 					return <SkeletonCard key={`skeleton-card-${index}`} />;
