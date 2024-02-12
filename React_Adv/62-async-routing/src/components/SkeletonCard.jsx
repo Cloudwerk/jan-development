@@ -29,3 +29,27 @@ export function CardsFallback({ amount = 10 }) {
 		</>
 	);
 }
+
+function SkeletonComment() {
+	return (
+		<div className="card">
+			<div className="card-body">
+				<div className="text-sm mb-1 skeleton"></div>
+				<div className="skeleton"></div>
+				<div className="skeleton"></div>
+			</div>
+		</div>
+	);
+}
+
+export function CommentsFallback({ amount = 5 }) {
+	return (
+		<>
+			{Array(amount)
+				.fill(null)
+				.map((_, index) => {
+					return <SkeletonComment />;
+				})}
+		</>
+	);
+}
