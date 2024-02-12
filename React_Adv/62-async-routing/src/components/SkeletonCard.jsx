@@ -23,8 +23,8 @@ export function CardsFallback() {
 		<>
 			{Array(10)
 				.fill(null)
-				.map((_) => {
-					return <SkeletonCard />;
+				.map((_, index) => {
+					return <SkeletonCard key={`skeleton-card-${index}`} />;
 				})}
 		</>
 	);
