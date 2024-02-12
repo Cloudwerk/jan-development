@@ -69,6 +69,18 @@ function PostList() {
 	);
 }
 
+function CardsFallback() {
+	return (
+		<>
+			{Array(10)
+				.fill(null)
+				.map((_) => {
+					return <SkeletonCard />;
+				})}
+		</>
+	);
+}
+
 function loader({ request: { signal, url } }) {
 	const searchParams = new URL(url).searchParams;
 	const query = searchParams.get("query");
