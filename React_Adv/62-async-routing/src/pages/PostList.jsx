@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
-import { Form, Link, useLoaderData } from "react-router-dom";
+import { Suspense, useEffect, useRef } from "react";
+import { Await, Form, Link, defer, useLoaderData } from "react-router-dom";
 import { getPosts } from "../api/posts";
 import { getUsers } from "../api/users";
 import { FormGroup } from "../components/FormGroup";
-import { PostCard } from "../components/PostCard";
+import { PostCard, SkeletonCard } from "../components/PostCard";
 
 function PostList() {
 	const {
@@ -43,11 +43,17 @@ function PostList() {
 						<label htmlFor="userId">Author</label>
 						<select type="search" name="userId" id="userId" ref={userIdRef}>
 							<option value="">Any</option>
-							{users.map((user) => (
-								<option key={user.id} value={user.id}>
-									{user.name}
-								</option>
-							))}
+							<Suspense fallback={<div>Loading</div>}>
+								<Await resolve={users}>
+									{(users) =>
+										users.map((user) => (
+											<option key={user.id} value={user.id}>
+												{user.name}
+											</option>
+										))
+									}
+								</Await>
+							</Suspense>
 						</select>
 					</FormGroup>
 					<button className="btn">Filter</button>
@@ -55,37 +61,15 @@ function PostList() {
 			</Form>
 
 			<div className="card-grid">
-				<SkeletonCard />
-				{posts.map((post) => (
-					<PostCard key={post.id} {...post} />
-				))}
+				<Suspense fallback={<SkeletonCard />}>
+					<Await resolve={posts}>{(posts) => posts.map((post) => <PostCard key={post.id} {...post} />)}</Await>
+				</Suspense>
 			</div>
 		</>
 	);
 }
 
-function SkeletonCard() {
-	return (
-		<div className="card">
-			<div className="card-header">
-				<div className="skeleton"></div>
-			</div>
-			<div className="card-body">
-				<div className="card-preview-text">
-					<div className="skeleton"></div>
-					<div className="skeleton"></div>
-					<div className="skeleton"></div>
-					<div className="skeleton"></div>
-				</div>
-			</div>
-			<div className="card-footer">
-				<div className="skeleton skeleton-btn"></div>
-			</div>
-		</div>
-	);
-}
-
-async function loader({ request: { signal, url } }) {
+function loader({ request: { signal, url } }) {
 	const searchParams = new URL(url).searchParams;
 	const query = searchParams.get("query");
 	const userId = searchParams.get("userId");
@@ -96,8 +80,8 @@ async function loader({ request: { signal, url } }) {
 	const users = getUsers({ signal });
 
 	return {
-		posts: await posts,
-		users: await users,
+		posts,
+		users,
 		searchParams: { query, userId },
 	};
 }
