@@ -41,9 +41,15 @@ function PostList() {
 					</FormGroup>
 					<FormGroup>
 						<label htmlFor="userId">Author</label>
-						<select type="search" name="userId" id="userId" ref={userIdRef}>
-							<option value="">Any</option>
-							<Suspense fallback={<div>Loading</div>}>
+						<Suspense
+							fallback={
+								<select className="skeleton skeleton-input" ref={userIdRef}>
+									<option value="">Loading</option>
+								</select>
+							}
+						>
+							<select type="search" name="userId" id="userId" ref={userIdRef}>
+								<option value="">Any</option>
 								<Await resolve={users}>
 									{(users) =>
 										users.map((user) => (
@@ -53,15 +59,15 @@ function PostList() {
 										))
 									}
 								</Await>
-							</Suspense>
-						</select>
+							</select>
+						</Suspense>
 					</FormGroup>
 					<button className="btn">Filter</button>
 				</div>
 			</Form>
 
 			<div className="card-grid">
-				<Suspense fallback={<SkeletonCard />}>
+				<Suspense fallback={<CardsFallback />}>
 					<Await resolve={posts}>{(posts) => posts.map((post) => <PostCard key={post.id} {...post} />)}</Await>
 				</Suspense>
 			</div>
