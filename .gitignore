@@ -416,3 +416,6 @@ tsconfig.node.json
 vite.config.ts
 
 package-lock.json
+
+.env.development
+.env.test
