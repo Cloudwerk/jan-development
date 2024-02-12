@@ -4,6 +4,7 @@ import { getPosts } from "../api/posts";
 import { getUsers } from "../api/users";
 import { FormGroup } from "../components/FormGroup";
 import { PostCard, SkeletonCard } from "../components/PostCard";
+import { CardsFallback } from "../components/SkeletonCard";
 
 function PostList() {
 	const {
@@ -71,18 +72,6 @@ function PostList() {
 					<Await resolve={posts}>{(posts) => posts.map((post) => <PostCard key={post.id} {...post} />)}</Await>
 				</Suspense>
 			</div>
-		</>
-	);
-}
-
-function CardsFallback() {
-	return (
-		<>
-			{Array(10)
-				.fill(null)
-				.map((_) => {
-					return <SkeletonCard />;
-				})}
 		</>
 	);
 }

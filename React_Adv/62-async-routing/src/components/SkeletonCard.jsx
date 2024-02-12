@@ -18,3 +18,14 @@ export function SkeletonCard() {
 		</div>
 	);
 }
+export function CardsFallback() {
+	return (
+		<>
+			{Array(10)
+				.fill(null)
+				.map((_) => {
+					return <SkeletonCard />;
+				})}
+		</>
+	);
+}
