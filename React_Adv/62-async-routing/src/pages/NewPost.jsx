@@ -1,10 +1,10 @@
-import { redirect, useActionData, useLoaderData, useNavigation } from "react-router-dom";
+import { defer, redirect, useActionData, useLoaderData, useNavigation } from "react-router-dom";
 import { createPost } from "../api/posts";
 import { getUsers } from "../api/users";
 import { PostForm, postFormValidator } from "../components/PostForm";
 
 function NewPost() {
-	const users = useLoaderData();
+	const { data: users } = useLoaderData();
 	const { state } = useNavigation();
 	const errors = useActionData();
 	const isSubmitting = state === "submitting";
@@ -35,7 +35,7 @@ async function action({ request }) {
 }
 
 function loader({ request: { signal } }) {
-	return getUsers({ signal });
+	return defer({ data: getUsers({ signal }) });
 }
 
 export const newPostRoute = {

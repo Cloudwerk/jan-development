@@ -2,7 +2,16 @@ import { Await, Form, Link } from "react-router-dom";
 import { FormGroup } from "./FormGroup";
 import { Suspense } from "react";
 
-export function PostForm({ users, isSubmitting, errors = {}, defaultValues = {} }) {
+export function PostForm({
+	users,
+	isSubmitting,
+	errors = {},
+	defaultValues = new Promise((resolve) => {
+		setTimeout(() => {
+			resolve({});
+		}, 1000);
+	}),
+}) {
 	return (
 		<Form method="post" className="form">
 			<div className="form-row">
@@ -56,12 +65,23 @@ export function PostForm({ users, isSubmitting, errors = {}, defaultValues = {} 
 				</FormGroup>
 			</div>
 			<div className="form-row form-btn-row">
-				<Link className="btn btn-outline" to="..">
-					Cancel
-				</Link>
-				<button disabled={isSubmitting} className="btn">
-					{isSubmitting ? "Saving" : "Save"}
-				</button>
+				<Suspense
+					fallback={
+						<>
+							<div className="skeleton skeleton-btn"></div>
+							<div className="skeleton skeleton-btn"></div>
+						</>
+					}
+				>
+					<Await resolve={users}>
+						<Link className="btn btn-outline" to="..">
+							Cancel
+						</Link>
+						<button disabled={isSubmitting} className="btn">
+							{isSubmitting ? "Saving" : "Save"}
+						</button>
+					</Await>
+				</Suspense>
 			</div>
 		</Form>
 	);
