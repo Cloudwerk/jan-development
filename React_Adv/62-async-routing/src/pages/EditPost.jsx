@@ -21,7 +21,7 @@ async function loader({ request: { signal }, params: { postId } }) {
 	const post = getPost(postId, { signal });
 	const users = getUsers({ signal });
 
-	return { post: await post, users: await users };
+	return { post, users };
 }
 
 async function action({ request, params: { postId } }) {

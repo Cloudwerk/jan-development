@@ -1,5 +1,6 @@
-import { Form, Link } from "react-router-dom";
+import { Await, Form, Link } from "react-router-dom";
 import { FormGroup } from "./FormGroup";
+import { Suspense } from "react";
 
 export function PostForm({ users, isSubmitting, errors = {}, defaultValues = {} }) {
 	return (
@@ -7,23 +8,51 @@ export function PostForm({ users, isSubmitting, errors = {}, defaultValues = {} 
 			<div className="form-row">
 				<FormGroup errorMessage={errors.title}>
 					<label htmlFor="title">Title</label>
-					<input type="text" name="title" id="title" defaultValue={defaultValues.title} />
+					<Suspense
+						fallback={
+							<input disabled type="text" name="title" className="skeleton skeleton-input" value="Loading..."></input>
+						}
+					>
+						<Await resolve={defaultValues}>
+							{(defaultValues) => <input type="text" name="title" id="title" defaultValue={defaultValues.title} />}
+						</Await>
+					</Suspense>
 				</FormGroup>
 				<FormGroup errorMessage={errors.userId}>
 					<label htmlFor="userId">Author</label>
-					<select name="userId" id="userId" defaultValue={defaultValues.userId}>
-						{users.map((user) => (
-							<option key={user.id} value={user.id}>
-								{user.name}
-							</option>
-						))}
-					</select>
+					<Suspense
+						fallback={
+							<select disabled className="skeleton skeleton-input">
+								<option>Loading...</option>
+							</select>
+						}
+					>
+						<Await resolve={defaultValues}>
+							{(defaultValues) => (
+								<select name="userId" id="userId" defaultValue={defaultValues.userId}>
+									<Await resolve={users}>
+										{(users) =>
+											users.map((user) => (
+												<option key={user.id} value={user.id}>
+													{user.name}
+												</option>
+											))
+										}
+									</Await>
+								</select>
+							)}
+						</Await>
+					</Suspense>
 				</FormGroup>
 			</div>
 			<div className="form-row">
 				<FormGroup errorMessage={errors.body}>
 					<label htmlFor="body">Body</label>
-					<textarea name="body" id="body" defaultValue={defaultValues.body}></textarea>
+					<Suspense fallback={<textarea disabled className="skeleton skeleton-input" value="Loading..."></textarea>}>
+						<Await resolve={defaultValues}>
+							{(defaultValues) => <textarea name="body" id="body" defaultValue={defaultValues.body}></textarea>}
+						</Await>
+					</Suspense>
 				</FormGroup>
 			</div>
 			<div className="form-row form-btn-row">
