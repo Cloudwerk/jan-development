@@ -4,6 +4,10 @@ const form = document.querySelector<HTMLFormElement>("#new-todo-form");
 const input = document.querySelector<HTMLInputElement>("#todo-input");
 const list = document.querySelector<HTMLUListElement>("#list");
 
+const STORAGE_KEY = "TODO-ITEMS";
+const todos = getTodos();
+
+renderAllTodos();
 setupEventListeners();
 
 function setupEventListeners() {
@@ -15,11 +19,13 @@ function setupEventListeners() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     if (input.value === "") return;
-    renderTodo({
+    const newTodo = {
       name: input.value,
       isDone: false,
       id: new Date().valueOf().toString(),
-    });
+    };
+    addTodo(newTodo);
+
     input.value = "";
   });
 }
@@ -45,9 +51,39 @@ function renderTodo(todo: Todo) {
   button.textContent = "Delete";
   button.addEventListener("click", () => {
     listItem.remove();
+    removeTodo(todo);
   });
 
   label.append(checkbox, span);
   listItem.append(label, button);
   list.append(listItem);
+}
+
+function renderAllTodos() {
+  todos.forEach((todo) => {
+    renderTodo(todo);
+  });
+}
+
+function setTodos() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+}
+
+function addTodo(todo: Todo) {
+  todos.push(todo);
+  renderTodo(todo);
+  setTodos();
+}
+
+function removeTodo(todo: Todo) {
+  todos.filter((_todo) => _todo.id != todo.id);
+  setTodos();
+}
+
+function getTodos(): Array<Todo> {
+  const storageItems = localStorage.getItem(STORAGE_KEY);
+  if (!storageItems) return new Array<Todo>();
+  const parsedItems = JSON.parse(storageItems);
+  if (Array.isArray(parsedItems)) return parsedItems as Array<Todo>;
+  return new Array<Todo>();
 }
