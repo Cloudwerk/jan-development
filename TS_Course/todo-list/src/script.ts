@@ -4,7 +4,7 @@ const form = document.querySelector<HTMLFormElement>("#new-todo-form");
 const input = document.querySelector<HTMLInputElement>("#todo-input");
 const list = document.querySelector<HTMLUListElement>("#list");
 
-const STORAGE_KEY = "TODO-ITEMS";
+const STORAGE_KEY = "TODO_ITEMS";
 const todos = getTodos();
 
 renderAllTodos();
@@ -76,7 +76,12 @@ function addTodo(todo: Todo) {
 }
 
 function removeTodo(todo: Todo) {
-  todos.filter((_todo) => _todo.id != todo.id);
+  const todoIndex = todos.findIndex((_todo) => _todo.id === todo.id);
+  if (todoIndex === -1) {
+    alert("error while deleting todo");
+    return;
+  }
+  todos.splice(todoIndex, 1);
   setTodos();
 }
 
