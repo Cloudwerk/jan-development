@@ -42,6 +42,12 @@ function renderTodo(todo: Todo) {
   checkbox.type = "checkbox";
   checkbox.checked = todo.isDone;
   checkbox.classList.add("label-input");
+  checkbox.addEventListener("change", (e) => {
+    if (e.target) {
+      const target = e.target as HTMLInputElement;
+      setIsDone(todo, target.checked);
+    }
+  });
 
   const span = document.createElement("span");
   span.textContent = todo.name;
@@ -63,6 +69,16 @@ function renderAllTodos() {
   todos.forEach((todo) => {
     renderTodo(todo);
   });
+}
+
+function setIsDone(todo: Todo, isDone: boolean) {
+  const index = todos.findIndex((_todo) => _todo.id === todo.id);
+  if (index === -1) {
+    alert("error while setting todo status");
+    return;
+  }
+  todos[index].isDone = isDone;
+  setTodos();
 }
 
 function setTodos() {
