@@ -36,5 +36,7 @@ function setupEventListeners() {
     label.append(checkbox, span);
     listItem.append(label, button);
     list.append(listItem);
+
+    input.value = "";
   });
 }
