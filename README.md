@@ -1,6 +1,6 @@
 # jan-development
 
-create new vite app: `npm create vite @latest`
+create new vite app: `npm create vite@latest`
 
 ## Testing vite
 
