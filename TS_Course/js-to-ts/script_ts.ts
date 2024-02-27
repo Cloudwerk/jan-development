@@ -9,7 +9,8 @@ import {
 	checkLose,
 	positionMatch,
 	markedTilesCount,
-} from "./minesweeper.js";
+} from "./minesweeper_ts";
+import { Position } from "./models.js";
 
 const BOARD_SIZE = 10;
 const NUMBER_OF_MINES = 10;
@@ -100,8 +101,8 @@ function stopProp(e) {
 	e.stopImmediatePropagation();
 }
 
-function getMinePositions(boardSize, numberOfMines) {
-	const positions = [];
+function getMinePositions(boardSize: number, numberOfMines: number) {
+	const positions: Array<Position> = [];
 
 	while (positions.length < numberOfMines) {
 		const position = {
@@ -117,6 +118,6 @@ function getMinePositions(boardSize, numberOfMines) {
 	return positions;
 }
 
-function randomNumber(size) {
+function randomNumber(size: number) {
 	return Math.floor(Math.random() * size);
 }

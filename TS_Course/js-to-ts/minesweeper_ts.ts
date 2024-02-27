@@ -1,4 +1,5 @@
 import { times, range } from "lodash/fp";
+import { Position } from "./models";
 
 export const TILE_STATUSES = {
 	HIDDEN: "hidden",
@@ -7,7 +8,7 @@ export const TILE_STATUSES = {
 	MARKED: "marked",
 };
 
-export function createBoard(boardSize, minePositions) {
+export function createBoard(boardSize: number, minePositions: Array<Position>) {
 	return times((x) => {
 		return times((y) => {
 			return {
