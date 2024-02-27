@@ -5,7 +5,7 @@ export type Position = {
 
 export type MineStatus = "hidden" | "mine" | "number" | "marked";
 
-export type Mine = {
+export type Tile = {
 	mine: boolean;
 	status: MineStatus;
 } & Position;
