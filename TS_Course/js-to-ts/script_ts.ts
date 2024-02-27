@@ -51,6 +51,7 @@ function tileToElement(tile: Tile): HTMLDivElement {
 }
 
 boardElement?.addEventListener("click", (e) => {
+	if (!e.target) return;
 	if (!e.target.matches("[data-status]")) return;
 
 	board = revealTile(board, {
@@ -61,6 +62,7 @@ boardElement?.addEventListener("click", (e) => {
 });
 
 boardElement?.addEventListener("contextmenu", (e) => {
+	if (!e.target) return;
 	if (!e.target.matches("[data-status]")) return;
 
 	e.preventDefault();
