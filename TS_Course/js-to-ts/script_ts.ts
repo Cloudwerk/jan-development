@@ -16,9 +16,9 @@ const BOARD_SIZE = 10;
 const NUMBER_OF_MINES = 10;
 
 let board = createBoard(BOARD_SIZE, getMinePositions(BOARD_SIZE, NUMBER_OF_MINES));
-const boardElement = document.querySelector(".board");
-const minesLeftText = document.querySelector("[data-mine-count]");
-const messageText = document.querySelector(".subtext");
+const boardElement = document.querySelector<HTMLDivElement>(".board");
+const minesLeftText = document.querySelector<HTMLDivElement>("[data-mine-count]");
+const messageText = document.querySelector<HTMLHeadingElement>(".subtext");
 
 function render() {
 	boardElement.innerHTML = "";
