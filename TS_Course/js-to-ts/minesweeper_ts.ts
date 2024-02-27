@@ -21,13 +21,13 @@ export function createBoard(boardSize: number, minePositions: Array<Position>): 
 	}, boardSize);
 }
 
-export function markedTilesCount(board) {
+export function markedTilesCount(board: Mine[][]) {
 	return board.reduce((count, row) => {
 		return count + row.filter((tile) => tile.status === TILE_STATUSES.MARKED).length;
 	}, 0);
 }
 
-export function markTile(board, { x, y }) {
+export function markTile(board: Mine[][], { x, y }) {
 	const tile = board[x][y];
 	if (tile.status !== TILE_STATUSES.HIDDEN && tile.status !== TILE_STATUSES.MARKED) {
 		return board;
@@ -40,7 +40,7 @@ export function markTile(board, { x, y }) {
 	}
 }
 
-function replaceTile(board, position, newTile) {
+function replaceTile(board: Mine[][], position, newTile) {
 	return board.map((row, x) => {
 		return row.map((tile, y) => {
 			if (positionMatch(position, { x, y })) {
@@ -51,7 +51,7 @@ function replaceTile(board, position, newTile) {
 	});
 }
 
-export function revealTile(board, { x, y }) {
+export function revealTile(board: Mine[][], { x, y }) {
 	const tile = board[x][y];
 	if (tile.status !== TILE_STATUSES.HIDDEN) {
 		return board;
@@ -76,7 +76,7 @@ export function revealTile(board, { x, y }) {
 	return newBoard;
 }
 
-export function checkWin(board) {
+export function checkWin(board: Mine[][]) {
 	return board.every((row) => {
 		return row.every((tile) => {
 			return (
@@ -87,7 +87,7 @@ export function checkWin(board) {
 	});
 }
 
-export function checkLose(board) {
+export function checkLose(board: Mine[][]) {
 	return board.some((row) => {
 		return row.some((tile) => {
 			return tile.status === TILE_STATUSES.MINE;
@@ -99,7 +99,7 @@ export function positionMatch(a: Position, b: Position): boolean {
 	return a.x === b.x && a.y === b.y;
 }
 
-function nearbyTiles(board, { x, y }) {
+function nearbyTiles(board: Mine[][], { x, y }) {
 	const offsets = range(-1, 2);
 
 	return offsets
