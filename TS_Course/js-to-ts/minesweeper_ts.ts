@@ -51,7 +51,7 @@ function replaceTile(board: Tile[][], position: Position, newTile: Tile): Tile[]
 	});
 }
 
-export function revealTile(board: Tile[][], { x, y }) {
+export function revealTile(board: Tile[][], { x, y }: Position): Tile[][] {
 	const tile = board[x][y];
 	if (tile.status !== TILE_STATUSES.HIDDEN) {
 		return board;
@@ -99,7 +99,7 @@ export function positionMatch(a: Position, b: Position): boolean {
 	return a.x === b.x && a.y === b.y;
 }
 
-function nearbyTiles(board: Tile[][], { x, y }) {
+function nearbyTiles(board: Tile[][], { x, y }: Position) {
 	const offsets = range(-1, 2);
 
 	return offsets
