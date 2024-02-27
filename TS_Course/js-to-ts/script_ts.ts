@@ -10,7 +10,7 @@ import {
 	positionMatch,
 	markedTilesCount,
 } from "./minesweeper_ts";
-import { Position } from "./models.js";
+import { Position, Tile } from "./models.js";
 
 const BOARD_SIZE = 10;
 const NUMBER_OF_MINES = 10;
@@ -41,12 +41,12 @@ function getTileElements() {
 	});
 }
 
-function tileToElement(tile) {
+function tileToElement(tile: Tile) {
 	const element = document.createElement("div");
 	element.dataset.status = tile.status;
-	element.dataset.x = tile.x;
-	element.dataset.y = tile.y;
-	element.textContent = tile.adjacentMinesCount || "";
+	element.dataset.x = tile.x.toString();
+	element.dataset.y = tile.y.toString();
+	element.textContent = tile.adjacentMinesCount?.toString() || "";
 	return element;
 }
 
