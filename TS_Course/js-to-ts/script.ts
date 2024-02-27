@@ -9,7 +9,7 @@ import {
 	checkLose,
 	positionMatch,
 	markedTilesCount,
-} from "./minesweeper_ts";
+} from "./minesweeper";
 import { Position, Tile } from "./models";
 
 const BOARD_SIZE = 10;
