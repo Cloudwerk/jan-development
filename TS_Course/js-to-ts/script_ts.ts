@@ -10,7 +10,7 @@ import {
 	positionMatch,
 	markedTilesCount,
 } from "./minesweeper_ts";
-import { Position, Tile } from "./models.js";
+import { Position, Tile } from "./models";
 
 const BOARD_SIZE = 10;
 const NUMBER_OF_MINES = 10;
@@ -77,7 +77,7 @@ boardElement?.addEventListener("contextmenu", (e) => {
 	render();
 });
 
-boardElement?.style.setProperty("--size", BOARD_SIZE);
+boardElement?.style.setProperty("--size", BOARD_SIZE.toString());
 render();
 
 function listMinesLeft() {
@@ -108,7 +108,7 @@ function checkGameEnd() {
 	}
 }
 
-function stopProp(e) {
+function stopProp(e: MouseEvent) {
 	e.stopImmediatePropagation();
 }
 
