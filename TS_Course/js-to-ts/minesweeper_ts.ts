@@ -76,7 +76,7 @@ export function revealTile(board: Tile[][], { x, y }: Position): Tile[][] {
 	return newBoard;
 }
 
-export function checkWin(board: Tile[][]) {
+export function checkWin(board: Tile[][]): boolean {
 	return board.every((row) => {
 		return row.every((tile) => {
 			return (
@@ -87,7 +87,7 @@ export function checkWin(board: Tile[][]) {
 	});
 }
 
-export function checkLose(board: Tile[][]) {
+export function checkLose(board: Tile[][]): boolean {
 	return board.some((row) => {
 		return row.some((tile) => {
 			return tile.status === TILE_STATUSES.MINE;
@@ -99,7 +99,7 @@ export function positionMatch(a: Position, b: Position): boolean {
 	return a.x === b.x && a.y === b.y;
 }
 
-function nearbyTiles(board: Tile[][], { x, y }: Position) {
+function nearbyTiles(board: Tile[][], { x, y }: Position): Tile[] {
 	const offsets = range(-1, 2);
 
 	return offsets
