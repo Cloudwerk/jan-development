@@ -35,13 +35,13 @@ function render() {
 	listMinesLeft();
 }
 
-function getTileElements() {
+function getTileElements(): HTMLDivElement[] {
 	return board.flatMap((row) => {
 		return row.map(tileToElement);
 	});
 }
 
-function tileToElement(tile: Tile) {
+function tileToElement(tile: Tile): HTMLDivElement {
 	const element = document.createElement("div");
 	element.dataset.status = tile.status;
 	element.dataset.x = tile.x.toString();
@@ -106,7 +106,7 @@ function stopProp(e) {
 	e.stopImmediatePropagation();
 }
 
-function getMinePositions(boardSize: number, numberOfMines: number) {
+function getMinePositions(boardSize: number, numberOfMines: number): Array<Position> {
 	const positions: Array<Position> = [];
 
 	while (positions.length < numberOfMines) {
@@ -123,6 +123,6 @@ function getMinePositions(boardSize: number, numberOfMines: number) {
 	return positions;
 }
 
-function randomNumber(size: number) {
+function randomNumber(size: number): number {
 	return Math.floor(Math.random() * size);
 }
