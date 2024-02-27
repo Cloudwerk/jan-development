@@ -66,7 +66,7 @@ export function revealTile(board: Tile[][], { x, y }: Position): Tile[][] {
 	const newBoard = replaceTile(
 		board,
 		{ x, y },
-		{ ...tile, status: TILE_STATUSES.NUMBER, adjacentMinesCount: mines.length }
+		{ ...tile, status: TILE_STATUSES.NUMBER, adjacentMinesCount: mines.length === 0 ? undefined : mines.length }
 	);
 	if (mines.length === 0) {
 		return adjacentTiles.reduce((b, t) => {
