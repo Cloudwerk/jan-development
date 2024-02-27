@@ -1,14 +1,14 @@
 import { times, range } from "lodash/fp";
-import { Position } from "./models";
+import { Mine, MineStatus, Position } from "./models";
 
 export const TILE_STATUSES = {
 	HIDDEN: "hidden",
 	MINE: "mine",
 	NUMBER: "number",
 	MARKED: "marked",
-};
+} as const;
 
-export function createBoard(boardSize: number, minePositions: Array<Position>) {
+export function createBoard(boardSize: number, minePositions: Array<Position>): Mine[][] {
 	return times((x) => {
 		return times((y) => {
 			return {
@@ -95,7 +95,7 @@ export function checkLose(board) {
 	});
 }
 
-export function positionMatch(a, b) {
+export function positionMatch(a: Position, b: Position): boolean {
 	return a.x === b.x && a.y === b.y;
 }
 
