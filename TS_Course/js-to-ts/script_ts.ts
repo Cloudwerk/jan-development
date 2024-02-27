@@ -52,23 +52,27 @@ function tileToElement(tile: Tile): HTMLDivElement {
 
 boardElement?.addEventListener("click", (e) => {
 	if (!e.target) return;
-	if (!e.target.matches("[data-status]")) return;
+	const target = e.target as HTMLElement;
+	if (!target.matches("[data-status]")) return;
 
+	if (!target.dataset.x || !target.dataset.y) return;
 	board = revealTile(board, {
-		x: parseInt(e.target.dataset.x),
-		y: parseInt(e.target.dataset.y),
+		x: parseInt(target.dataset.x),
+		y: parseInt(target.dataset.y),
 	});
 	render();
 });
 
 boardElement?.addEventListener("contextmenu", (e) => {
 	if (!e.target) return;
-	if (!e.target.matches("[data-status]")) return;
+	const target = e.target as HTMLElement;
+	if (!target.matches("[data-status]")) return;
 
 	e.preventDefault();
+	if (!target.dataset.x || !target.dataset.y) return;
 	board = markTile(board, {
-		x: parseInt(e.target.dataset.x),
-		y: parseInt(e.target.dataset.y),
+		x: parseInt(target.dataset.x),
+		y: parseInt(target.dataset.y),
 	});
 	render();
 });
