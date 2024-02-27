@@ -21,13 +21,13 @@ export function createBoard(boardSize: number, minePositions: Array<Position>): 
 	}, boardSize);
 }
 
-export function markedTilesCount(board: Tile[][]) {
+export function markedTilesCount(board: Tile[][]): number {
 	return board.reduce((count, row) => {
 		return count + row.filter((tile) => tile.status === TILE_STATUSES.MARKED).length;
 	}, 0);
 }
 
-export function markTile(board: Tile[][], { x, y }) {
+export function markTile(board: Tile[][], { x, y }: Position): Tile[][] {
 	const tile = board[x][y];
 	if (tile.status !== TILE_STATUSES.HIDDEN && tile.status !== TILE_STATUSES.MARKED) {
 		return board;
@@ -40,7 +40,7 @@ export function markTile(board: Tile[][], { x, y }) {
 	}
 }
 
-function replaceTile(board: Tile[][], position, newTile) {
+function replaceTile(board: Tile[][], position: Position, newTile: Tile): Tile[][] {
 	return board.map((row, x) => {
 		return row.map((tile, y) => {
 			if (positionMatch(position, { x, y })) {
