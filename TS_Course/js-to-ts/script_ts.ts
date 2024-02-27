@@ -21,6 +21,10 @@ const minesLeftText = document.querySelector<HTMLDivElement>("[data-mine-count]"
 const messageText = document.querySelector<HTMLHeadingElement>(".subtext");
 
 function render() {
+	if (!boardElement) {
+		alert("No Board Element Found");
+		return;
+	}
 	boardElement.innerHTML = "";
 	checkGameEnd();
 
@@ -46,7 +50,7 @@ function tileToElement(tile) {
 	return element;
 }
 
-boardElement.addEventListener("click", (e) => {
+boardElement?.addEventListener("click", (e) => {
 	if (!e.target.matches("[data-status]")) return;
 
 	board = revealTile(board, {
@@ -56,7 +60,7 @@ boardElement.addEventListener("click", (e) => {
 	render();
 });
 
-boardElement.addEventListener("contextmenu", (e) => {
+boardElement?.addEventListener("contextmenu", (e) => {
 	if (!e.target.matches("[data-status]")) return;
 
 	e.preventDefault();
@@ -67,11 +71,12 @@ boardElement.addEventListener("contextmenu", (e) => {
 	render();
 });
 
-boardElement.style.setProperty("--size", BOARD_SIZE);
+boardElement?.style.setProperty("--size", BOARD_SIZE);
 render();
 
 function listMinesLeft() {
-	minesLeftText.textContent = NUMBER_OF_MINES - markedTilesCount(board);
+	const text = (NUMBER_OF_MINES - markedTilesCount(board)).toString();
+	minesLeftText ? (minesLeftText.textContent = text) : alert(text);
 }
 
 function checkGameEnd() {
@@ -79,15 +84,15 @@ function checkGameEnd() {
 	const lose = checkLose(board);
 
 	if (win || lose) {
-		boardElement.addEventListener("click", stopProp, { capture: true });
-		boardElement.addEventListener("contextmenu", stopProp, { capture: true });
+		boardElement?.addEventListener("click", stopProp, { capture: true });
+		boardElement?.addEventListener("contextmenu", stopProp, { capture: true });
 	}
 
 	if (win) {
-		messageText.textContent = "You Win";
+		messageText ? (messageText.textContent = "You Win") : alert("You Win");
 	}
 	if (lose) {
-		messageText.textContent = "You Lose";
+		messageText ? (messageText.textContent = "You Lose") : alert("You Lose");
 		board.forEach((row) => {
 			row.forEach((tile) => {
 				if (tile.status === TILE_STATUSES.MARKED) board = markTile(board, tile);
