@@ -51,28 +51,35 @@ function tileToElement(tile: Tile): HTMLDivElement {
 }
 
 boardElement?.addEventListener("click", (e) => {
-	if (!e.target) return;
-	const target = e.target as HTMLElement;
-	if (!target.matches("[data-status]")) return;
+	if (
+		!(e.target instanceof HTMLElement) ||
+		!e.target.matches("[data-status]") ||
+		!e.target.dataset.x ||
+		!e.target.dataset.y
+	)
+		return;
 
-	if (!target.dataset.x || !target.dataset.y) return;
 	board = revealTile(board, {
-		x: parseInt(target.dataset.x),
-		y: parseInt(target.dataset.y),
+		x: parseInt(e.target.dataset.x),
+		y: parseInt(e.target.dataset.y),
 	});
 	render();
 });
 
 boardElement?.addEventListener("contextmenu", (e) => {
-	if (!e.target) return;
-	const target = e.target as HTMLElement;
-	if (!target.matches("[data-status]")) return;
+	if (
+		!(e.target instanceof HTMLElement) ||
+		!e.target.matches("[data-status]") ||
+		!e.target.dataset.x ||
+		!e.target.dataset.y
+	)
+		return;
 
 	e.preventDefault();
-	if (!target.dataset.x || !target.dataset.y) return;
+
 	board = markTile(board, {
-		x: parseInt(target.dataset.x),
-		y: parseInt(target.dataset.y),
+		x: parseInt(e.target.dataset.x),
+		y: parseInt(e.target.dataset.y),
 	});
 	render();
 });
